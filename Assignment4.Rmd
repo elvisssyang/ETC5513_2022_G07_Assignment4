@@ -33,3 +33,41 @@ output:
     citation_package: biblatex
     toc: false
 ---
+
+
+section YIQI WANG
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE, 
+                      warning = FALSE,
+                      comment = NA)
+```
+
+# Load Packages
+
+```{r}
+library(tidyverse)
+library(gganimate)
+library(GGally)
+```
+
+# Read Data
+
+```{r}
+data2015 <- read_csv('Data/2015.csv')
+data2016 <- read_csv('Data/2016.csv')
+data2017 <- read_csv('Data/2017.csv')
+data2018 <- read_csv('Data/2018.csv')
+data2019 <- read_csv('Data/2019.csv')
+data2020 <- read_csv('Data/2020.csv')
+data2021 <- read_csv('Data/2021.csv')
+data2022 <- read_csv('Data/2022.csv')
+```
+
+
+
+
+
+
