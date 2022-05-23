@@ -52,6 +52,7 @@ library(gganimate)
 library(GGally)
 ```
 
+
 # Read Data
 
 ```{r}
@@ -67,7 +68,7 @@ data2022 <- read_csv('Data/2022.csv')
 
 # 
 
-```{r data_Preparation}
+```{r dataPreparation}
 data2015 <- data2015 %>% 
   select(Country,Region,`Happiness Score`,
          `Economy (GDP per Capita)`,
@@ -168,7 +169,7 @@ data2022 <- data2022 %>%
 ```
 
 
-```{r data_Preparation}
+```{r dataPreparation2}
 area <- data2015 %>% 
   select(Country,Region)
 
@@ -206,9 +207,9 @@ data1 <- bind_rows(data2015,data2016,data2017,data2018,
 
 ##research questions：
 
-1. How will happiness trends change between 2015 and 2022 in different regions?
+1. How will happiness trends change between 2015 to 2022 in different regions?
 
-2. From 2015 to 2022, What is the relationship between economic health with the happiness In different countries?
+2. From 2015 to 2022, What is the relationship between economic situation and health status with the happiness?
 
 ### The trends in happiness 2015-2022
 
@@ -234,9 +235,67 @@ p1 <- data1 %>%
   theme(plot.title = element_text(hjust = 0.5))
 plotly::ggplotly(p1)
 ```
-From the Figure \@ref(fig:trends), we can see that the trend in all regions can be divided into three different levels of happiness score.  In all regions , South Asia and Sub-Saharan Africa these two regions of overall happiness is the lowest, but Sub-Saharan Africa's happiness began to increase year by year after reaching the trough in 2016, and the South Asia region began in 2018, Happiness is declining year by year. The three regions with the highest overall happiness are: Australia and New Zealand; North America; and Western Europe, and the three regions have changed their happiness by little each year, with a relatively flat trend. Overall well-being is in the middle of the region, with the Central and Eastern Europe region being the only one that is rising year on year, while other regions are in a slightly fluctuating but general trend that is in a more stable state.
+From the Figure \@ref(fig:trends), we can see that the trend in all regions can be divided into three different levels of happiness score.  In all regions , South Asia and Sub-Saharan Africa these two regions of overall happiness is the lowest, but Sub-Saharan Africa's happiness began to increase year by year after reaching the trough in 2016, and the South Asia region began in 2018, Happiness is declining year by year. The three regions with the highest overall happiness are: Australia and New Zealand; North America; and Western Europe, and the three regions have changed their happiness by little each year, with a relatively flat trend. Overall well-being is in the middle of the region, with the Central and Eastern Europe region being the only one that is rising year on year, while other regions are in a slightly fluctuating but general trend that is in a more stable state. Overall, we observed that regions with relatively better economic levels had higher happiness indices and more stable changes, while regions with poorer economies had lower happiness indices and had larger annual trends.
 
 
+
+
+### the relationship between economic situation and health status with the happiness in 2015-2022
+
+
+```{r VS , fig.cap = "Happiness Score vs Economy & Health", warning = FALSE,message = F}
+data1 %>% 
+  filter(!is.na(Year)) %>% 
+  ggplot(aes(x = Economy,
+             y = Health,
+             color = Happiness_Score)) +
+  geom_point(alpha = 0.7) +
+  labs(color = 'Happiness Score',
+       size = 'Happiness Score',
+       title = 'Happiness Score vs Economy & Health') +
+  facet_wrap(~Year,scales = 'free') +
+  scale_color_viridis_c() +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5),
+        text = element_text(size = 8))
+```
+
+People's understanding of happiness is inseparable from their own living conditions, so in this report, we also studied the relationship between happiness and economic and health status.
+
+
+From the figure \@ref(fig:VS), we can find that there is a positive correlation between economic status, health status and well-being from 2015 to 2022. The better the economic status and health status, the stronger the people's well-being.
+
+
+From 2015 to 2022, the influence of the economic status on the happiness index is getting lower and lower, and the influence of the health on the happiness index has increased significantly. From 2017 to 2018, the influence of economic on happiness index increased slightly, while the influence of health  on happiness index decreased slightly during this period.
+
+
+
+
+
+```{r}
+tabel1 <- data1 %>% 
+  split(.$Year) %>% 
+  map(~coef(lm(Happiness_Score ~ Economy + Health,data = .x))) %>% 
+  do.call('rbind',.) %>% 
+  as.data.frame() %>% 
+  mutate(Year = rownames(.)) %>% 
+  mutate_if(is.numeric,round,3) %>% 
+  select(Year,`(Intercept)`,Economy,Health)
+```
+
+
+```{r table,cache=TRUE}
+table1 %>% 
+  knitr::kable('latex', 
+               digits = 3, 
+               booktabs = TRUE, 
+               caption = "A linear relationship between economic status and health status with happiness index each year")%>%
+  kableExtra::kable_styling(latex_options = "striped")
+```
+
+
+
+Overall, from 2015 to 2022, the influence of economic on happiness index did not change significantly, in the table1 \ref{tab:table} shows the slope decreased from 1.616 to 1.406, only 0.2. However, the influence of health on happiness index changed a lot, and the slope increased from 1.2 to 2.08 Through these data, we can also see that in today's society, people pay more and more attention to their health, especially after the covid-19. Generally speaking, the proportion of health in people's mind is higher and higher.
 
 
 
