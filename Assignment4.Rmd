@@ -33,3 +33,460 @@ output:
     citation_package: biblatex
     toc: false
 ---
+
+```{r}
+library(tidyverse)
+library(gganimate) 
+library(GGally)
+library(fpp3)
+library(ggplot2) # Data visualization
+library(readr) # read data files 
+library(dplyr)
+library(gridExtra)
+library(RColorBrewer)
+library(repr)
+library(neuralnet)
+library(ggpubr)
+library(caTools)
+library(rworldmap)# Draw world map 
+library(rnaturalearth)
+library(sf)
+library(car)
+```
+
+
+
+```{r}
+data2016 = read_csv("data/2016.csv")
+data2017 = read_csv("data/2017.csv")
+data2018= read_csv("data/2018.csv")
+data2019 = read_csv("data/2019.csv")
+data2020 = read_csv("data/2020.csv")
+
+
+
+hap16 = read_csv("data/2016.csv")
+hap17 = read_csv("data/2017.csv")
+hap18 = read_csv("data/2018.csv")
+hap18$`Perceptions of corruption` = as.numeric(hap18$`Perceptions of corruption`)
+hap19 = read_csv("data/2019.csv")
+hap20 = read_csv("data/2020.csv")
+
+
+```
+
+```{r data_Preparation}
+
+data2016 <- data2016 %>% 
+  select(Country,`Happiness Score`,
+         `Economy (GDP per Capita)`,
+         `Health (Life Expectancy)`,
+         Freedom) %>% 
+  rename('Happiness Score' = 'Happiness Score',
+         'Economy' = 'Economy (GDP per Capita)',
+         'Health' = 'Health (Life Expectancy)') %>% 
+  mutate(Year = 2016)
+
+data2017 <- data2017 %>% 
+  select(Country,Happiness.Score,
+         Economy..GDP.per.Capita.,
+         Health..Life.Expectancy.,
+         Freedom) %>% 
+  rename('Happiness Score' = 'Happiness.Score',
+         'Economy' = 'Economy..GDP.per.Capita.',
+         'Health' = 'Health..Life.Expectancy.') %>% 
+  mutate(Year = 2017)
+
+data2018 <- data2018 %>% 
+  select(`Country or region`,
+         Score,
+         `GDP per capita`,
+         `Healthy life expectancy`,
+         `Freedom to make life choices`) %>%
+  rename('Country' = 'Country or region',
+         'Happiness Score' = 'Score',
+         'Economy' = 'GDP per capita',
+         'Health' = 'Healthy life expectancy',
+         'Freedom' = 'Freedom to make life choices') %>% 
+  mutate(Year = 2018)
+
+data2019 <- data2019 %>% 
+  select(`Country or region`,
+         Score,
+         `GDP per capita`,
+         `Healthy life expectancy`,
+         `Freedom to make life choices`) %>%
+  rename('Country' = 'Country or region',
+         'Happiness Score' = 'Score',
+         'Economy' = 'GDP per capita',
+         'Health' = 'Healthy life expectancy',
+         'Freedom' = 'Freedom to make life choices') %>% 
+  mutate(Year = 2019)
+
+data2020 <- data2020 %>% 
+  select(`Country name`,
+         `Ladder score`,
+         `Explained by: Log GDP per capita`,
+         `Explained by: Healthy life expectancy`,
+         `Freedom to make life choices`) %>%
+  rename('Country' = 'Country name',
+         'Happiness Score' = 'Ladder score',
+         'Economy' = 'Explained by: Log GDP per capita',
+         'Health' = 'Explained by: Healthy life expectancy',
+         'Freedom' = 'Freedom to make life choices') %>% 
+  mutate(Year = 2020)
+
+```
+
+```{r}
+dataall <- rbind(data2016, data2017, data2018, data2019, data2020)
+```
+
+
+```{r message=FALSE, warning=FALSE}
+# Combine new data from world bank about CPI and Population up to 2020 
+
+
+world_map = ne_countries(returnclass = 'sf')
+cpi = read_csv("data/API_FP.CPI.TOTL.ZG_DS2_en_csv_v2.csv", skip = 4)
+population = read_csv("data/API_SP.POP.TOTL_DS2_en_csv_v2.csv", skip = 4)
+```
+
+
+```{r}
+# Wrangling the data to combine the new data with 2016-2020 happiness report data
+
+temp <- hap16 %>% 
+  dplyr::select(Country, `Happiness Score`, `Health` = `Health (Life Expectancy)`, `Economy` = `Economy (GDP per Capita)`) %>%
+  mutate(year = 2016)
+
+temp <- hap17 %>%
+  dplyr::select(Country, `Happiness Score` = Happiness.Score, `Economy` = Economy..GDP.per.Capita., `Health` = Health..Life.Expectancy.) %>%
+  mutate(year = 2017) %>%
+  rbind(temp) 
+
+temp <- hap18 %>%
+  dplyr::select(Country = `Country or region`, `Happiness Score` = Score, `Health` = `Healthy life expectancy`, `Economy` = `GDP per capita`) %>%
+  mutate(year = 2018) %>%
+  rbind(temp)
+
+temp <- hap19 %>%
+  dplyr::select(Country = `Country or region`, `Happiness Score` = Score, `Health` = `Healthy life expectancy`, `Economy` = `GDP per capita`) %>%
+  mutate(year = 2019) %>%
+  rbind(temp) 
+
+temp <- hap20 %>%
+  dplyr::select(Country = `Country name`, `Happiness Score` = `Ladder score`, `Health` = `Healthy life expectancy`, `Economy` = `Explained by: Log GDP per capita`) %>%
+  mutate(year = 2020)%>%
+  rbind(temp)
+
+
+hapall <- temp 
+
+hapall <- population %>%
+  dplyr::select(Country = `Country Name`, `2016`:`2020`) %>%
+  gather(key = 'year', value = 'population', `2016`:`2020`) %>%
+  mutate(year = as.numeric(year)) %>%
+  right_join(hapall) 
+
+hapall <- cpi %>%
+  dplyr::select(Country = `Country Name`, `2016`:`2020`) %>%
+  gather(key = 'year', value = 'cpi', `2016`:`2020`) %>%
+  mutate(year = as.numeric(year)) %>%
+  right_join(hapall) 
+
+
+```
+
+
+```{r}
+# Remove the NA values 
+narm_hapall = na.omit(hapall)
+
+lognarm_hapall <- narm_hapall %>%
+  mutate(log_score = log(`Happiness Score`), log_eco = log(Economy), log_health = log(Health), log_population = log(population)) %>% 
+  dplyr::select(Country, year,log_score, log_eco, log_health, log_population, cpi) %>% 
+  na.omit() %>% tibble()
+
+lognarm_hapall <- do.call(data.frame,lapply(lognarm_hapall,function(x) replace(x, is.infinite(x), NA)))
+
+```
+
+
+
+```{r}
+set.seed(1999)
+happiness <- dataall %>% na.omit()
+
+dataset <- happiness[2:6] %>% na.omit()
+  
+split <- sample.split(dataset$`Happiness Score`, SplitRatio = 0.8)
+
+
+training_set <- subset(dataset, split == TRUE)
+test_set <- subset(dataset, split == FALSE)
+
+# Linear model 
+regressor_lm = lm(formula = `Happiness Score` ~ . ,data = training_set )
+
+# Linear plot 
+y_pred_lm <- predict(regressor_lm, newdata = test_set)
+
+Pred_Actual_lm <- as.data.frame(cbind(Prediction = y_pred_lm, Actual = test_set$`Happiness Score`))
+
+gglm <- ggplot(Pred_Actual_lm, aes(Actual, Prediction )) +
+  geom_point() + theme_bw() + geom_abline() +
+  labs(title = "Multiple Linear Regression", x = "Actual happiness score",
+       y = "Predicted happiness score") +
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)), 
+        axis.title = element_text(family = "Helvetica", size = (10)))
+
+
+
+
+# SVM
+
+library(e1071)
+regressor_svm = svm(formula = `Happiness Score` ~ .,
+                data = dataset,
+                type = 'eps-regression',
+                kernel = 'radial')
+
+
+y_pred_svr = predict(regressor_svm,  newdata = test_set)
+
+Pred_Actual_svr <- as.data.frame(cbind(Prediction = y_pred_svr, Actual = test_set$`Happiness Score`))
+
+
+Pred_Actual_lmversus.svr <- cbind(Prediction.lm = y_pred_lm, Prediction.svr = y_pred_svr, Actual = test_set$Happiness.Score)
+
+# SVR plot 
+gg.svr <- ggplot(Pred_Actual_svr, aes(Actual, Prediction )) +
+  geom_point() + theme_bw() + geom_abline() +
+  labs(title = "Support Vector Machine", x = "Actual happiness score",
+       y = "Predicted happiness score") +
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)),
+        axis.title = element_text(family = "Helvetica", size = (10)))
+
+
+
+
+# Decision Tree model 
+# Fitting Decision Tree Regression to the dataset
+library(rpart)
+regressor_dt = rpart(formula = `Happiness Score` ~ .,
+                  data = dataset,
+                  control = rpart.control(minsplit = 10))
+
+
+
+
+# Predicting a new result with Decision Tree Regression
+y_pred_dt = predict(regressor_dt, newdata = test_set)
+
+Pred_Actual_dt <- as.data.frame(cbind(Prediction = y_pred_dt, Actual = test_set$`Happiness Score`))
+
+
+gg.dt <- ggplot(Pred_Actual_dt, aes(Actual, Prediction )) +
+  geom_point() + theme_bw() + geom_abline() +
+  labs(title = "Decision Tree Regression", x = "Actual happiness score",
+       y = "Predicted happiness score") +
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)), 
+        axis.title = element_text(family = "Helvetica", size = (10)))
+gg.dt
+
+
+# Random Forest
+
+library(randomForest)
+set.seed(1234)
+regressor_rf = randomForest(x = dataset[-1],
+                         y = dataset$`Happiness Score`,
+                         ntree = 1000)
+
+# Predicting a new result with Random Forest Regression
+y_pred_rf = predict(regressor_rf, newdata = test_set)
+
+Pred_Actual_rf <- as.data.frame(cbind(Prediction = y_pred_rf, Actual = test_set$`Happiness Score`))
+
+
+gg.rf <- ggplot(Pred_Actual_rf, aes(Actual, Prediction )) +
+  geom_point() + theme_bw() + geom_abline() +
+  labs(title = "Random Forest Regression", x = "Actual happiness score",
+       y = "Predicted happiness score") +
+  theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)), 
+        axis.title = element_text(family = "Helvetica", size = (10)))
+gg.rf
+
+
+
+ggsp07 <- ggarrange(gglm, gg.svr, gg.dt, gg.rf, ncol = 2, nrow = 2) +
+   labs(title = "Training and Test Split Ratio = 0.8" )
+
+
+ggsp07
+```
+
+
+
+
+# Tree plot 
+
+```{r}
+
+# Plotting the tree
+library(rpart.plot)
+prp(regressor_dt)
+```
+
+
+# Random Forest regression 
+
+
+RF model is used to predict causes for Random Forest is a practical way and regularly used in machine learning models. Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods. (Liberman, 2017). We can see from the plot that this model have captured the data well in the past few years. 
+
+
+From the report, we can see that our model is for 2020 data. 
+
+$$
+\begin{aligned}
+log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032log(year)
+\end{aligned}
+$$
+
+
+
+We can see that the total proportion of variance explained by the model with these variables are 60.49%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables. 
+
+
+
+
+
+# Factor importance
+
+Here, we concluded that the best method to fit the 2022 data is the Random Forest. This model will also allow us to tell the importance of variables via a factor loading summary table. 
+
+
+
+```{r}
+regressor_rf[["importance"]] %>%
+  as.data.frame() %>% 
+  arrange(desc(IncNodePurity)) %>% 
+  knitr::kable(caption = "Variable importance for Random Forest model") %>%
+  kableExtra::kable_styling(latex_options = "striped")
+
+```
+
+
+
+In this table, we can conclude that the most important variables on explaining the happiness scores will be the Happiness and Health. 
+
+
+# We abandon the current dataset to add more variables 
+
+
+
+```{r}
+
+lm  <- lm(`Happiness Score`~  Health + Economy + Freedom + Generosity , data=dataall %>% filter(Year == 2016)) 
+summary(lm)
+#sumtable <- summary(lm)
+
+sumtable$coefficients %>%
+  knitr::kable(caption = "Linear regression model for happiness scores without new data") %>%
+  kableExtra::kable_styling(latex_options = "striped")
+
+```
+
+
+
+
+# What is the correlation between these variables in linear model. 
+
+
+
+One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way. We can start with the correlation between each variables. 
+
+
+In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the 2020 data. 
+
+
+```{r}
+
+
+log_lm  <- lm(log_score~ cpi+ log_eco + log_population + log_health + year, data=lognarm_hapall) 
+
+log_lm
+```
+
+
+
+
+# The countries that we missed in the dataset. 
+
+
+```{r}
+library(rworldmap)
+
+
+df2020 <- narm_hapall %>%
+  na.omit()
+
+df <- data.frame(country = df2020$Country,
+  value = df2020$`Happiness Score`)
+
+j <- joinCountryData2Map(df, joinCode = "NAME", nameJoinColumn = "country")
+
+mapCountryData(j, nameColumnToPlot = "value", 
+               mapTitle = "Countries that we are not included", 
+               colourPalette = 'terrain')
+
+
+```
+
+
+
+
+
+
+# Residual Diagonistic 
+
+```{r}
+#Data Partitioning
+set.seed(1999)
+# function that return the residual plot 
+
+residplot <- function(log_lm, nbreaks=30) {
+  z <- rstudent(log_lm)
+  hist(z, breaks=nbreaks, freq=FALSE, xlab="Studentized Residual",main="Distribution of Errors")
+  rug(jitter(z), col="brown")
+  curve(dnorm(x, mean=mean(z), sd=sd(z)), add=TRUE, col="red", lwd=1) 
+  lines(density(z)$x, density(z)$y, col="green", lwd=2, lty=2) 
+  legend("topright",legend = c( "Normal Curve", "Kernel Density Curve"),lty=1:2, col=c("red","green"), cex=.7)
+}
+
+g1 <- residplot(log_lm)
+
+```
+
+
+```{r}
+ plot(log_lm, which = 3) #residuals vs Fitted
+
+```
+
+
+```{r}
+plot(log_lm, which = 2) 
+
+```
+
+```{r}
+influencePlot(log_lm, main="Influence Plot",sub="Circle size is proportial to Cook's Distance")
+```
+
+
+
+
+
+
