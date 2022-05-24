@@ -34,7 +34,8 @@ output:
     toc: false
 ---
 
-```{r}
+```{r setup, echo = FALSE,warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE, message=FALSE)
 library(tidyverse)
 library(gganimate) 
 library(GGally)
@@ -81,17 +82,18 @@ data2016 <- data2016 %>%
   select(Country,`Happiness Score`,
          `Economy (GDP per Capita)`,
          `Health (Life Expectancy)`,
-         Freedom) %>% 
+         Freedom, Generosity) %>% 
   rename('Happiness Score' = 'Happiness Score',
          'Economy' = 'Economy (GDP per Capita)',
          'Health' = 'Health (Life Expectancy)') %>% 
   mutate(Year = 2016)
 
+
 data2017 <- data2017 %>% 
   select(Country,Happiness.Score,
          Economy..GDP.per.Capita.,
          Health..Life.Expectancy.,
-         Freedom) %>% 
+         Freedom, Generosity) %>% 
   rename('Happiness Score' = 'Happiness.Score',
          'Economy' = 'Economy..GDP.per.Capita.',
          'Health' = 'Health..Life.Expectancy.') %>% 
@@ -102,7 +104,8 @@ data2018 <- data2018 %>%
          Score,
          `GDP per capita`,
          `Healthy life expectancy`,
-         `Freedom to make life choices`) %>%
+         `Freedom to make life choices`,
+         `Generosity`) %>%
   rename('Country' = 'Country or region',
          'Happiness Score' = 'Score',
          'Economy' = 'GDP per capita',
@@ -115,7 +118,8 @@ data2019 <- data2019 %>%
          Score,
          `GDP per capita`,
          `Healthy life expectancy`,
-         `Freedom to make life choices`) %>%
+         `Freedom to make life choices`,
+         `Generosity`) %>%
   rename('Country' = 'Country or region',
          'Happiness Score' = 'Score',
          'Economy' = 'GDP per capita',
@@ -128,7 +132,8 @@ data2020 <- data2020 %>%
          `Ladder score`,
          `Explained by: Log GDP per capita`,
          `Explained by: Healthy life expectancy`,
-         `Freedom to make life choices`) %>%
+         `Freedom to make life choices`,
+         `Generosity`) %>%
   rename('Country' = 'Country name',
          'Happiness Score' = 'Ladder score',
          'Economy' = 'Explained by: Log GDP per capita',
@@ -388,9 +393,11 @@ In this table, we can conclude that the most important variables on explaining t
 
 ```{r}
 
-lm  <- lm(`Happiness Score`~  Health + Economy + Freedom + Generosity , data=dataall %>% filter(Year == 2016)) 
+lm  <- lm(`Happiness Score`~  Health + Economy + Freedom + Generosity, data=dataall)
+
 summary(lm)
-#sumtable <- summary(lm)
+
+sumtable <- summary(lm)
 
 sumtable$coefficients %>%
   knitr::kable(caption = "Linear regression model for happiness scores without new data") %>%
@@ -477,12 +484,12 @@ g1 <- residplot(log_lm)
 
 
 ```{r}
-plot(log_lm, which = 2) 
+plot(log_lm, which = 2, main = "Normal Q-Q plot", sub = "In this Figure, the dotted line is Normal Distribution") 
 
 ```
 
 ```{r}
-influencePlot(log_lm, main="Influence Plot",sub="Circle size is proportial to Cook's Distance")
+influencePlot(log_lm, main = "Influence Plot", sub = "Circle size is proportial to Cook's Distance")
 ```
 
 
