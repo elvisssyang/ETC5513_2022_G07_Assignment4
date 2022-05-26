@@ -297,7 +297,7 @@ tabel1 <- data1 %>%
 
 ```{r table,cache=TRUE}
 table1 %>%
-  knitr::kable(digits = 3,
+  knitr::kable(
                caption = "A linear relationship between economic status and health status with happiness index each year") %>%
   kableExtra::kable_styling(latex_options = "striped")
 ```
