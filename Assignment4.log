@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  27 MAY 2022 00:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  27 MAY 2022 00:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1516,7 +1516,7 @@ gure-latex/VS -1.pdf>]
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 406.
 
-<Assignment4_files/figure-latex/top10-1.pdf, id=133, 568.1225pt x 351.3125pt>
+<Assignment4_files/figure-latex/top10-1.pdf, id=134, 568.1225pt x 351.3125pt>
 File: Assignment4_files/figure-latex/top10-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/top10-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/top10-1.pdf  used on in
@@ -1531,7 +1531,7 @@ File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
 )
 LaTeX Font Info:    Font shape `TS1/fvm/m/n' will be
 (Font)              scaled to size 9.85492pt on input line 429.
-<Assignment4_files/figure-latex/top10map-1.pdf, id=135, 462.72874pt x 320.19624
+<Assignment4_files/figure-latex/top10map-1.pdf, id=136, 462.72874pt x 320.19624
 pt>
 File: Assignment4_files/figure-latex/top10map-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/top10map-1.pdf>
@@ -1539,7 +1539,7 @@ Package pdftex.def Info: Assignment4_files/figure-latex/top10map-1.pdf  used on
  input line 433.
 (pdftex.def)             Requested size: 455.25037pt x 315.0214pt.
 [5 <./Assignment4_files/figure-latex/top10-1.pdf>]
-<Assignment4_files/figure-latex/relation-1.pdf, id=153, 857.2025pt x 351.3125pt
+<Assignment4_files/figure-latex/relation-1.pdf, id=156, 857.2025pt x 351.3125pt
 >
 File: Assignment4_files/figure-latex/relation-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/relation-1.pdf>
@@ -1558,10 +1558,10 @@ Package logreq Info: Writing requests to 'Assignment4.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26610 strings out of 478994
- 439090 string characters out of 5858184
- 1182052 words of memory out of 5000000
- 43298 multiletter control sequences out of 15000+600000
+ 26615 strings out of 478994
+ 439236 string characters out of 5858184
+ 1182125 words of memory out of 5000000
+ 43302 multiletter control sequences out of 15000+600000
  513793 words of font info for 302 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,14n,93p,1208b,1447s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1575,10 +1575,10 @@ e/2021/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2
 1/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/local/texlive/2021/texmf-
 dist/fonts/type1/public/bera/fvsb8a.pfb></usr/local/texlive/2021/texmf-dist/fon
 ts/type1/public/bera/fvsr8a.pfb>
-Output written on Assignment4.pdf (7 pages, 728462 bytes).
+Output written on Assignment4.pdf (7 pages, 728712 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 185 compressed objects within 2 object streams
- 45 named destinations out of 1000 (max. 500000)
+ 229 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
+ 46 named destinations out of 1000 (max. 500000)
  86187 words of extra memory for PDF output out of 89155 (max. 10000000)
 
