@@ -33,3 +33,23 @@ output:
     citation_package: biblatex
     toc: false
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache=FALSE, message=FALSE, warning=FALSE)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
+library(sf)
+library(here)
+library(lubridate)
+library(cowplot)
+library(janitor)
+library(maps)
+library(plotly)
+require(wbstats)
+library(RColorBrewer)
+library(repr)
+library(gridExtra)
+library(rworldmap) 
+library(lemon)
+```
