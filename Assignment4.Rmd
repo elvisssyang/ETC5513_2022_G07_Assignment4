@@ -123,3 +123,46 @@ map_2021 <- mapCountryData(n1,
                colourPalette="terrain",
                oceanCol="white")
 ```
+
+According to the Figure \@ref(fig:top10_map), these countries are mainly northern and western European countries, obviously, they are all developed countries. 
+
+So besides GDP, what other indicators can affect happiness?
+
+### Relation between Happiness score and other indicators in 2021
+```{r relation, fig.width = 12, fig.cap="Relation between Happiness score and 6 indicators in 2021"}
+data_2021 <- happiness_2021 %>%
+  rename("Happiness.Score" = "Ladder score",
+         "GDP_Per_Capita" = "Logged GDP per capita",
+         "Social_Support" = "Social support",
+         "Healthy_Life_Expectancy" = "Healthy life expectancy",
+         "Freedom" = "Freedom to make life choices",
+         "Government_Corrution" = "Perceptions of corruption")
+
+ggplotRegression <- function (x) {
+  ggplot(x$model, aes_string(x = names(x$model)[2], 
+                               y = names(x$model)[1])) +
+    geom_point(shape = 1,
+               size = 2,
+               color="#0072B2")+
+    stat_smooth(method = "lm", 
+                col = "red",
+                size = 1) +
+    labs(title = paste("R2 = ",signif(summary(x)$r.squared, 3)))
+}
+
+gg1 <- ggplotRegression(lm(Happiness.Score ~ GDP_Per_Capita, data = data_2021))
+gg2 <- ggplotRegression(lm(Happiness.Score ~ Social_Support, data = data_2021))
+gg3 <- ggplotRegression(lm(Happiness.Score ~ Healthy_Life_Expectancy, data = data_2021))
+gg4 <- ggplotRegression(lm(Happiness.Score ~ Freedom, data = data_2021))
+gg5 <- ggplotRegression(lm(Happiness.Score ~ Generosity, data = data_2021))
+gg6 <- ggplotRegression(lm(Happiness.Score ~ Government_Corrution, data = data_2021))
+
+grid.arrange(gg1,gg2,gg3,gg4,gg5,gg6,ncol=2,nrow=3)
+```
+The 6 linear graphs \@ref(fig:relation) demonstrate the relation between the happiness and 6 attributes of the countries in the world in 2021. R-squared (R2) represents the proportion of the variance for happiness that’s explained by an independent variable in the regression model. For example, in the graph on the upper left, its R-squared is 0.624, indicating that there are 62.4% of countries' GDP can explain their happiness.
+Therefore, social support and health life expectancy explain happiness in a relatively high proportion which is 57.3% and 59% respectively. While freedom, generosity and trust in government corruption are not good explanations for happiness score.
+
+In conclusion, the variables highly related to happiness are **GDP, social support and health life expectancy**.
+
+
+
