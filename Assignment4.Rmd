@@ -22,7 +22,8 @@ bibliography: references.bib
 biblio-style: authoryear-comp
 linestretch: 1.5
 output:
-  monash::report:
+  bookdown::pdf_document2:
+    template: monashreport2.tex
     fig_caption: yes
     fig_height: 5
     fig_width: 8
@@ -126,9 +127,9 @@ map_2021 <- mapCountryData(n1,
                oceanCol="white")
 ```
 
-According to the Figure \@ref(fig:top10_map), these countries are mainly northern and western European countries, obviously, they are all developed countries. 
+According to the Figure \@ref(fig:top10_map), these countries are mainly northern and western European countries, obviously, they are all developed countries which have a technologically advanced infrastructure, and their economy is highly developed.  
 
-So besides GDP, what other indicators can affect happiness?
+So besides high economy, what other indicators can affect happiness score?
 
 ### Relation between Happiness score and other indicators in 2021
 ```{r relation, fig.width = 12, fig.cap="Relation between Happiness score and 6 indicators in 2021"}
@@ -164,7 +165,7 @@ grid.arrange(gg1,gg2,gg3,gg4,gg5,gg6,ncol=2,nrow=3)
 The 6 linear graphs Figure \@ref(fig:relation) demonstrate the relation between the happiness and 6 attributes of the countries in the world in 2021. R-squared(R2) represents the proportion of the variance for happiness that’s explained by an independent variable in the regression model. For example, in the graph on the upper left, its R-squared is 0.624, indicating that there are 62.4% of countries' GDP can explain their happiness.
 Therefore, social support and health life expectancy explain happiness in a relatively high proportion which is 57.3% and 59% respectively. While freedom, generosity and trust in government corruption are not good explanations for happiness score.
 
-In conclusion, the variables highly related to happiness are **GDP, social support and health life expectancy**.
+In conclusion, the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are **GDP, social support and health life expectancy**.
 
 
 
