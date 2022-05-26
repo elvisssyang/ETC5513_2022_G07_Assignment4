@@ -56,6 +56,7 @@ library(lemon)
 
 # Introduction
 
+Since the outbreak of COVID-19, economies, people's health and freedom have been affected around the world, and through these factors has affected the happiness of countries in the world. In the following research, the top 10 happiest countries in the world and their distribution will be explored, and the factors associated with happiness score will be analysed through the relation between happiness score and six selected indicators.
 
 # Exploratory data analysis
 
@@ -105,7 +106,8 @@ g2 <- ggplot(top10_2021,
 grid_arrange_shared_legend(g1, g2, ncol = 2,nrow= 1)
 ```
 
-The Figure \@ref(fig:top_10)
+In the Figure \@ref(fig:top_10), the top 10 countries in the World Happiness have not changed since 2020 despite the impact of Covid-19, the rankings have changed slightly.
+In addition, Finland has been the happiest country for two consecutive years in 2020 and 2021.
 
 ### The distribution of the top 10 countries on the world map in 2021
 ```{r top10_map, fig.cap="The distribution of top 10 countries on the world map in 2021"}
