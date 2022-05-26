@@ -27,7 +27,7 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{geometry}
 \geometry{a4paper, centering, text={16cm,25cm}}
-\usepackage[style=authoryear-comp,]{biblatex}
+\usepackage[style=apa,]{biblatex}
 \addbibresource{references.bib}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
@@ -298,9 +298,9 @@
 %% Any special functions or other packages can be loaded here.
 \usepackage[normalem]{ulem}
 \usepackage{float}
-
 \useunder{\uline}{\ul}{}
 \usepackage{float}
+\usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -319,15 +319,21 @@
 \begin{document}
 \titlepage
 
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\clearpage
+
 \hypertarget{modelling}{%
 \section{Modelling}\label{modelling}}
 
 \hypertarget{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-in-different-years}{%
 \subsection{What is the most important variable to explain the happiness score differences across different countries in different years?}\label{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-in-different-years}}
 
-In this part, we only keep the common variables (Economy, Health, Generousity and Freedom) for these years to conduct our analysis. To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models listed in Table\ref{models}:
+In this part, due to there are some different variables across each year in our data, we only keep the common variables (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models listed in Table\ref{models}:
 
-\begin{table}
+\begin{table}[H]
 \scalebox{0.8}{
 \begin{tabular}{|c|c|}
 \hline
@@ -346,7 +352,7 @@ Random Forest Model                      & Use multiple learning algorithms (res
 \label{models}
 \end{table}
 
-After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \ref{fig:training} that the best model to fit the data is Random Forest model while the Multivariate and SVM performed similarly. The decision tree performed the worst because it changed the structure of the data. The result is similar when we have different training split ratios (see ).
+After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \ref{fig:training} that the best model to fit the data is Random Forest model while the Multivariate and SVM performed similarly. The decision tree performed the worst because it changed the structure of the data. The result is similar when we have different training split ratios (see Figure \ref{fig:ggsp04} to \ref{fig:ggsp07}).
 
 \newpage
 
@@ -359,10 +365,11 @@ After trained our model based on the all historical data (from 2015 to 2022). We
 \hypertarget{random-forest-regression}{%
 \subsubsection{Random Forest regression}\label{random-forest-regression}}
 
-Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods \autocite{liberman2017}. We can see from the plot that this model have captured the data well in the past few years for various training set (see).
+Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods \autocite{liberman2017}. We can see from the plot that this model have captured the data well in the past few years for various training set (see Figure \ref{fig:ggsp04} to \ref{fig:ggsp07}). .
 
-To get which are the most important variables we then check their loadings in RF model (see Table \ref{tab:varimp}).
+To get which are the most important variables, we then check their loadings in RF model (see Table \ref{tab:varimp}).
 
+\newpage
 \begin{table}
 
 \caption{\label{tab:varimp}Variable importance for Random Forest model}
@@ -384,12 +391,10 @@ Generosity & 97.7974\\
 
 In the Table \ref{tab:varimp}, we conclude that the most important variables on explaining the happiness scores will be the Happiness and Health due to the loading for them are significant higher than others.
 
-\newpage
-
 \hypertarget{multivariate-linear-model-analysis.}{%
 \subsection{Multivariate Linear Model Analysis.}\label{multivariate-linear-model-analysis.}}
 
-One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way. For example, marginal effects and percentage changes.
+One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way \textcite{voxco2022}. For example, marginal effects and percentage changes.
 
 In our classic linear model, which is
 
@@ -423,10 +428,11 @@ Freedom & 1.3722 & 0.1096 & 12.5222 & 0\\
 \end{tabular}
 \end{table}
 
-In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the data up to 2020. Moreover, due to the endogenous bias, the t-test here is biased so we cannot reject variables based on the p-value in this case below.
+In order to better analyse the relationships, we join another two new variables, which are CPI values and the population size for each country from The World Bank data (\textcite{world2022}) between 2016 to 2022. After matching the data for each country and drop the NA values. We can use the new dataset to construct our new Linear model. Nevertheless, due to the limitation of the new dataset, we can only conduct our analysis based on the data up to 2020.
 
 \[
 \begin{aligned}
+\textbf{Logarithm Multivariate Linear Model with added variables}:\\
 log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032log(year)
 \end{aligned}
 \]
@@ -456,10 +462,18 @@ year & 0.0032 & 0.0057 & 0.5508 & 0.5820\\
 
 We can see in Table \ref{tab:mle} that the total proportion of variance explained by the model with these variables are 60.76\%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables.
 
-In econometrics contexts, the intercept can be interpreted as
+Note that in econometric contexts, the intercept in log-linear model can be interpreted as the influence of one percentage change of a variable to dependent variable \autocite{benoit2011}. For example:
+\begin{align*}
+\frac{\Delta \text{ log(Happiness Score)}}{\Delta \text{ log(Economy)}} &\approx \frac{\Delta \text{ Happiness Score}}{\Delta \text{ Economy} }\frac{\text{Economy}}{\text{Happiness Score}}\\
+&=\frac{\% \Delta \text{ Happiness Score}}{\% \Delta \text{ Economy}} \nonumber\\
+&= \text{ME(Coefficient)}\nonumber
+&= 0.2591
+\end{align*}
 
-\hypertarget{endogenity-and-sample-selection-bias-.}{%
-\section{Endogenity and Sample Selection Bias .}\label{endogenity-and-sample-selection-bias-.}}
+Here, we can interpret that a 1\% increase in Economy(measured in GDP per capita) will lead to a 0.2591\% rise in the happiness score. Similarly for the rest variables, a 1\% percent increase in health will increase happiness for 0.0114\%. On the contrary, we can see that a rise in population and CPI have a negative impact with -0.0026\% and -0.0008 respectively.
+
+\hypertarget{endogenity-and-sample-selection-bias}{%
+\section{Endogenity and Sample Selection Bias}\label{endogenity-and-sample-selection-bias}}
 
 We only included 5 variables and total \(R^2\) is around 60.49\% in our model. Then, considering the happiness score can be affected by many prospects. There should have some latent variables that do affect the happiness score for example the education level and culture backgrounds. In other words, our model have an endogeneity issue, which we can solve it by either adding more related variables or use the two-stage least square model.
 
@@ -473,10 +487,10 @@ Apparently, our model have some bias in selecting our sample. In our report, the
 
 \newpage
 
-\hypertarget{potential-problems}{%
-\section{Potential Problems}\label{potential-problems}}
+\hypertarget{residual-diagonistic-of-regression-model}{%
+\section{Residual Diagonistic of Regression Model}\label{residual-diagonistic-of-regression-model}}
 
-The diagnostic of our regression model is shown in Figure \ref{fig:resd}. From the Residual and Fitted plot, we can see it has non-constant variance across the fitted value, which means the presence of Hetroskedasticity. Moreover,both the error distribution (see Figure \ref{fig:density}) and the Q-Q plot Figure (see Figure \ref{fig:qq} also suggest the density of our model is close to a normal distribution but seems there are some influences by outliers. In the
+The diagnostic of our regression model is shown in Figure \ref{fig:resd}. From the Residual and Fitted plot, we can see it has non-constant variance across the fitted value, which means the presence of Hetroskedasticity. Moreover,both the error distribution (see Figure \ref{fig:density}) and the Q-Q plot Figure (see both Figure \ref{fig:qq} and Figure \ref{fig:inf} also suggest the density of our model is close to a normal distribution but seems there are some influences by outliers.
 
 \begin{figure}
 \centering
@@ -504,11 +518,68 @@ The diagnostic of our regression model is shown in Figure \ref{fig:resd}. From t
 
 \clearpage
 
-\hypertarget{concclusion}{%
-\section{Concclusion}\label{concclusion}}
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+In conclusion, our model did a good job in explaining the relationships between happiness score and our selected aggressors even though there are still some limitations.
 
 \clearpage
 
-\printbibliography[title=Appendix]
+\hypertarget{appendix}{%
+\section{Appendix}\label{appendix}}
+
+\begin{align*}
+\intertext{We here take the Economy Situation (measured in GDP per capita) as an example:}
+\frac{\partial \text{log(Happiness Score)}}{\partial \text{log(Economy)}} &= \text{ME(Coefficient)}\\
+\intertext{From (1) we can say, when other variables remain constant }\nonumber \\
+\Delta \text{ log(Happiness Score)} &= \text{ME(Coefficient)} \times \Delta \text{ log(Economy)}\\
+\intertext{By using the infinite approaching approximation of log function, we can know}\nonumber\\
+log(x_0 + \Delta x) - log(x_0) &\approx log(x_0) + log'(x_0)\Delta x - log(x_0)\\
+&=  \frac{\Delta x}{x_0} = \text{percentage change in x}\nonumber\\
+\intertext{Therefore}\nonumber\\
+\frac{\Delta \text{ log(Happiness Score)}}{\Delta \text{ log(Economy)}} &\approx \frac{\Delta \text{ Happiness Score}}{\Delta \text{ Economy} }\frac{\text{Economy}}{\text{Happiness Score}}\\
+&=\frac{\% \Delta \text{ Happiness Score}}{\% \Delta \text{ Economy}} \nonumber\\
+&= \text{ME(Coefficient)}\nonumber
+\end{align*}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp04} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.4}\label{fig:ggsp04}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp05} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.5}\label{fig:ggsp05}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp06} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.6}\label{fig:ggsp06}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp07} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.7}\label{fig:ggsp07}
+\end{figure}
+
+\clearpage
+
+\printbibliography
 
 \end{document}
