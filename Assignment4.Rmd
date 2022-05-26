@@ -33,6 +33,7 @@ output:
     citation_package: biblatex
     toc: false
 ---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, cache=FALSE, message=FALSE, warning=FALSE,fig.path = "Figures/")
 library(ggplot2)
@@ -54,18 +55,281 @@ library(rworldmap)
 library(lemon)
 library(readr)
 library(bookdown)
+library(gganimate)
+library(GGally)
 ```
 
-# Introduction
 
-Since the outbreak of COVID-19, economies, people's health and freedom have been affected around the world, and through these factors has affected the happiness of countries in the world. In the following research, the top 10 happiest countries in the world and their distribution will be explored, and the factors associated with happiness score will be analysed through the relation between happiness score and six selected indicators.
+# Read Data
 
-# Exploratory data analysis
-
-```{r read-data}
+```{r}
+data2015 <- read_csv('Data/2015.csv')
+data2016 <- read_csv('Data/2016.csv')
+data2017 <- read_csv('Data/2017.csv')
+data2018 <- read_csv('Data/2018.csv')
+data2019 <- read_csv('Data/2019.csv')
+data2020 <- read_csv('Data/2020.csv')
+data2021 <- read_csv('Data/2021.csv')
+data2022 <- read_csv('Data/2022.csv')
 happiness_2020 <- read_csv(here("data", "2020.csv"))
 happiness_2021 <- read_csv(here("data", "2021.csv"))
 ```
+
+
+
+```{r dataPreparation}
+data2015 <- data2015 %>% 
+  select(Country,Region,`Happiness Score`,
+         `Economy (GDP per Capita)`,
+         `Health (Life Expectancy)`,
+         Freedom) %>% 
+  rename('Happiness_Score' = 'Happiness Score',
+         'Economy' = 'Economy (GDP per Capita)',
+         'Health' = 'Health (Life Expectancy)') %>% 
+  mutate(Year = 2015)
+
+data2016 <- data2016 %>% 
+  select(Country,`Happiness Score`,
+         `Economy (GDP per Capita)`,
+         `Health (Life Expectancy)`,
+         Freedom) %>% 
+  rename('Happiness_Score' = 'Happiness Score',
+         'Economy' = 'Economy (GDP per Capita)',
+         'Health' = 'Health (Life Expectancy)') %>% 
+  mutate(Year = 2016)
+
+data2017 <- data2017 %>% 
+  select(Country,Happiness.Score,
+         Economy..GDP.per.Capita.,
+         Health..Life.Expectancy.,
+         Freedom) %>% 
+  rename('Happiness_Score' = 'Happiness.Score',
+         'Economy' = 'Economy..GDP.per.Capita.',
+         'Health' = 'Health..Life.Expectancy.') %>% 
+  mutate(Year = 2017)
+
+data2018 <- data2018 %>% 
+  select(`Country or region`,
+         Score,
+         `GDP per capita`,
+         `Healthy life expectancy`,
+         `Freedom to make life choices`) %>%
+  rename('Country' = 'Country or region',
+         'Happiness_Score' = 'Score',
+         'Economy' = 'GDP per capita',
+         'Health' = 'Healthy life expectancy',
+         'Freedom' = 'Freedom to make life choices') %>% 
+  mutate(Year = 2018)
+
+data2019 <- data2019 %>% 
+  select(`Country or region`,
+         Score,
+         `GDP per capita`,
+         `Healthy life expectancy`,
+         `Freedom to make life choices`) %>%
+  rename('Country' = 'Country or region',
+         'Happiness_Score' = 'Score',
+         'Economy' = 'GDP per capita',
+         'Health' = 'Healthy life expectancy',
+         'Freedom' = 'Freedom to make life choices') %>% 
+  mutate(Year = 2019)
+
+data2020 <- data2020 %>% 
+  select(`Country name`,
+         `Ladder score`,
+         `Explained by: Log GDP per capita`,
+         `Explained by: Healthy life expectancy`,
+         `Freedom to make life choices`) %>%
+  rename('Country' = 'Country name',
+         'Happiness_Score' = 'Ladder score',
+         'Economy' = 'Explained by: Log GDP per capita',
+         'Health' = 'Explained by: Healthy life expectancy',
+         'Freedom' = 'Freedom to make life choices') %>% 
+  mutate(Year = 2020)
+
+data2021 <- data2021 %>% 
+  select(`Country name`,
+         `Ladder score`,
+         `Explained by: Log GDP per capita`,
+         `Explained by: Healthy life expectancy`,
+         `Freedom to make life choices`) %>%
+  rename('Country' = 'Country name',
+         'Happiness_Score' = 'Ladder score',
+         'Economy' = 'Explained by: Log GDP per capita',
+         'Health' = 'Explained by: Healthy life expectancy',
+         'Freedom' = 'Freedom to make life choices') %>% 
+  mutate(Year = 2021)
+
+data2022 <- data2022 %>% 
+  select(Country,
+         `Happiness score`,
+         `Explained by: GDP per capita`,
+         `Explained by: Healthy life expectancy`,
+         `Explained by: Freedom to make life choices`) %>%
+  rename('Happiness_Score' = 'Happiness score',
+         'Economy' = 'Explained by: GDP per capita',
+         'Health' = 'Explained by: Healthy life expectancy',
+         'Freedom' = 'Explained by: Freedom to make life choices') %>% 
+  mutate(Year = 2022,
+         Happiness_Score = Happiness_Score/1000,
+         Economy = str_replace(Economy,',','.') %>% as.numeric(),
+         Health = str_replace(Health,',','.') %>% as.numeric(),
+         Freedom = str_replace(Freedom,',','.') %>% as.numeric())
+```
+
+
+```{r dataPreparation2}
+area <- data2015 %>% 
+  select(Country,Region)
+
+data2016 <- area %>% 
+  left_join(data2016,by = 'Country')
+
+data2017 <- area %>% 
+  left_join(data2017,by = 'Country')
+
+data2018 <- area %>% 
+  left_join(data2018,by = 'Country')
+
+data2019 <- area %>% 
+  left_join(data2019,by = 'Country')
+
+data2020 <- area %>% 
+  left_join(data2020,by = 'Country')
+
+data2021 <- area %>% 
+  left_join(data2021,by = 'Country')
+
+data2022 <- area %>% 
+  left_join(data2022,by = 'Country')
+```
+
+```{r data_Preparation}
+data1 <- bind_rows(data2015,data2016,data2017,data2018,
+                 data2019,data2020,data2021,data2022)
+```
+
+
+
+### Introduction
+This report explores two research questions in the context of the development of world happiness from 2015 to 2022 and related factors. The first is to study the trends of happiness score represented by region between 2015 and 2022, and thus lead to the relationship and impact of annual health and economic status on happiness score.
+
+
+
+### The development of the World Happiness 
+@helliwell2012state show with the continuous progress of human society, the happiness index has become an important standard for measuring the family, and people have also begun to study issues related to the happiness index. Since the happiness index is related to many factors of a family, it will also affect the The whole world. Therefore, this part will start with two research questions to explore the happiness index of the world.
+
+
+
+### Data preparation and introduction
+Our data comes from kaggle, which is a report of the World Happiness Index for the period 2015 to 2022, which contains variables for a number of factors such as countries, regions, happiness score, economies, health, freedom, etc. Combined with my research questions, I consolidated the datasets for each year into a dataset of data1, and the variables I needed to use were year, region, happiness score, economy, and health.
+
+# Exploratory data analysis I
+
+## Research questions
+
++ How will happiness trends change between 2015 to 2022 in different regions? 
+
+
++ What is the relationship between economic situation and health status with the happiness score?
+
+
+
+### The trends in happiness 2015-2022
+
+```{r trends , fig.cap = "Change of Happiness Score in Different Region", warning = FALSE,message = F}
+p1 <- data1 %>% 
+  select(Year,
+         Happiness_Score,
+         Region) %>% 
+  
+  group_by(Year,
+           Region) %>% 
+  summarise(Happiness_Score = mean(Happiness_Score,na.rm = T)) %>% 
+  
+  ungroup() %>%
+  
+  ggplot(aes(x = Year,y = Happiness_Score,group = Region,color = Region)) +
+  geom_point() +
+  geom_line() +
+  scale_color_brewer(palette = 'Paired') +
+  labs(y = 'Happiness Score',
+       title = 'Change of Happiness Score in Different Region') +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5))
+p1
+```
+
+
+
+From the Figure \@ref(fig:trends), we can see that the trend in all regions can be divided into three different levels of happiness score.  In all regions , South Asia and Sub-Saharan Africa these two regions of overall happiness is the lowest, but Sub-Saharan Africa's happiness began to increase year by year after reaching the trough in 2016,from 4.1 to 4.5; and the South Asia region began in 2017, Happiness is declining year by year from 4.7 to 4.3. The three regions with the highest overall happiness are: Australia and New Zealand; North America; and Western Europe, and the three regions have changed their happiness by little each year,nearly 7, with a relatively flat trend. The remaining regions have overall well-being in the middle, between 5 and 6.2, with Central and Eastern Europe being the only region to increase year-over-year, while the rest of the region is in a state of slightly fluctuating but generally stable trends.Overall, we observed that regions with relatively better economic levels had higher happiness indices and more stable changes, while regions with poorer economies had lower happiness indices and had larger annual trends.
+
+
+
+### the relationship between economic situation and health status with the happiness in 2015-2022
+People's understanding of happiness is inseparable from their own living conditions, so in this report, we also studied the relationship between happiness and economic and health status.
+
+From the figure \@ref(fig:VS), we can find that there is a positive correlation between economic status, health status and well-being from 2015 to 2022. The better the economic status and health status, the stronger the people's well-being.
+
+From 2015 to 2022, the influence of the economic status on the happiness score is getting lower and lower, and the influence of the health on the happiness score has increased significantly. From 2017 to 2018, the influence of economic on happiness score increased slightly, while the influence of health  on happiness score decreased slightly during this period.
+
+
+```{r VS , fig.cap = "Happiness Score vs Economy & Health", warning = FALSE,message = F}
+data1 %>% 
+  filter(!is.na(Year)) %>% 
+  ggplot(aes(x = Economy,
+             y = Health,
+             color = Happiness_Score)) +
+  geom_point(alpha = 0.7) +
+  labs(color = 'Happiness Score',
+       size = 'Happiness Score',
+       title = 'Happiness Score vs Economy & Health') +
+  facet_wrap(~Year,scales = 'free') +
+  scale_color_viridis_c() +
+  theme_classic() +
+  theme(plot.title = element_text(hjust = 0.5),
+        text = element_text(size = 8))
+```
+
+
+
+```{r}
+set.seed(1999)
+
+tabel1 <- data1 %>% 
+  split(.$Year) %>% 
+  map(~coef(lm(Happiness_Score ~ Economy + Health,data = .x))) %>% 
+  do.call('rbind',.) %>% 
+  as.data.frame() %>% 
+  mutate(Year = rownames(.)) %>% 
+  mutate_if(is.numeric,round,3) %>% 
+  select(Year,`(Intercept)`,Economy,Health)
+```
+
+
+```{r table}
+table1 %>%
+  knitr::kable(
+              caption = "A linear relationship between economic status and health status with happiness index each year") %>%
+  kableExtra::kable_styling(latex_options = "striped")
+```
+
+
+
+Overall, from 2015 to 2022, the influence of economic on happiness score did not change significantly, in the table1 \@ref(tab:table) shows the slope decreased from 1.616 to 1.406, only 0.2. However, the influence of health on happiness score changed a lot, and the slope increased from 1.2 to 2.08 Through these data, we can also see that in today's society, people pay more and more attention to their health, especially after the covid-19. Generally speaking, the proportion of health in people's mind is higher and higher.
+
+
+
+
+### Conclusions
+Through our exploration of two research questions, we found that in economically developed countries, people's happiness is also higher, while people's happiness in economically backward areas will also be lower; and with the continuous progress of society, people's happiness comes from the impact of health, especially in the stage of covid-19. In general, some European countries and some developed countries have better welfare and medical security for their own developed economies, and people's happiness is also very high. On the contrary, in some economically poor areas, their welfare security is also poor, which also makes the happiness of the people not high.
+
+# Exploratory data analysis II
+
+### Introduction
+
+Since the outbreak of COVID-19, economies, people's health and freedom have been affected around the world, and through these factors has affected the happiness of countries in the world. In the following research, the top 10 happiest countries in the world and their distribution will be explored, and the factors associated with happiness score will be analysed through the relation between happiness score and six selected indicators.
+
 
 ### What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?
 ```{r top_10,fig.cap="The top 10 countries in happiness score since"}
@@ -161,10 +425,12 @@ gg6 <- ggplotRegression(lm(Happiness.Score ~ Government_Corrution, data = data_2
 
 grid.arrange(gg1,gg2,gg3,gg4,gg5,gg6,ncol=2,nrow=3)
 ```
+
 The 6 linear graphs Figure \@ref(fig:relation) demonstrate the relation between the happiness and 6 attributes of the countries in the world in 2021. R-squared(R2) represents the proportion of the variance for happiness that’s explained by an independent variable in the regression model. For example, in the graph on the upper left, its R-squared is 0.624, indicating that there are 62.4% of countries' GDP can explain their happiness.
+
 Therefore, social support and health life expectancy explain happiness in a relatively high proportion which is 57.3% and 59% respectively. While freedom, generosity and trust in government corruption are not good explanations for happiness score.
 
+### Conclusion
+
 In conclusion, the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are **GDP, social support and health life expectancy**.
-
-
 
