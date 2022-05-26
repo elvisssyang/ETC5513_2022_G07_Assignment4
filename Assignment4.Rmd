@@ -470,7 +470,7 @@ Note that in econometric contexts, the intercept in log-linear model can be inte
 \begin{align*}
 \frac{\Delta \text{ log(Happiness Score)}}{\Delta \text{ log(Economy)}} &\approx \frac{\Delta \text{ Happiness Score}}{\Delta \text{ Economy} }\frac{\text{Economy}}{\text{Happiness Score}}\\
 &=\frac{\% \Delta \text{ Happiness Score}}{\% \Delta \text{ Economy}} \nonumber\\
-&= \text{ME(Coefficient)}\nonumber
+&= \text{ME(Coefficient)}\nonumber\\
 &= 0.2591
 \end{align*}
 
