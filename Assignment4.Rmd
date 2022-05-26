@@ -22,7 +22,7 @@ bibliography: references.bib
 biblio-style: authoryear-comp
 linestretch: 1.5
 output:
-  monash::report:
+    monash::report:
     fig_caption: yes
     fig_height: 5
     fig_width: 8
@@ -33,3 +33,138 @@ output:
     citation_package: biblatex
     toc: false
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache=FALSE, message=FALSE, warning=FALSE,fig.path = "Figures/")
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
+library(sf)
+library(here)
+library(lubridate)
+library(cowplot)
+library(janitor)
+library(maps)
+library(plotly)
+require(wbstats)
+library(RColorBrewer)
+library(repr)
+library(gridExtra)
+library(rworldmap) 
+library(lemon)
+library(readr)
+library(bookdown)
+```
+
+# Introduction
+
+Since the outbreak of COVID-19, economies, people's health and freedom have been affected around the world, and through these factors has affected the happiness of countries in the world. In the following research, the top 10 happiest countries in the world and their distribution will be explored, and the factors associated with happiness score will be analysed through the relation between happiness score and six selected indicators.
+
+# Exploratory data analysis
+
+```{r read-data}
+happiness_2020 <- read_csv(here("data", "2020.csv"))
+happiness_2021 <- read_csv(here("data", "2021.csv"))
+```
+
+### What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?
+```{r top_10,fig.cap="The top 10 countries in happiness score since"}
+top10_2020 <- happiness_2020 %>%
+  mutate(RANK = as.numeric(rownames(happiness_2020))) %>%
+  select("RANK","Country name","Ladder score") %>%
+  rename("Country" = "Country name",
+         "Happiness score" = "Ladder score") %>%
+  arrange(desc("Happiness score")) %>%
+  head(n = 10)
+top10_2021 <- happiness_2021 %>% 
+  mutate(RANK = as.numeric(rownames(happiness_2021))) %>%
+  select("RANK","Country name","Ladder score") %>% 
+  rename("Country" = "Country name",
+          "Happiness score" = "Ladder score") %>%
+  arrange(desc("Happiness score"))  %>%
+  head(n = 10)
+
+g1 <- ggplot(top10_2020,
+             aes(x=factor(Country,levels=Country),
+                 y=RANK, color = Country))+
+  geom_bar(stat="identity",
+           width=0.5,
+           fill= "white") +
+  theme(axis.text.x = element_text(angle=90, vjust=0.6),
+        legend.position="none") + 
+  labs(title="Top10 Happiest Countries-2020",
+       x="Country",y="Rank")
+g2 <- ggplot(top10_2021,
+             aes(x=factor(Country,levels=Country),
+                 y=RANK, color = Country))+
+  geom_bar(stat="identity",
+           width=0.5,
+           fill= "white") +  
+  theme(axis.text.x = element_text(angle=90, vjust=0.6),
+        legend.position="none") + 
+  labs(title="Top10 Happiest Countries-2021",
+       x="Country",y="Rank")
+
+grid_arrange_shared_legend(g1, g2, ncol = 2,nrow= 1)
+```
+
+In the Figure \@ref(fig:top_10), the top 10 countries in the World Happiness have not changed since 2020 despite the impact of Covid-19, the rankings have changed slightly.
+In addition, Finland has been the happiest country for two consecutive years in 2020 and 2021.
+
+### The distribution of the top 10 countries on the world map in 2021
+```{r top10_map, fig.cap="The distribution of top 10 countries on the world map in 2021"}
+d1 <- data.frame(country = top10_2021$Country,
+                 value = top10_2021$`Happiness score`)
+
+n1 <- joinCountryData2Map(d1, 
+                          joinCode="NAME", 
+                          nameJoinColumn="country")
+map_2021 <- mapCountryData(n1, 
+               nameColumnToPlot="value", 
+               mapTitle="The distribution of top 10 countries on the world map in 2021",
+               colourPalette="terrain",
+               oceanCol="white")
+```
+
+According to the Figure \@ref(fig:top10_map), these countries are mainly northern and western European countries, obviously, they are all developed countries which have a technologically advanced infrastructure, and their economy is highly developed.  
+
+So besides high economy, what other indicators can affect happiness score?
+
+### Relation between Happiness score and other indicators in 2021
+```{r relation, fig.width = 12, fig.cap="Relation between Happiness score and 6 indicators in 2021"}
+data_2021 <- happiness_2021 %>%
+  rename("Happiness.Score" = "Ladder score",
+         "GDP_Per_Capita" = "Logged GDP per capita",
+         "Social_Support" = "Social support",
+         "Healthy_Life_Expectancy" = "Healthy life expectancy",
+         "Freedom" = "Freedom to make life choices",
+         "Government_Corrution" = "Perceptions of corruption")
+
+ggplotRegression <- function (x) {
+  ggplot(x$model, aes_string(x = names(x$model)[2], 
+                               y = names(x$model)[1])) +
+    geom_point(shape = 1,
+               size = 2,
+               color="#0072B2")+
+    stat_smooth(method = "lm", 
+                col = "red",
+                size = 1) +
+    labs(title = paste("R2 = ",signif(summary(x)$r.squared, 3)))
+}
+
+gg1 <- ggplotRegression(lm(Happiness.Score ~ GDP_Per_Capita, data = data_2021))
+gg2 <- ggplotRegression(lm(Happiness.Score ~ Social_Support, data = data_2021))
+gg3 <- ggplotRegression(lm(Happiness.Score ~ Healthy_Life_Expectancy, data = data_2021))
+gg4 <- ggplotRegression(lm(Happiness.Score ~ Freedom, data = data_2021))
+gg5 <- ggplotRegression(lm(Happiness.Score ~ Generosity, data = data_2021))
+gg6 <- ggplotRegression(lm(Happiness.Score ~ Government_Corrution, data = data_2021))
+
+grid.arrange(gg1,gg2,gg3,gg4,gg5,gg6,ncol=2,nrow=3)
+```
+The 6 linear graphs Figure \@ref(fig:relation) demonstrate the relation between the happiness and 6 attributes of the countries in the world in 2021. R-squared(R2) represents the proportion of the variance for happiness that’s explained by an independent variable in the regression model. For example, in the graph on the upper left, its R-squared is 0.624, indicating that there are 62.4% of countries' GDP can explain their happiness.
+Therefore, social support and health life expectancy explain happiness in a relatively high proportion which is 57.3% and 59% respectively. While freedom, generosity and trust in government corruption are not good explanations for happiness score.
+
+In conclusion, the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are **GDP, social support and health life expectancy**.
+
+
+
