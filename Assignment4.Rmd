@@ -349,7 +349,7 @@ According to @helliwell2021world, economies, people's health and freedom have be
 
 
 ### What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?
-```{r top10,fig.cap="The top 10 countries in happiness score since"}
+```{r top10,fig.cap="The top 10 countries in happiness score since COVID-19"}
 top10_2020 <- happiness_2020 %>%
   mutate(RANK = as.numeric(rownames(happiness_2020))) %>%
   select("RANK","Country name","Ladder score") %>%
