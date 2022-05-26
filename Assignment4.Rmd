@@ -54,6 +54,9 @@ library(rworldmap)
 library(lemon)
 ```
 
+# Introduction
+
+
 # Exploratory data analysis
 
 ```{r read-data}
@@ -100,4 +103,21 @@ g2 <- ggplot(top10_2021,
        x="Country",y="Rank")
 
 grid_arrange_shared_legend(g1, g2, ncol = 2,nrow= 1)
+```
+
+The Figure \@ref(fig:top_10)
+
+### The distribution of the top 10 countries on the world map in 2021
+```{r top10_map, fig.cap="The distribution of top 10 countries on the world map in 2021"}
+d1 <- data.frame(country = top10_2021$Country,
+                 value = top10_2021$`Happiness score`)
+
+n1 <- joinCountryData2Map(d1, 
+                          joinCode="NAME", 
+                          nameJoinColumn="country")
+map_2021 <- mapCountryData(n1, 
+               nameColumnToPlot="value", 
+               mapTitle="The distribution of top 10 countries on the world map in 2021",
+               colourPalette="terrain",
+               oceanCol="white")
 ```
