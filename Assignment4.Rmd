@@ -39,8 +39,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE,
                       eval = TRUE,
                       message = FALSE, 
-                      warning = FALSE,
-                      comment = NA)
+                      warning = FALSE)
 ```
 
 # Load Packages
@@ -297,7 +296,7 @@ tabel1 <- data1 %>%
 ```
 
 
-```{r table,cache=TRUE}
+```{r table}
 table1 %>%
   knitr::kable(
               caption = "A linear relationship between economic status and health status with happiness index each year") %>%
