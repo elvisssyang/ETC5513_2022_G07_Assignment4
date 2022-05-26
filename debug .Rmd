@@ -35,12 +35,15 @@ output:
 ---
 
 
+section YIQI WANG
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,
+knitr::opts_chunk$set(echo = TRUE,
                       eval = TRUE,
                       message = FALSE, 
                       warning = FALSE,
-                      comment = NA)
+                      comment = NA,
+                      include = FALSE)
 ```
 
 # Load Packages
@@ -198,6 +201,8 @@ data2022 <- area %>%
 data1 <- bind_rows(data2015,data2016,data2017,data2018,
                  data2019,data2020,data2021,data2022)
 ```
+
+
 ### Introduction
 This report explores two research questions in the context of the development of world happiness from 2015 to 2022 and related factors. The first is to study the trends of happiness score represented by region between 2015 and 2022, and thus lead to the relationship and impact of annual health and economic status on happiness score.
 
@@ -205,6 +210,7 @@ This report explores two research questions in the context of the development of
 ### The development of the World Happiness 
 
 @helliwell2012state show with the continuous progress of human society, the happiness index has become an important standard for measuring the family, and people have also begun to study issues related to the happiness index. Since the happiness index is related to many factors of a family, it will also affect the The whole world. Therefore, this part will start with two research questions to explore the happiness index of the world.
+
 
 ### Data preparation and introduction
  
@@ -216,34 +222,7 @@ Our data comes from kaggle, which is a report of the World Happiness Index for t
 
 + What is the relationship between economic situation and health status with the happiness score? 
 
-### The trends in happiness 2015-2022
 
-
-```{r trends , fig.cap = "Change of Happiness Score in Different Region", warning = FALSE,message = F}
-p1 <- data1 %>% 
-  select(Year,
-         Happiness_Score,
-         Region) %>% 
-  
-  group_by(Year,
-           Region) %>% 
-  summarise(Happiness_Score = mean(Happiness_Score,na.rm = T)) %>% 
-  
-  ungroup() %>%
-  
-  ggplot(aes(x = Year,y = Happiness_Score,group = Region,color = Region)) +
-  geom_point() +
-  geom_line() +
-  scale_color_brewer(palette = 'Paired') +
-  labs(y = 'Happiness Score',
-       title = 'Change of Happiness Score in Different Region') +
-  theme_classic() +
-  theme(plot.title = element_text(hjust = 0.5))
-p1
-```
-
-
-From the Figure \@ref(fig:trends), we can see that the trend in all regions can be divided into three different levels of happiness score.  In all regions , South Asia and Sub-Saharan Africa these two regions of overall happiness is the lowest, but Sub-Saharan Africa's happiness began to increase year by year after reaching the trough in 2016,from 4.1 to 4.5; and the South Asia region began in 2017, Happiness is declining year by year from 4.7 to 4.3. The three regions with the highest overall happiness are: Australia and New Zealand; North America; and Western Europe, and the three regions have changed their happiness by little each year,nearly 7, with a relatively flat trend. The remaining regions have overall well-being in the middle, between 5 and 6.2, with Central and Eastern Europe being the only region to increase year-over-year, while the rest of the region is in a state of slightly fluctuating but generally stable trends.Overall, we observed that regions with relatively better economic levels had higher happiness indices and more stable changes, while regions with poorer economies had lower happiness indices and had larger annual trends.
 
 
 
@@ -261,56 +240,20 @@ From 2015 to 2022, the influence of the economic status on the happiness score i
 
 
 
-```{r VS , fig.cap = "Happiness Score vs Economy & Health", warning = FALSE,message = F}
-data1 %>% 
-  filter(!is.na(Year)) %>% 
-  ggplot(aes(x = Economy,
-             y = Health,
-             color = Happiness_Score)) +
-  geom_point(alpha = 0.7) +
-  labs(color = 'Happiness Score',
-       size = 'Happiness Score',
-       title = 'Happiness Score vs Economy & Health') +
-  facet_wrap(~Year,scales = 'free') +
-  scale_color_viridis_c() +
-  theme_classic() +
-  theme(plot.title = element_text(hjust = 0.5),
-        text = element_text(size = 8))
-```
-
-
-
-
-
-
-```{r}
-tabel1 <- data1 %>% 
-  split(.$Year) %>% 
-  map(~coef(lm(Happiness_Score ~ Economy + Health,data = .x))) %>% 
-  do.call('rbind',.) %>% 
-  as.data.frame() %>% 
-  mutate(Year = rownames(.)) %>% 
-  mutate_if(is.numeric,round,3) %>% 
-  select(Year,`(Intercept)`,Economy,Health)
-```
-
 
 ```{r table,cache=TRUE}
-table1 %>%
-  knitr::kable(digits = 3,
-               caption = "A linear relationship between economic status and health status with happiness index each year") %>%
+table1 %>% 
+  knitr::kable('latex', 
+               digits = 3, 
+               booktabs = TRUE, 
+               caption = "A linear relationship between economic status and health status with happiness index each year")%>%
   kableExtra::kable_styling(latex_options = "striped")
 ```
-
-
-
-Overall, from 2015 to 2022, the influence of economic on happiness score did not change significantly, in the table1 \@ref(tab:table) shows the slope decreased from 1.616 to 1.406, only 0.2. However, the influence of health on happiness score changed a lot, and the slope increased from 1.2 to 2.08 Through these data, we can also see that in today's society, people pay more and more attention to their health, especially after the covid-19. Generally speaking, the proportion of health in people's mind is higher and higher.
-
-
 
 
 ### Conclusions
 
 Through our exploration of two research questions, we found that in economically developed countries, people's happiness is also higher, while people's happiness in economically backward areas will also be lower; and with the continuous progress of society, people's happiness comes from the impact of health, especially in the stage of covid-19. In general, some European countries and some developed countries have better welfare and medical security for their own developed economies, and people's happiness is also very high. On the contrary, in some economically poor areas, their welfare security is also poor, which also makes the happiness of the people not high.
+
 
 
