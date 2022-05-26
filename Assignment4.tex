@@ -346,11 +346,15 @@ Random Forest Model                      & Use multiple learning algorithms (res
 \label{models}
 \end{table}
 
-After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \ref{fig:training} that the best model to fit the data is Random Forest model while the Multilinear and SVM performed similarly. The decision tree performed the worest because it changed the structure of the data. The result is similar when we have different training split ratios (see ).
+After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \ref{fig:training} that the best model to fit the data is Random Forest model while the Multivariate and SVM performed similarly. The decision tree performed the worst because it changed the structure of the data. The result is similar when we have different training split ratios (see ).
 
 \newpage
 
+\begin{figure}
+\centering
 \includegraphics{Assignment4_files/figure-latex/training-1.pdf}
+\caption{\label{fig:training}Model Training Split Ratio is 0.8}
+\end{figure}
 
 \hypertarget{random-forest-regression}{%
 \subsubsection{Random Forest regression}\label{random-forest-regression}}
@@ -391,7 +395,7 @@ In our classic linear model, which is
 
 \[
 \begin{aligned}
-&\textbf{Classical Linear Model}:\\
+&\textbf{Classic Multivariate Linear Model}:\\
 Happiness\ score=& Economy+Health+Generosity+Freedom
 \end{aligned}
 \]
@@ -419,7 +423,9 @@ Freedom & 1.372180 & 0.1095802 & 12.522156 & 0\\
 \end{tabular}
 \end{table}
 
-In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the 2020 data.
+In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the data up to 2020.
+
+Moreover, due to the endogenous bias, the t-test here is biased so we cannot reject variables based on the p-value in this case.
 
 \[
 \begin{aligned}
@@ -427,23 +433,35 @@ log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0
 \end{aligned}
 \]
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = log_score ~ cpi + log_eco + log_population + log_health + 
-##     year, data = lognarm_hapall)
-## 
-## Coefficients:
-##    (Intercept)             cpi         log_eco  log_population      log_health  
-##     -4.5998547      -0.0007945       0.2590779      -0.0025806       0.0113946  
-##           year  
-##      0.0031566
-\end{verbatim}
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-6}Multivariate Linear regression model for the log data}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+  & Estimate & Std. Error & t value & Pr(>|t|)\\
+\hline
+\cellcolor{gray!6}{(Intercept)} & \cellcolor{gray!6}{-4.5998547} & \cellcolor{gray!6}{11.5632413} & \cellcolor{gray!6}{-0.3977998} & \cellcolor{gray!6}{0.6909123}\\
+\hline
+cpi & -0.0007945 & 0.0001848 & -4.2993658 & 0.0000198\\
+\hline
+\cellcolor{gray!6}{log\_eco} & \cellcolor{gray!6}{0.2590779} & \cellcolor{gray!6}{0.0094044} & \cellcolor{gray!6}{27.5487182} & \cellcolor{gray!6}{0.0000000}\\
+\hline
+log\_population & -0.0025806 & 0.0036488 & -0.7072364 & 0.4796807\\
+\hline
+\cellcolor{gray!6}{log\_health} & \cellcolor{gray!6}{0.0113946} & \cellcolor{gray!6}{0.0041557} & \cellcolor{gray!6}{2.7419415} & \cellcolor{gray!6}{0.0062809}\\
+\hline
+year & 0.0031566 & 0.0057310 & 0.5507847 & 0.5819762\\
+\hline
+\end{tabular}
+\end{table}
 
 We can see that the total proportion of variance explained by the model with these variables are 60.49\%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables.
 
 \hypertarget{endogenity-and-sample-selection-bias-.}{%
 \section{Endogenity and Sample Selection Bias .}\label{endogenity-and-sample-selection-bias-.}}
+
+We only included 5 variables and total \(R^2\) is around 60.49\% in our model. Then, considering the happiness score can be affected by many prospects. There should have some latent variables that do affect the happiness score for example the education level and culture backgrounds. In other words, our model have an endogeneity issue, which we can solve it by either adding more related variables or use the two-stage least square model.
 
 \begin{figure}
 \centering
@@ -451,7 +469,9 @@ We can see that the total proportion of variance explained by the model with the
 \caption{\label{fig:worldmapall}Colour the country that have included in Worldmap}
 \end{figure}
 
-Apparently, our model have some bias in selecting our sample. In our report, there are 34 are not included, which have been coloured in red from Figure \ref{fig:worldmapall}
+Apparently, our model have some bias in selecting our sample. In our report, there are 34 are not included, which have been colored in red from Figure \ref{fig:worldmapall}. In our sample, we can see countries are not included either from sparsely populated area or developing countries, which indicates that our sample is not random enough and exists a sample selection bias. To solve this, sample selection models such as Heckman model or Tobit can be considered in Econometrics areas.
+
+\newpage
 
 \hypertarget{potential-problems}{%
 \section{Potential Problems}\label{potential-problems}}
@@ -484,6 +504,11 @@ The diagnostic of our regression model is shown in Figure \ref{fig:resd}. From t
 
 \clearpage
 
-\printbibliography
+\hypertarget{concclusion}{%
+\section{Concclusion}\label{concclusion}}
+
+\clearpage
+
+\printbibliography[title=Appendix]
 
 \end{document}

@@ -248,11 +248,11 @@ Random Forest Model                      & Use multiple learning algorithms (res
 \end{table}
 
 
-After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \@ref(fig:training) that the best model to fit the data is Random Forest model while the Multilinear and SVM performed similarly. The decision tree performed the worest because it changed the structure of the data. The result is similar when we have different training split ratios (see ). 
+After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \@ref(fig:training) that the best model to fit the data is Random Forest model while the Multivariate and SVM performed similarly. The decision tree performed the worst because it changed the structure of the data. The result is similar when we have different training split ratios (see ). 
 
 \newpage
 
-```{r training}
+```{r training, fig.cap="Model Training Split Ratio is 0.8"}
 set.seed(1999)
 happiness <- dataall %>% na.omit()
 
@@ -274,7 +274,7 @@ Pred_Actual_lm <- as.data.frame(cbind(Prediction = y_pred_lm, Actual = test_set$
 
 gglm <- ggplot(Pred_Actual_lm, aes(Actual, Prediction )) +
   geom_point() + theme_bw() + geom_abline() +
-  labs(title = "Multiple Linear Regression", x = "Actual happiness score",
+  labs(title = "Multivariate Regression", x = "Actual happiness score",
        y = "Predicted happiness score") +
   theme(plot.title = element_text(family = "Helvetica", face = "bold", size = (15)), 
         axis.title = element_text(family = "Helvetica", size = (10)))
@@ -404,7 +404,7 @@ In our classic linear model, which is
 
 $$
 \begin{aligned}
-&\textbf{Classical Linear Model}:\\
+&\textbf{Classic Multivariate Linear Model}:\\
 Happiness\ score=& Economy+Health+Generosity+Freedom
 \end{aligned}
 $$
@@ -428,7 +428,9 @@ sumtable$coefficients %>%
 ```
 
 
-In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the 2020 data. 
+In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the data up to 2020. Moreover, due to the endogenous bias, the t-test here is biased so we cannot reject variables based on the p-value in this case below.  
+
+
 
 
 
@@ -440,17 +442,27 @@ log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0
 \end{aligned}
 $$
 
-```{r}
+```{r mle}
 
 
 log_lm  <- lm(log_score~ cpi+ log_eco + log_population + log_health + year, data=lognarm_hapall) 
 
-log_lm
+logsum <- summary(log_lm)
+
+
+logsum$coefficients %>%
+  knitr::kable(caption = "Multivariate Linear regression model for the log data with R-squared is 0.6076") %>%
+  kableExtra::kable_styling(latex_options = "striped")
+
 ```
 
 
 
-We can see that the total proportion of variance explained by the model with these variables are 60.49%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables. 
+We can see in Table \@ref(tab:mle) that the total proportion of variance explained by the model with these variables are 60.76%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables. 
+
+
+
+In econometrics contexts, the intercept can be interpreted as
 
 
 
@@ -460,6 +472,7 @@ We can see that the total proportion of variance explained by the model with the
 
 # Endogenity and Sample Selection Bias . 
 
+We only included 5 variables and total $R^2$ is around 60.49% in our model. Then, considering the happiness score can be affected by many prospects. There should have some latent variables that do affect the happiness score for example the education level and culture backgrounds. In other words, our model have an endogeneity issue, which we can solve it by either adding more related variables or use the two-stage least square model. 
 
 
 ```{r worldmapall, results='hide', fig.cap= "Colour the country that have included in Worldmap"}
@@ -478,10 +491,11 @@ ggplot()+
 ```
 
 
-Apparently, our model have some bias in selecting our sample. In our report, there are `r table(map$not_included)["TRUE"]` are not included, which have been coloured in red from Figure \@ref(fig:worldmapall)
+Apparently, our model have some bias in selecting our sample. In our report, there are `r table(map$not_included)["TRUE"]` are not included, which have been colored in red from Figure \@ref(fig:worldmapall). In our sample, we can see countries are not included either from sparsely populated area or developing countries, which indicates that our sample is not random enough and exists a sample selection bias. To solve this, sample selection models such as Heckman model or Tobit can be considered in Econometrics areas. 
 
 
 
+\newpage
 
 # Potential Problems 
 
@@ -532,6 +546,18 @@ influencePlot(log_lm, main = "Influence Plot", sub = "Circle size is proportial 
 
 
 \clearpage
+
+# Concclusion 
+
+
+
+
+
+
+
+
+\clearpage
+# Appendix
 
 
 
