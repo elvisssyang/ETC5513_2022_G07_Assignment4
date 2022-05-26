@@ -296,6 +296,20 @@
 \setstretch{1.5}
 
 %% Any special functions or other packages can be loaded here.
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 
 \begin{document}
@@ -327,9 +341,9 @@ Our data comes from kaggle, which is a report of the World Happiness Index for t
 
 \begin{itemize}
 \item
-  How will happiness trends change between 2015 to 2022 in different regions
+  How will happiness trends change between 2015 to 2022 in different regions?
 \item
-  What is the relationship between economic situation and health status with the happiness score
+  What is the relationship between economic situation and health status with the happiness score?
 \end{itemize}
 
 \hypertarget{the-trends-in-happiness-2015-2022}{%
@@ -359,26 +373,23 @@ From 2015 to 2022, the influence of the economic status on the happiness score i
 \end{figure}
 
 \begin{table}
-
-\caption{\label{tab:table}A linear relationship between economic status and health status with happiness index each year}
 \centering
-\begin{tabular}[t]{l|r|r|r}
+\begin{tabular}{|c|c|c|c|}
 \hline
-country & year & cases & population\\
+\textbf{Year} & \textbf{Intercept} & \textbf{Economy} & \textbf{Health} \\
 \hline
-\cellcolor{gray!6}{Afghanistan} & \cellcolor{gray!6}{1999} & \cellcolor{gray!6}{745} & \cellcolor{gray!6}{19987071}\\
-\hline
-Afghanistan & 2000 & 2666 & 20595360\\
-\hline
-\cellcolor{gray!6}{Brazil} & \cellcolor{gray!6}{1999} & \cellcolor{gray!6}{37737} & \cellcolor{gray!6}{172006362}\\
-\hline
-Brazil & 2000 & 80488 & 174504898\\
-\hline
-\cellcolor{gray!6}{China} & \cellcolor{gray!6}{1999} & \cellcolor{gray!6}{212258} & \cellcolor{gray!6}{1272915272}\\
-\hline
-China & 2000 & 213766 & 1280428583\\
+2015          & 3.250              & 1.616            & 1.203           \\
+2016          & 2.980              & 1.516            & 1.662           \\
+2017          & 2.968              & 1.504            & 1.632           \\
+2018          & 3.085              & 1.511            & 1.565           \\
+2019          & 2.892              & 1.359            & 1.775           \\
+2020          & 3.117              & 1.305            & 1.791           \\
+2021          & 3.298              & 1.316            & 1.854           \\
+2022          & 2.370              & 1.406            & 2.085           \\
 \hline
 \end{tabular}
+\caption{A linear relationship between economic status and health status with happiness index each year}
+\label{tab:table}
 \end{table}
 
 Overall, from 2015 to 2022, the influence of economic on happiness score did not change significantly, in the table1 \ref{tab:table} shows the slope decreased from 1.616 to 1.406, only 0.2. However, the influence of health on happiness score changed a lot, and the slope increased from 1.2 to 2.08 Through these data, we can also see that in today's society, people pay more and more attention to their health, especially after the covid-19. Generally speaking, the proportion of health in people's mind is higher and higher.
@@ -387,6 +398,63 @@ Overall, from 2015 to 2022, the influence of economic on happiness score did not
 \subsubsection{Conclusions}\label{conclusions}}
 
 Through our exploration of two research questions, we found that in economically developed countries, people's happiness is also higher, while people's happiness in economically backward areas will also be lower; and with the continuous progress of society, people's happiness comes from the impact of health, especially in the stage of covid-19. In general, some European countries and some developed countries have better welfare and medical security for their own developed economies, and people's happiness is also very high. On the contrary, in some economically poor areas, their welfare security is also poor, which also makes the happiness of the people not high.
+
+\hypertarget{exploratory-data-analysis-ii}{%
+\section{Exploratory data analysis II}\label{exploratory-data-analysis-ii}}
+
+\hypertarget{introduction-1}{%
+\subsubsection{Introduction}\label{introduction-1}}
+
+Since the outbreak of COVID-19, economies, people's health and freedom have been affected around the world, and through these factors has affected the happiness of countries in the world. In the following research, the top 10 happiest countries in the world and their distribution will be explored, and the factors associated with happiness score will be analysed through the relation between happiness score and six selected indicators.
+
+\hypertarget{what-are-the-countries-which-ranks-top-10-in-happiness-score-since-the-covid-19-outbreak}{%
+\subsubsection{What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?}\label{what-are-the-countries-which-ranks-top-10-in-happiness-score-since-the-covid-19-outbreak}}
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/top10-1.pdf}
+\caption{\label{fig:top10}The top 10 countries in happiness score since}
+\end{figure}
+
+In the Figure \ref{fig:top10}, the top 10 countries in the World Happiness have not changed since 2020 despite the impact of Covid-19, the rankings have changed slightly.
+In addition, Finland has been the happiest country for two consecutive years in 2020 and 2021.
+
+\hypertarget{the-distribution-of-the-top-10-countries-on-the-world-map-in-2021}{%
+\subsubsection{The distribution of the top 10 countries on the world map in 2021}\label{the-distribution-of-the-top-10-countries-on-the-world-map-in-2021}}
+
+\begin{verbatim}
+## 10 codes from your data successfully matched countries in the map
+## 0 codes from your data failed to match with a country code in the map
+## 233 codes from the map weren't represented in your data
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/top10map-1.pdf}
+\caption{\label{fig:top10map}The distribution of top 10 countries on the world map in 2021}
+\end{figure}
+
+According to the Figure \ref{fig:top10map}, these countries are mainly northern and western European countries, obviously, they are all developed countries which have a technologically advanced infrastructure, and their economy is highly developed.
+
+So besides high economy, what other indicators can affect happiness score?
+
+\hypertarget{relation-between-happiness-score-and-other-indicators-in-2021}{%
+\subsubsection{Relation between Happiness score and other indicators in 2021}\label{relation-between-happiness-score-and-other-indicators-in-2021}}
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/relation-1.pdf}
+\caption{\label{fig:relation}Relation between Happiness score and 6 indicators in 2021}
+\end{figure}
+
+The 6 linear graphs Figure \ref{fig:relation} demonstrate the relation between the happiness and 6 attributes of the countries in the world in 2021. R-squared(R2) represents the proportion of the variance for happiness that's explained by an independent variable in the regression model. For example, in the graph on the upper left, its R-squared is 0.624, indicating that there are 62.4\% of countries' GDP can explain their happiness.
+
+Therefore, social support and health life expectancy explain happiness in a relatively high proportion which is 57.3\% and 59\% respectively. While freedom, generosity and trust in government corruption are not good explanations for happiness score.
+
+\hypertarget{conclusion}{%
+\subsubsection{Conclusion}\label{conclusion}}
+
+In conclusion, the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are \textbf{GDP, social support and health life expectancy}.
 
 \printbibliography
 

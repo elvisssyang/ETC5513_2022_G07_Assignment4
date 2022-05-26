@@ -22,7 +22,7 @@ bibliography: references.bib
 biblio-style: authoryear-comp
 linestretch: 1.5
 output:
-    monash::report:
+  monash::report:
     fig_caption: yes
     fig_height: 5
     fig_width: 8
@@ -34,8 +34,18 @@ output:
     toc: false
 ---
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, cache=FALSE, message=FALSE, warning=FALSE,fig.path = "Figures/")
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = TRUE,
+                      message = FALSE, 
+                      warning = FALSE)
+```
+
+# Load Packages
+
+
+```{r}
 library(ggplot2)
 library(tidyverse)
 library(dplyr)
@@ -58,24 +68,27 @@ library(bookdown)
 library(gganimate)
 library(GGally)
 library(sp)
+
 ```
 
 
 # Read Data
 
 ```{r}
-data2015 <- read_csv('Data/2015.csv')
-data2016 <- read_csv('Data/2016.csv')
-data2017 <- read_csv('Data/2017.csv')
-data2018 <- read_csv('Data/2018.csv')
-data2019 <- read_csv('Data/2019.csv')
-data2020 <- read_csv('Data/2020.csv')
-data2021 <- read_csv('Data/2021.csv')
-data2022 <- read_csv('Data/2022.csv')
-happiness_2020 <- read_csv(here("data", "2020.csv"))
-happiness_2021 <- read_csv(here("data", "2021.csv"))
+data2015 <- read_csv('data/2015.csv')
+data2016 <- read_csv('data/2016.csv')
+data2017 <- read_csv('data/2017.csv')
+data2018 <- read_csv('data/2018.csv')
+data2019 <- read_csv('data/2019.csv')
+data2020 <- read_csv('data/2020.csv')
+data2021 <- read_csv('data/2021.csv')
+data2022 <- read_csv('data/2022.csv')
 ```
 
+```{r}
+happiness_2020 <- read_csv("data/2020.csv")
+happiness_2021 <- read_csv("data/2021.csv")
+```
 
 
 ```{r dataPreparation}
@@ -211,7 +224,6 @@ data1 <- bind_rows(data2015,data2016,data2017,data2018,
 ```
 
 
-
 ### Introduction
 This report explores two research questions in the context of the development of world happiness from 2015 to 2022 and related factors. The first is to study the trends of happiness score represented by region between 2015 and 2022, and thus lead to the relationship and impact of annual health and economic status on happiness score.
 
@@ -225,7 +237,6 @@ This report explores two research questions in the context of the development of
 ### Data preparation and introduction
 Our data comes from kaggle, which is a report of the World Happiness Index for the period 2015 to 2022, which contains variables for a number of factors such as countries, regions, happiness score, economies, health, freedom, etc. Combined with my research questions, I consolidated the datasets for each year into a dataset of data1, and the variables I needed to use were year, region, happiness score, economy, and health.
 
-# Exploratory data analysis I
 
 ## Research questions
 
@@ -267,6 +278,7 @@ From the Figure \@ref(fig:trends), we can see that the trend in all regions can 
 
 
 
+
 ### the relationship between economic situation and health status with the happiness in 2015-2022
 People's understanding of happiness is inseparable from their own living conditions, so in this report, we also studied the relationship between happiness and economic and health status.
 
@@ -294,12 +306,26 @@ data1 %>%
 
 
 
-```{r table}
-table1 %>%
-  knitr::kable(
-              caption = "A linear relationship between economic status and health status with happiness index each year") %>%
-  kableExtra::kable_styling(latex_options = "striped")
-```
+\begin{table}
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Year} & \textbf{Intercept} & \textbf{Economy} & \textbf{Health} \\
+\hline
+2015          & 3.250              & 1.616            & 1.203           \\
+2016          & 2.980              & 1.516            & 1.662           \\
+2017          & 2.968              & 1.504            & 1.632           \\
+2018          & 3.085              & 1.511            & 1.565           \\
+2019          & 2.892              & 1.359            & 1.775           \\
+2020          & 3.117              & 1.305            & 1.791           \\
+2021          & 3.298              & 1.316            & 1.854           \\
+2022          & 2.370              & 1.406            & 2.085           \\
+\hline
+\end{tabular}
+\caption{A linear relationship between economic status and health status with happiness index each year}
+\label{tab:table}
+\end{table}
+
 
 
 
@@ -311,7 +337,11 @@ Overall, from 2015 to 2022, the influence of economic on happiness score did not
 ### Conclusions
 Through our exploration of two research questions, we found that in economically developed countries, people's happiness is also higher, while people's happiness in economically backward areas will also be lower; and with the continuous progress of society, people's happiness comes from the impact of health, especially in the stage of covid-19. In general, some European countries and some developed countries have better welfare and medical security for their own developed economies, and people's happiness is also very high. On the contrary, in some economically poor areas, their welfare security is also poor, which also makes the happiness of the people not high.
 
+
+
+
 # Exploratory data analysis II
+
 
 ### Introduction
 
@@ -420,4 +450,5 @@ Therefore, social support and health life expectancy explain happiness in a rela
 ### Conclusion
 
 In conclusion, the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are **GDP, social support and health life expectancy**.
+
 
