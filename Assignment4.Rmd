@@ -22,8 +22,7 @@ bibliography: references.bib
 biblio-style: authoryear-comp
 linestretch: 1.5
 output:
-  bookdown::pdf_document2:
-    template: monashreport2.tex
+    monash::report:
     fig_caption: yes
     fig_height: 5
     fig_width: 8
