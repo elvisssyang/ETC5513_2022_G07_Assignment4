@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  26 MAY 2022 21:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  26 MAY 2022 21:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1546,61 +1546,60 @@ File: Assignment4_files/figure-latex/worldmapall-1.pdf Graphic file (type pdf)
 Package pdftex.def Info: Assignment4_files/figure-latex/worldmapall-1.pdf  used
  on input line 482.
 (pdftex.def)             Requested size: 455.26146pt x 275.08731pt.
-[6]
-<Assignment4_files/figure-latex/density-1.pdf, id=131, 544.0325pt x 322.20375pt
+[6] [7 <./Assignment4_files/figure-latex/worldmapall-1.pdf>]
+<Assignment4_files/figure-latex/density-1.pdf, id=143, 544.0325pt x 322.20375pt
 >
 File: Assignment4_files/figure-latex/density-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/density-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/density-1.pdf  used on 
 input line 497.
 (pdftex.def)             Requested size: 455.26582pt x 269.63159pt.
-<Assignment4_files/figure-latex/resd-1.pdf, id=132, 549.05125pt x 318.18875pt>
+<Assignment4_files/figure-latex/resd-1.pdf, id=144, 549.05125pt x 318.18875pt>
 File: Assignment4_files/figure-latex/resd-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/resd-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/resd-1.pdf  used on inp
 ut line 503.
 (pdftex.def)             Requested size: 455.25165pt x 263.82954pt.
-<Assignment4_files/figure-latex/qq-1.pdf, id=133, 549.05125pt x 337.26pt>
+<Assignment4_files/figure-latex/qq-1.pdf, id=145, 549.05125pt x 337.26pt>
 File: Assignment4_files/figure-latex/qq-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/qq-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/qq-1.pdf  used on input
  line 509.
 (pdftex.def)             Requested size: 455.25165pt x 279.64268pt.
-<Assignment4_files/figure-latex/inf-1.pdf, id=134, 549.05125pt x 337.26pt>
+<Assignment4_files/figure-latex/inf-1.pdf, id=146, 549.05125pt x 337.26pt>
 File: Assignment4_files/figure-latex/inf-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/inf-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/inf-1.pdf  used on inpu
 t line 515.
 (pdftex.def)             Requested size: 455.25165pt x 279.64268pt.
-[7 <./Assignment4_files/figure-latex/worldmapall-1.pdf>] [8 <./Assignment4_file
-s/figure-latex/density-1.pdf> <./Assignment4_files/figure-latex/resd-1.pdf>] [9
- <./Assignment4_files/figure-latex/qq-1.pdf> <./Assignment4_files/figure-latex/
-inf-1.pdf>] [10
+[8 <./Assignment4_files/figure-latex/density-1.pdf>] [9 <./Assignment4_files/fi
+gure-latex/resd-1.pdf> <./Assignment4_files/figure-latex/qq-1.pdf>] [10 <./Assi
+gnment4_files/figure-latex/inf-1.pdf>] [11
 
 ]
-<figure/ggsp04.png, id=197, 844.47495pt x 597.31155pt>
+<figure/ggsp04.png, id=201, 844.47495pt x 597.31155pt>
 File: figure/ggsp04.png Graphic file (type png)
 <use figure/ggsp04.png>
 Package pdftex.def Info: figure/ggsp04.png  used on input line 547.
 (pdftex.def)             Requested size: 318.66171pt x 225.39487pt.
-<figure/ggsp05.png, id=198, 844.47495pt x 597.31155pt>
+<figure/ggsp05.png, id=202, 844.47495pt x 597.31155pt>
 File: figure/ggsp05.png Graphic file (type png)
 <use figure/ggsp05.png>
 Package pdftex.def Info: figure/ggsp05.png  used on input line 556.
 (pdftex.def)             Requested size: 318.66171pt x 225.39487pt.
-<figure/ggsp06.png, id=199, 844.47495pt x 597.31155pt>
+<figure/ggsp06.png, id=203, 844.47495pt x 597.31155pt>
 File: figure/ggsp06.png Graphic file (type png)
 <use figure/ggsp06.png>
 Package pdftex.def Info: figure/ggsp06.png  used on input line 565.
 (pdftex.def)             Requested size: 318.66171pt x 225.39487pt.
-<figure/ggsp07.png, id=200, 844.47495pt x 597.31155pt>
+<figure/ggsp07.png, id=204, 844.47495pt x 597.31155pt>
 File: figure/ggsp07.png Graphic file (type png)
 <use figure/ggsp07.png>
 Package pdftex.def Info: figure/ggsp07.png  used on input line 574.
 (pdftex.def)             Requested size: 318.66171pt x 225.39487pt.
-[11
+[12
 
-] [12 <./figure/ggsp04.png> <./figure/ggsp05.png>] [13 <./figure/ggsp06.png> <.
+] [13 <./figure/ggsp04.png> <./figure/ggsp05.png>] [14 <./figure/ggsp06.png> <.
 /figure/ggsp07.png>]
 
 Package biblatex Warning: No driver for entry type 'website'.
@@ -1610,7 +1609,7 @@ Package biblatex Warning: No driver for entry type 'website'.
 Package biblatex Warning: No driver for entry type 'website'.
 (biblatex)                Using fallback driver on input line 583.
 
-[14
+[15
 
 ] (./Assignment4.aux)
 Package rerunfilecheck Info: File `Assignment4.out' has not changed.
@@ -1620,9 +1619,9 @@ Package logreq Info: Writing requests to 'Assignment4.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27308 strings out of 478994
- 453119 string characters out of 5858184
- 1282553 words of memory out of 5000000
+ 27309 strings out of 478994
+ 453126 string characters out of 5858184
+ 1282554 words of memory out of 5000000
  43976 multiletter control sequences out of 15000+600000
  522847 words of font info for 304 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1642,10 +1641,10 @@ xmf-dist/fonts/type1/public/mathdesign/mdbch/md-chr7y.pfb></usr/local/texlive/2
 021/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chr8t.pfb></usr/local/tex
 live/2021/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chri7m.pfb></usr/lo
 cal/texlive/2021/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chri8t.pfb>
-Output written on Assignment4.pdf (14 pages, 1289885 bytes).
+Output written on Assignment4.pdf (15 pages, 1290301 bytes).
 PDF statistics:
- 284 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 49 named destinations out of 1000 (max. 500000)
+ 288 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
+ 50 named destinations out of 1000 (max. 500000)
  96388 words of extra memory for PDF output out of 106986 (max. 10000000)
 
