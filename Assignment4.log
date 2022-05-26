@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  26 MAY 2022 18:14
-=======
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.26)  26 MAY 2022 18:18
->>>>>>> Stashed changes
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.26)  27 MAY 2022 00:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -925,7 +921,7 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 )
 \@quotelevel=\count434
 \@quotereset=\count435
-No file Assignment4.aux.
+(./Assignment4.aux)
 \openout1 = `Assignment4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 301.
@@ -979,6 +975,7 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-bch.cfg 2007/03/03 v1.5 microtype config. file: Bitstream Charter (RS)
 )
 Package hyperref Info: Link coloring ON on input line 301.
+(./Assignment4.out) (./Assignment4.out)
 \@outlinefile=\write4
 \openout4 = `Assignment4.out'.
 
@@ -1029,8 +1026,8 @@ Package biblatex Info: Data encoding 'utf8' specified.
 \openout3 = `Assignment4.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'Assignment4.bbl' not found.
-No file Assignment4.bbl.
+Package biblatex Info: ... file 'Assignment4.bbl' found.
+(./Assignment4.bbl)
 Package biblatex Info: Reference section=0 on input line 301.
 Package biblatex Info: Reference segment=0 on input line 301.
 (/Users/stella/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
@@ -1047,27 +1044,27 @@ Package mathdesign/mdbch Warning: Package 'amssymb' shouldn't be used in conjonc
 
 Package mathdesign/mdbch Warning: Package 'amsfonts' shouldn't be used in conjonction with package mdbch, on input line 301.
 
-<AACSB.png, id=4, 1204.5pt x 406.51875pt>
+<AACSB.png, id=40, 1204.5pt x 406.51875pt>
 File: AACSB.png Graphic file (type png)
 <use AACSB.png>
 Package pdftex.def Info: AACSB.png  used on input line 302.
 (pdftex.def)             Requested size: 50.57945pt x 17.07056pt.
-<EQUIS.png, id=5, 619.56468pt x 380.92313pt>
+<EQUIS.png, id=41, 619.56468pt x 380.92313pt>
 File: EQUIS.png Graphic file (type png)
 <use EQUIS.png>
 Package pdftex.def Info: EQUIS.png  used on input line 302.
 (pdftex.def)             Requested size: 27.76575pt x 17.07104pt.
-<AMBA.png, id=6, 276.03125pt x 83.31125pt>
+<AMBA.png, id=42, 276.03125pt x 83.31125pt>
 File: AMBA.png Graphic file (type png)
 <use AMBA.png>
 Package pdftex.def Info: AMBA.png  used on input line 302.
 (pdftex.def)             Requested size: 56.5615pt x 17.07127pt.
-<monash2.png, id=8, 2730.2pt x 791.95876pt>
+<monash2.png, id=44, 2730.2pt x 791.95876pt>
 File: monash2.png Graphic file (type png)
 <use monash2.png>
 Package pdftex.def Info: monash2.png  used on input line 302.
 (pdftex.def)             Requested size: 170.67874pt x 49.50938pt.
-<MBSportrait.jpg, id=9, 621.32124pt x 503.8825pt>
+<MBSportrait.jpg, id=45, 621.32124pt x 503.8825pt>
 File: MBSportrait.jpg Graphic file (type jpg)
 <use MBSportrait.jpg>
 Package pdftex.def Info: MBSportrait.jpg  used on input line 302.
@@ -1319,74 +1316,53 @@ LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
 (hyperref)                than one, level fixed on input line 311.
 
-
-LaTeX Warning: Citation 'helliwell2012state' on page 2 undefined on input line 318.
-
-LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
-(Font)              scaled to size 10.51207pt on input line 318.
 LaTeX Font Info:    Trying to load font information for TS1+mdbch on input line 330.
 (/Users/stella/Library/TinyTeX/texmf-dist/tex/latex/mathdesign/mdbch/ts1mdbch.fd
 File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
 )
 LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
 (Font)              scaled to size 10.51207pt on input line 330.
-<Assignment4_files/figure-latex/trends -1.pdf, id=21, 578.16pt x 361.35pt>
+<Assignment4_files/figure-latex/trends -1.pdf, id=58, 578.16pt x 361.35pt>
 File: Assignment4_files/figure-latex/trends -1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/trends -1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/trends -1.pdf  used on input line 340.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 10.51207pt on input line 341.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
 (Font)              scaled to size 10.51207pt on input line 341.
 
 LaTeX Warning: Reference `fig:trends' on page 2 undefined on input line 344.
 
 [2]
-
-LaTeX Warning: Reference `fig:VS' on page 3 undefined on input line 351.
-
-<Assignment4_files/figure-latex/VS -1.pdf, id=42, 578.16pt x 361.35pt>
-File: Assignment4_files/figure-latex/VS -1.pdf Graphic file (type pdf)
-<use Assignment4_files/figure-latex/VS -1.pdf>
-Package pdftex.def Info: Assignment4_files/figure-latex/VS -1.pdf  used on input line 357.
+<Assignment4_files/figure-latex/vs -1.pdf, id=73, 578.16pt x 361.35pt>
+File: Assignment4_files/figure-latex/vs -1.pdf Graphic file (type pdf)
+<use Assignment4_files/figure-latex/vs -1.pdf>
+Package pdftex.def Info: Assignment4_files/figure-latex/vs -1.pdf  used on input line 357.
 (pdftex.def)             Requested size: 455.24165pt x 284.52603pt.
-! Undefined control sequence.
-<recently read> \cellcolor 
-                           
-l.369 \cellcolor
-                {gray!6}{Afghanistan} & \cellcolor{gray!6}{1999} & \cellcolo... 
+[3 <./Assignment4_files/figure-latex/trends -1.pdf>] [4 <./Assignment4_files/figure-latex/vs -1.pdf>] [5] (./Assignment4.aux)
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `Assignment4.out' has not changed.
+(rerunfilecheck)             Checksum: 28D447DCCEE7A6E178DA51057944D236;2169.
+Package logreq Info: Writing requests to 'Assignment4.run.xml'.
+\openout1 = `Assignment4.run.xml'.
+
+ ) 
 Here is how much of TeX's memory you used:
-<<<<<<< Updated upstream
- 26507 strings out of 478994
- 436698 string characters out of 5858184
- 1181317 words of memory out of 5000000
- 43246 multiletter control sequences out of 15000+600000
- 511127 words of font info for 281 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 71i,14n,93p,1208b,1447s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}{/usr/lo
-cal/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/202
-1/texmf-dist/fonts/enc/dvips/fontawesome/fontawesometwo.enc}</usr/local/texlive
-/2021/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb></usr/local/tex
-live/2021/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2
-021/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/202
-1/texmf-dist/fonts/type1/public/bera/fvsb8a.pfb></usr/local/texlive/2021/texmf-
-dist/fonts/type1/public/bera/fvsr8a.pfb>
-Output written on Assignment4.pdf (5 pages, 575973 bytes).
+ 26193 strings out of 480260
+ 455811 string characters out of 5893586
+ 1163307 words of memory out of 5000000
+ 43441 multiletter control sequences out of 15000+600000
+ 576850 words of font info for 281 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 72i,13n,93p,1208b,1455s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/stella/Library/TinyTeX/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}{/Users/stella/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/stella/Library/TinyTeX/texmf-dist/fonts/enc/dvips/fontawesome/fontawesometwo.enc}</Users/stella/Library/TinyTeX/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb></Users/stella/Library/TinyTeX/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></Users/stella/Library/TinyTeX/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></Users/stella/Library/TinyTeX/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></Users/stella/Library/TinyTeX/texmf-dist/fonts/type1/public/bera/fvsb8a.pfb></Users/stella/Library/TinyTeX/texmf-dist/fonts/type1/public/bera/fvsr8a.pfb></Users/stella/Library/TinyTeX/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chr8t.pfb>
+Output written on Assignment4.pdf (5 pages, 584654 bytes).
 PDF statistics:
- 144 PDF objects out of 1000 (max. 8388607)
- 114 compressed objects within 2 object streams
+ 151 PDF objects out of 1000 (max. 8388607)
+ 115 compressed objects within 2 object streams
  28 named destinations out of 1000 (max. 500000)
  86124 words of extra memory for PDF output out of 89155 (max. 10000000)
 
-=======
- 26083 strings out of 480260
- 453802 string characters out of 5893586
- 1160357 words of memory out of 5000000
- 43391 multiletter control sequences out of 15000+600000
- 574293 words of font info for 251 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 72i,13n,93p,1208b,1183s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-!  ==> Fatal error occurred, no output PDF file produced!
->>>>>>> Stashed changes

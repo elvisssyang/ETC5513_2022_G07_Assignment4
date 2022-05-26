@@ -327,9 +327,9 @@ Our data comes from kaggle, which is a report of the World Happiness Index for t
 
 \begin{itemize}
 \item
-  How will happiness trends change between 2015 to 2022 in different regions
+  How will happiness trends change between 2015 to 2022 in different regions?
 \item
-  What is the relationship between economic situation and health status with the happiness score
+  What is the relationship between economic situation and health status with the happiness score?
 \end{itemize}
 
 \hypertarget{the-trends-in-happiness-2015-2022}{%
@@ -348,37 +348,34 @@ From the Figure \ref{fig:trends}, we can see that the trend in all regions can b
 
 People's understanding of happiness is inseparable from their own living conditions, so in this report, we also studied the relationship between happiness and economic and health status.
 
-From the figure \ref{fig:VS}, we can find that there is a positive correlation between economic status, health status and well-being from 2015 to 2022. The better the economic status and health status, the stronger the people's well-being.
+From the Figure @ref\{fig:vs\}, we can find that there is a positive correlation between economic status, health status and well-being from 2015 to 2022. The better the economic status and health status, the stronger the people's well-being.
 
 From 2015 to 2022, the influence of the economic status on the happiness score is getting lower and lower, and the influence of the health on the happiness score has increased significantly. From 2017 to 2018, the influence of economic on happiness score increased slightly, while the influence of health on happiness score decreased slightly during this period.
 
 \begin{figure}
 \centering
-\includegraphics{Assignment4_files/figure-latex/VS -1.pdf}
-\caption{(\#fig:VS )Happiness Score vs Economy \& Health}
+\includegraphics{Assignment4_files/figure-latex/vs -1.pdf}
+\caption{(\#fig:vs )Happiness Score vs Economy \& Health}
 \end{figure}
 
 \begin{table}
-
-\caption{\label{tab:table}A linear relationship between economic status and health status with happiness index each year}
 \centering
-\begin{tabular}[t]{l|r|r|r}
+\begin{tabular}{|c|c|c|c|}
 \hline
-country & year & cases & population\\
+\textbf{Year} & \textbf{Intercept} & \textbf{Economy} & \textbf{Health} \\
 \hline
-\cellcolor{gray!6}{Afghanistan} & \cellcolor{gray!6}{1999} & \cellcolor{gray!6}{745} & \cellcolor{gray!6}{19987071}\\
-\hline
-Afghanistan & 2000 & 2666 & 20595360\\
-\hline
-\cellcolor{gray!6}{Brazil} & \cellcolor{gray!6}{1999} & \cellcolor{gray!6}{37737} & \cellcolor{gray!6}{172006362}\\
-\hline
-Brazil & 2000 & 80488 & 174504898\\
-\hline
-\cellcolor{gray!6}{China} & \cellcolor{gray!6}{1999} & \cellcolor{gray!6}{212258} & \cellcolor{gray!6}{1272915272}\\
-\hline
-China & 2000 & 213766 & 1280428583\\
+2015          & 3.250              & 1.616            & 1.203           \\
+2016          & 2.980              & 1.516            & 1.662           \\
+2017          & 2.968              & 1.504            & 1.632           \\
+2018          & 3.085              & 1.511            & 1.565           \\
+2019          & 2.892              & 1.359            & 1.775           \\
+2020          & 3.117              & 1.305            & 1.791           \\
+2021          & 3.298              & 1.316            & 1.854           \\
+2022          & 2.370              & 1.406            & 2.085           \\
 \hline
 \end{tabular}
+\caption{A linear relationship between economic status and health status with happiness index each year}
+\label{tab:table}
 \end{table}
 
 Overall, from 2015 to 2022, the influence of economic on happiness score did not change significantly, in the table1 \ref{tab:table} shows the slope decreased from 1.616 to 1.406, only 0.2. However, the influence of health on happiness score changed a lot, and the slope increased from 1.2 to 2.08 Through these data, we can also see that in today's society, people pay more and more attention to their health, especially after the covid-19. Generally speaking, the proportion of health in people's mind is higher and higher.
