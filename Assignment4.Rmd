@@ -60,3 +60,44 @@ library(lemon)
 happiness_2020 <- read_csv(here("data", "2020.csv"))
 happiness_2021 <- read_csv(here("data", "2021.csv"))
 ```
+
+### What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?
+```{r top_10,fig.cap="The top 10 countries in happiness score since"}
+top10_2020 <- happiness_2020 %>%
+  mutate(RANK = as.numeric(rownames(happiness_2020))) %>%
+  select("RANK","Country name","Ladder score") %>%
+  rename("Country" = "Country name",
+         "Happiness score" = "Ladder score") %>%
+  arrange(desc("Happiness score")) %>%
+  head(n = 10)
+top10_2021 <- happiness_2021 %>% 
+  mutate(RANK = as.numeric(rownames(happiness_2021))) %>%
+  select("RANK","Country name","Ladder score") %>% 
+  rename("Country" = "Country name",
+          "Happiness score" = "Ladder score") %>%
+  arrange(desc("Happiness score"))  %>%
+  head(n = 10)
+
+g1 <- ggplot(top10_2020,
+             aes(x=factor(Country,levels=Country),
+                 y=RANK, color = Country))+
+  geom_bar(stat="identity",
+           width=0.5,
+           fill= "white") +
+  theme(axis.text.x = element_text(angle=90, vjust=0.6),
+        legend.position="none") + 
+  labs(title="Top10 Happiest Countries-2020",
+       x="Country",y="Rank")
+g2 <- ggplot(top10_2021,
+             aes(x=factor(Country,levels=Country),
+                 y=RANK, color = Country))+
+  geom_bar(stat="identity",
+           width=0.5,
+           fill= "white") +  
+  theme(axis.text.x = element_text(angle=90, vjust=0.6),
+        legend.position="none") + 
+  labs(title="Top10 Happiest Countries-2021",
+       x="Country",y="Rank")
+
+grid_arrange_shared_legend(g1, g2, ncol = 2,nrow= 1)
+```
