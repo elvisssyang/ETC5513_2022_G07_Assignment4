@@ -379,7 +379,7 @@ To get which are the most important variables we then check their loadings in RF
 regressor_rf[["importance"]] %>%
   as.data.frame() %>% 
   arrange(desc(IncNodePurity)) %>% 
-  knitr::kable(caption = "Variable importance for Random Forest model") %>%
+  knitr::kable(caption = "Variable importance for Random Forest model", digits = 4) %>%
   kableExtra::kable_styling(latex_options = "striped")
 
 ```
@@ -422,7 +422,7 @@ lm  <- lm(`Happiness Score`~  Health + Economy + Freedom + Generosity, data=data
 sumtable <- summary(lm)
 
 sumtable$coefficients %>%
-  knitr::kable(caption = "Linear regression model for happiness scores without new data") %>%
+  knitr::kable(caption = "Linear regression model for happiness scores without new data", digits = 4) %>%
   kableExtra::kable_styling(latex_options = "striped")
 
 ```
@@ -451,7 +451,7 @@ logsum <- summary(log_lm)
 
 
 logsum$coefficients %>%
-  knitr::kable(caption = "Multivariate Linear regression model for the log data with R-squared is 0.6076") %>%
+  knitr::kable(caption = "Multivariate Linear regression model for the log data with R-squared is 0.6076", digits = 4) %>%
   kableExtra::kable_styling(latex_options = "striped")
 
 ```

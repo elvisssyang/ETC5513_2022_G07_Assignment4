@@ -371,13 +371,13 @@ To get which are the most important variables we then check their loadings in RF
 \hline
   & IncNodePurity\\
 \hline
-\cellcolor{gray!6}{Economy} & \cellcolor{gray!6}{348.66900}\\
+\cellcolor{gray!6}{Economy} & \cellcolor{gray!6}{348.6690}\\
 \hline
-Health & 327.08463\\
+Health & 327.0846\\
 \hline
-\cellcolor{gray!6}{Freedom} & \cellcolor{gray!6}{169.32991}\\
+\cellcolor{gray!6}{Freedom} & \cellcolor{gray!6}{169.3299}\\
 \hline
-Generosity & 97.79738\\
+Generosity & 97.7974\\
 \hline
 \end{tabular}
 \end{table}
@@ -410,22 +410,20 @@ We can see from Table \ref{tab:without}, in our classic linear model, they have 
 \hline
   & Estimate & Std. Error & t value & Pr(>|t|)\\
 \hline
-\cellcolor{gray!6}{(Intercept)} & \cellcolor{gray!6}{2.437442} & \cellcolor{gray!6}{0.0752984} & \cellcolor{gray!6}{32.370444} & \cellcolor{gray!6}{0}\\
+\cellcolor{gray!6}{(Intercept)} & \cellcolor{gray!6}{2.4374} & \cellcolor{gray!6}{0.0753} & \cellcolor{gray!6}{32.3704} & \cellcolor{gray!6}{0}\\
 \hline
-Health & 1.223204 & 0.1392052 & 8.787054 & 0\\
+Health & 1.2232 & 0.1392 & 8.7871 & 0\\
 \hline
-\cellcolor{gray!6}{Economy} & \cellcolor{gray!6}{1.454316} & \cellcolor{gray!6}{0.0841520} & \cellcolor{gray!6}{17.282015} & \cellcolor{gray!6}{0}\\
+\cellcolor{gray!6}{Economy} & \cellcolor{gray!6}{1.4543} & \cellcolor{gray!6}{0.0842} & \cellcolor{gray!6}{17.2820} & \cellcolor{gray!6}{0}\\
 \hline
-Freedom & 1.372180 & 0.1095802 & 12.522156 & 0\\
+Freedom & 1.3722 & 0.1096 & 12.5222 & 0\\
 \hline
-\cellcolor{gray!6}{Generosity} & \cellcolor{gray!6}{1.170207} & \cellcolor{gray!6}{0.1396671} & \cellcolor{gray!6}{8.378545} & \cellcolor{gray!6}{0}\\
+\cellcolor{gray!6}{Generosity} & \cellcolor{gray!6}{1.1702} & \cellcolor{gray!6}{0.1397} & \cellcolor{gray!6}{8.3785} & \cellcolor{gray!6}{0}\\
 \hline
 \end{tabular}
 \end{table}
 
-In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the data up to 2020.
-
-Moreover, due to the endogenous bias, the t-test here is biased so we cannot reject variables based on the p-value in this case.
+In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the data up to 2020. Moreover, due to the endogenous bias, the t-test here is biased so we cannot reject variables based on the p-value in this case below.
 
 \[
 \begin{aligned}
@@ -435,28 +433,30 @@ log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-6}Multivariate Linear regression model for the log data}
+\caption{\label{tab:mle}Multivariate Linear regression model for the log data with R-squared is 0.6076}
 \centering
 \begin{tabular}[t]{l|r|r|r|r}
 \hline
   & Estimate & Std. Error & t value & Pr(>|t|)\\
 \hline
-\cellcolor{gray!6}{(Intercept)} & \cellcolor{gray!6}{-4.5998547} & \cellcolor{gray!6}{11.5632413} & \cellcolor{gray!6}{-0.3977998} & \cellcolor{gray!6}{0.6909123}\\
+\cellcolor{gray!6}{(Intercept)} & \cellcolor{gray!6}{-4.5999} & \cellcolor{gray!6}{11.5632} & \cellcolor{gray!6}{-0.3978} & \cellcolor{gray!6}{0.6909}\\
 \hline
-cpi & -0.0007945 & 0.0001848 & -4.2993658 & 0.0000198\\
+cpi & -0.0008 & 0.0002 & -4.2994 & 0.0000\\
 \hline
-\cellcolor{gray!6}{log\_eco} & \cellcolor{gray!6}{0.2590779} & \cellcolor{gray!6}{0.0094044} & \cellcolor{gray!6}{27.5487182} & \cellcolor{gray!6}{0.0000000}\\
+\cellcolor{gray!6}{log\_eco} & \cellcolor{gray!6}{0.2591} & \cellcolor{gray!6}{0.0094} & \cellcolor{gray!6}{27.5487} & \cellcolor{gray!6}{0.0000}\\
 \hline
-log\_population & -0.0025806 & 0.0036488 & -0.7072364 & 0.4796807\\
+log\_population & -0.0026 & 0.0036 & -0.7072 & 0.4797\\
 \hline
-\cellcolor{gray!6}{log\_health} & \cellcolor{gray!6}{0.0113946} & \cellcolor{gray!6}{0.0041557} & \cellcolor{gray!6}{2.7419415} & \cellcolor{gray!6}{0.0062809}\\
+\cellcolor{gray!6}{log\_health} & \cellcolor{gray!6}{0.0114} & \cellcolor{gray!6}{0.0042} & \cellcolor{gray!6}{2.7419} & \cellcolor{gray!6}{0.0063}\\
 \hline
-year & 0.0031566 & 0.0057310 & 0.5507847 & 0.5819762\\
+year & 0.0032 & 0.0057 & 0.5508 & 0.5820\\
 \hline
 \end{tabular}
 \end{table}
 
-We can see that the total proportion of variance explained by the model with these variables are 60.49\%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables.
+We can see in Table \ref{tab:mle} that the total proportion of variance explained by the model with these variables are 60.76\%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables.
+
+In econometrics contexts, the intercept can be interpreted as
 
 \hypertarget{endogenity-and-sample-selection-bias-.}{%
 \section{Endogenity and Sample Selection Bias .}\label{endogenity-and-sample-selection-bias-.}}

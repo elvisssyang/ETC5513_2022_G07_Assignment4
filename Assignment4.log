@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  26 MAY 2022 17:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  26 MAY 2022 18:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1494,7 +1494,7 @@ LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
 LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
 (Font)              scaled to size 5.76004pt on input line 398.
 [4]
-<Assignment4_files/figure-latex/worldmapall-1.pdf, id=92, 568.1225pt x 343.2825
+<Assignment4_files/figure-latex/worldmapall-1.pdf, id=93, 568.1225pt x 343.2825
 pt>
 File: Assignment4_files/figure-latex/worldmapall-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/worldmapall-1.pdf>
@@ -1502,26 +1502,26 @@ Package pdftex.def Info: Assignment4_files/figure-latex/worldmapall-1.pdf  used
  on input line 468.
 (pdftex.def)             Requested size: 455.26146pt x 275.08731pt.
 [5 <./Assignment4_files/figure-latex/worldmapall-1.pdf>]
-<Assignment4_files/figure-latex/density-1.pdf, id=110, 544.0325pt x 322.20375pt
+<Assignment4_files/figure-latex/density-1.pdf, id=111, 544.0325pt x 322.20375pt
 >
 File: Assignment4_files/figure-latex/density-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/density-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/density-1.pdf  used on 
 input line 483.
 (pdftex.def)             Requested size: 455.26582pt x 269.63159pt.
-<Assignment4_files/figure-latex/resd-1.pdf, id=111, 549.05125pt x 318.18875pt>
+<Assignment4_files/figure-latex/resd-1.pdf, id=112, 549.05125pt x 318.18875pt>
 File: Assignment4_files/figure-latex/resd-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/resd-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/resd-1.pdf  used on inp
 ut line 489.
 (pdftex.def)             Requested size: 455.25165pt x 263.82954pt.
-<Assignment4_files/figure-latex/qq-1.pdf, id=112, 549.05125pt x 337.26pt>
+<Assignment4_files/figure-latex/qq-1.pdf, id=113, 549.05125pt x 337.26pt>
 File: Assignment4_files/figure-latex/qq-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/qq-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/qq-1.pdf  used on input
  line 495.
 (pdftex.def)             Requested size: 455.25165pt x 279.64268pt.
-<Assignment4_files/figure-latex/inf-1.pdf, id=113, 549.05125pt x 337.26pt>
+<Assignment4_files/figure-latex/inf-1.pdf, id=114, 549.05125pt x 337.26pt>
 File: Assignment4_files/figure-latex/inf-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/inf-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/inf-1.pdf  used on inpu
@@ -1542,8 +1542,8 @@ Package logreq Info: Writing requests to 'Assignment4.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  26524 strings out of 478994
- 437465 string characters out of 5858184
- 1188965 words of memory out of 5000000
+ 437457 string characters out of 5858184
+ 1188990 words of memory out of 5000000
  43255 multiletter control sequences out of 15000+600000
  520503 words of font info for 279 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1560,10 +1560,10 @@ dist/fonts/type1/public/bera/fvsr8a.pfb></usr/local/texlive/2021/texmf-dist/fon
 ts/type1/public/mathdesign/mdbch/md-chr7t.pfb></usr/local/texlive/2021/texmf-di
 st/fonts/type1/public/mathdesign/mdbch/md-chr7y.pfb></usr/local/texlive/2021/te
 xmf-dist/fonts/type1/public/mathdesign/mdbch/md-chr8t.pfb>
-Output written on Assignment4.pdf (10 pages, 738037 bytes).
+Output written on Assignment4.pdf (10 pages, 738521 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 166 compressed objects within 2 object streams
+ 216 PDF objects out of 1000 (max. 8388607)
+ 167 compressed objects within 2 object streams
  36 named destinations out of 1000 (max. 500000)
  96368 words of extra memory for PDF output out of 106986 (max. 10000000)
 
