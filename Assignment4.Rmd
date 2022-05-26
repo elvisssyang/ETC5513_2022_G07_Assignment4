@@ -218,14 +218,14 @@ lognarm_hapall <- do.call(data.frame,lapply(lognarm_hapall,function(x) replace(x
 
 ```
 
-#Modelling 
+# Modelling 
 
 
 ## What is the most important variable to explain the happiness score differences across different countries in different years? 
 
 
 
-To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models listed in Table\ref{models}: 
+In this part, we only keep the common variables (Economy, Health, Generousity and Freedom) for these years to conduct our analysis. To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models listed in Table\ref{models}: 
 
 
 \begin{table}
@@ -368,35 +368,14 @@ ggsp07
 
 
 
-## Random Forest regression 
+### Random Forest regression 
+
+Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods [@liberman2017]. We can see from the plot that this model have captured the data well in the past few years for various training set (see). 
+
+To get which are the most important variables we then check their loadings in RF model (see Table \@ref(tab:varimp)). 
 
 
-RF model is a practical way to analyse the variable relationships and regularly used in machine learning models. Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods. (Liberman, 2017). We can see from the plot that this model have captured the data well in the past few years. 
-
-
-From the report, we can see that our model is for 2020 data. 
-
-$$
-\begin{aligned}
-log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032log(year)
-\end{aligned}
-$$
-
-
-
-We can see that the total proportion of variance explained by the model with these variables are 60.49%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables. 
-
-
-
-
-
-# Factor importance
-
-Here, we concluded that the best method to fit the 2022 data is the Random Forest. This model will also allow us to tell the importance of variables via a factor loading summary table. 
-
-
-
-```{r}
+```{r varimp}
 regressor_rf[["importance"]] %>%
   as.data.frame() %>% 
   arrange(desc(IncNodePurity)) %>% 
@@ -407,18 +386,38 @@ regressor_rf[["importance"]] %>%
 
 
 
-In this table, we can conclude that the most important variables on explaining the happiness scores will be the Happiness and Health. 
-
-
-# We abandon the current dataset to add more variables 
+In the Table \@ref(tab:varimp), we conclude that the most important variables on explaining the happiness scores will be the Happiness and Health due to the loading for them are significant higher than others. 
 
 
 
-```{r}
+\newpage
+
+## Multivariate Linear Model Analysis. 
+
+
+One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way. For example, marginal effects and percentage changes.
+
+
+
+
+In our classic linear model, which is 
+
+$$
+\begin{aligned}
+&\textbf{Classical Linear Model}:\\
+Happiness\ score=& Economy+Health+Generosity+Freedom
+\end{aligned}
+$$
+
+We can see from Table \@ref(tab:without), in our classic linear model, they have similar loadings and all of them are significant, which we cannot tease out the important variables out of this model. 
+
+
+
+
+
+```{r without}
 
 lm  <- lm(`Happiness Score`~  Health + Economy + Freedom + Generosity, data=dataall)
-
-summary(lm)
 
 sumtable <- summary(lm)
 
@@ -429,17 +428,17 @@ sumtable$coefficients %>%
 ```
 
 
-
-
-# What is the correlation between these variables in linear model. 
-
-
-
-One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way. We can start with the correlation between each variables. 
-
-
 In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the 2020 data. 
 
+
+
+
+
+$$
+\begin{aligned}
+log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032log(year)
+\end{aligned}
+$$
 
 ```{r}
 
@@ -451,37 +450,48 @@ log_lm
 
 
 
-
-# The countries that we missed in the dataset. 
-
-
-```{r}
-library(rworldmap)
+We can see that the total proportion of variance explained by the model with these variables are 60.49%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables. 
 
 
-df2020 <- narm_hapall %>%
-  na.omit()
-
-df <- data.frame(country = df2020$Country,
-  value = df2020$`Happiness Score`)
-
-j <- joinCountryData2Map(df, joinCode = "NAME", nameJoinColumn = "country")
-
-mapCountryData(j, nameColumnToPlot = "value", 
-               mapTitle = "Countries that we are not included", 
-               colourPalette = 'terrain')
 
 
+
+
+
+# Endogenity and Sample Selection Bias . 
+
+
+
+```{r worldmapall, results='hide', fig.cap= "Colour the country that have included in Worldmap"}
+library(rnaturalearth)
+
+map <-ne_countries(returnclass = "sf")
+
+map$not_included = is.na(sapply(world_map$name, match, table = hapall$Country))
+
+ggplot()+
+  geom_sf(data = map, aes(fill = !not_included))+
+  ggtitle("Country included in our dataset ", subtitle = "Red: Countries are not Included; Blue:Countries are included") +
+  theme_bw()+
+  theme(legend.position = 'bottom') +
+  labs(fill = "Included")
 ```
 
 
+Apparently, our model have some bias in selecting our sample. In our report, there are `r table(map$not_included)["TRUE"]` are not included, which have been coloured in red from Figure \@ref(fig:worldmapall)
 
 
 
 
-# Residual Diagonistic 
+# Potential Problems 
 
-```{r}
+
+
+The diagnostic of our regression model is shown in Figure \@ref(fig:resd). From the Residual and Fitted plot, we can see it has non-constant variance across the fitted value, which means the presence of Hetroskedasticity. Moreover,both the error distribution (see Figure \@ref(fig:density)) and the Q-Q plot Figure (see Figure \@ref(fig:qq) also suggest the density of our model is close to a normal distribution but seems there are some influences by outliers. In the 
+
+
+
+```{r density,fig.cap="Distribution of the residual term"}
 #Data Partitioning
 set.seed(1999)
 # function that return the residual plot 
@@ -500,23 +510,28 @@ g1 <- residplot(log_lm)
 ```
 
 
-```{r}
+```{r resd, fig.cap="Residual vs Fitted value plot (with standardised residuals)"}
  plot(log_lm, which = 3) #residuals vs Fitted
 
 ```
 
 
-```{r}
-plot(log_lm, which = 2, main = "Normal Q-Q plot", sub = "In this Figure, the dotted line is Normal Distribution") 
+```{r qq, fig.cap="Q-Q plot fitted model residual density vs normal distribution residual density"}
+pp <- plot(log_lm, which = 2, main = "Normal Q-Q plot", sub = "In this Figure, the dotted line is Normal Distribution") 
 
 ```
 
-```{r}
+
+
+
+
+```{r inf, fig.cap="Influence Plot, the bigger circle means outliers", results='hide'}
+
 influencePlot(log_lm, main = "Influence Plot", sub = "Circle size is proportial to Cook's Distance")
 ```
 
 
-
+\clearpage
 
 
 

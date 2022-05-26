@@ -319,9 +319,15 @@
 \begin{document}
 \titlepage
 
-To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models:
+\hypertarget{modelling}{%
+\section{Modelling}\label{modelling}}
 
-\begin{table}{!htbp}
+\hypertarget{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-in-different-years}{%
+\subsection{What is the most important variable to explain the happiness score differences across different countries in different years?}\label{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-in-different-years}}
+
+In this part, we only keep the common variables (Economy, Health, Generousity and Freedom) for these years to conduct our analysis. To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models listed in Table\ref{models}:
+
+\begin{table}
 \scalebox{0.8}{
 \begin{tabular}{|c|c|}
 \hline
@@ -340,38 +346,22 @@ Random Forest Model                      & Use multiple learning algorithms (res
 \label{models}
 \end{table}
 
+After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \ref{fig:training} that the best model to fit the data is Random Forest model while the Multilinear and SVM performed similarly. The decision tree performed the worest because it changed the structure of the data. The result is similar when we have different training split ratios (see ).
+
 \newpage
 
-\includegraphics{Assignment4_files/figure-latex/unnamed-chunk-6-1.pdf}
-
-\hypertarget{tree-plot}{%
-\section{Tree plot}\label{tree-plot}}
-
-\includegraphics{Assignment4_files/figure-latex/unnamed-chunk-7-1.pdf}
+\includegraphics{Assignment4_files/figure-latex/training-1.pdf}
 
 \hypertarget{random-forest-regression}{%
-\section{Random Forest regression}\label{random-forest-regression}}
+\subsubsection{Random Forest regression}\label{random-forest-regression}}
 
-RF model is used to predict causes for Random Forest is a practical way and regularly used in machine learning models. Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods. (Liberman, 2017). We can see from the plot that this model have captured the data well in the past few years.
+Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods \autocite{liberman2017}. We can see from the plot that this model have captured the data well in the past few years for various training set (see).
 
-From the report, we can see that our model is for 2020 data.
-
-\[
-\begin{aligned}
-log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032log(year)
-\end{aligned}
-\]
-
-We can see that the total proportion of variance explained by the model with these variables are 60.49\%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables.
-
-\hypertarget{factor-importance}{%
-\section{Factor importance}\label{factor-importance}}
-
-Here, we concluded that the best method to fit the 2022 data is the Random Forest. This model will also allow us to tell the importance of variables via a factor loading summary table.
+To get which are the most important variables we then check their loadings in RF model (see Table \ref{tab:varimp}).
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-8}Variable importance for Random Forest model}
+\caption{\label{tab:varimp}Variable importance for Random Forest model}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
@@ -388,39 +378,29 @@ Generosity & 97.79738\\
 \end{tabular}
 \end{table}
 
-In this table, we can conclude that the most important variables on explaining the happiness scores will be the Happiness and Health.
+In the Table \ref{tab:varimp}, we conclude that the most important variables on explaining the happiness scores will be the Happiness and Health due to the loading for them are significant higher than others.
 
-\hypertarget{we-abandon-the-current-dataset-to-add-more-variables}{%
-\section{We abandon the current dataset to add more variables}\label{we-abandon-the-current-dataset-to-add-more-variables}}
+\newpage
 
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = `Happiness Score` ~ Health + Economy + Freedom + 
-##     Generosity, data = dataall)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.88683 -0.36864  0.04779  0.39916  1.76462 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  2.43744    0.07530  32.370  < 2e-16 ***
-## Health       1.22320    0.13921   8.787  < 2e-16 ***
-## Economy      1.45432    0.08415  17.282  < 2e-16 ***
-## Freedom      1.37218    0.10958  12.522  < 2e-16 ***
-## Generosity   1.17021    0.13967   8.379 2.52e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.582 on 772 degrees of freedom
-## Multiple R-squared:  0.732,  Adjusted R-squared:  0.7307 
-## F-statistic: 527.3 on 4 and 772 DF,  p-value: < 2.2e-16
-\end{verbatim}
+\hypertarget{multivariate-linear-model-analysis.}{%
+\subsection{Multivariate Linear Model Analysis.}\label{multivariate-linear-model-analysis.}}
+
+One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way. For example, marginal effects and percentage changes.
+
+In our classic linear model, which is
+
+\[
+\begin{aligned}
+&\textbf{Classical Linear Model}:\\
+Happiness\ score=& Economy+Health+Generosity+Freedom
+\end{aligned}
+\]
+
+We can see from Table \ref{tab:without}, in our classic linear model, they have similar loadings and all of them are significant, which we cannot tease out the important variables out of this model.
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-9}Linear regression model for happiness scores without new data}
+\caption{\label{tab:without}Linear regression model for happiness scores without new data}
 \centering
 \begin{tabular}[t]{l|r|r|r|r}
 \hline
@@ -439,12 +419,13 @@ Freedom & 1.372180 & 0.1095802 & 12.522156 & 0\\
 \end{tabular}
 \end{table}
 
-\hypertarget{what-is-the-correlation-between-these-variables-in-linear-model.}{%
-\section{What is the correlation between these variables in linear model.}\label{what-is-the-correlation-between-these-variables-in-linear-model.}}
-
-One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way. We can start with the correlation between each variables.
-
 In order to better analyse the relationships, I add two new variables, which are CPI values and the population size for each country. However, due to the limitation of the new dataset, we can only conduct our analysis based on the 2020 data.
+
+\[
+\begin{aligned}
+log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032log(year)
+\end{aligned}
+\]
 
 \begin{verbatim}
 ## 
@@ -459,35 +440,49 @@ In order to better analyse the relationships, I add two new variables, which are
 ##      0.0031566
 \end{verbatim}
 
-\hypertarget{the-countries-that-we-missed-in-the-dataset.}{%
-\section{The countries that we missed in the dataset.}\label{the-countries-that-we-missed-in-the-dataset.}}
+We can see that the total proportion of variance explained by the model with these variables are 60.49\%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables.
 
-\begin{verbatim}
-## 641 codes from your data successfully matched countries in the map
-## 1 codes from your data failed to match with a country code in the map
-## 109 codes from the map weren't represented in your data
-\end{verbatim}
+\hypertarget{endogenity-and-sample-selection-bias-.}{%
+\section{Endogenity and Sample Selection Bias .}\label{endogenity-and-sample-selection-bias-.}}
 
-\includegraphics{Assignment4_files/figure-latex/unnamed-chunk-11-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/worldmapall-1.pdf}
+\caption{\label{fig:worldmapall}Colour the country that have included in Worldmap}
+\end{figure}
 
-\hypertarget{residual-diagonistic}{%
-\section{Residual Diagonistic}\label{residual-diagonistic}}
+Apparently, our model have some bias in selecting our sample. In our report, there are 34 are not included, which have been coloured in red from Figure \ref{fig:worldmapall}
 
-\includegraphics{Assignment4_files/figure-latex/unnamed-chunk-12-1.pdf}
+\hypertarget{potential-problems}{%
+\section{Potential Problems}\label{potential-problems}}
 
-\includegraphics{Assignment4_files/figure-latex/unnamed-chunk-13-1.pdf}
+The diagnostic of our regression model is shown in Figure \ref{fig:resd}. From the Residual and Fitted plot, we can see it has non-constant variance across the fitted value, which means the presence of Hetroskedasticity. Moreover,both the error distribution (see Figure \ref{fig:density}) and the Q-Q plot Figure (see Figure \ref{fig:qq} also suggest the density of our model is close to a normal distribution but seems there are some influences by outliers. In the
 
-\includegraphics{Assignment4_files/figure-latex/unnamed-chunk-14-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/density-1.pdf}
+\caption{\label{fig:density}Distribution of the residual term}
+\end{figure}
 
-\includegraphics{Assignment4_files/figure-latex/unnamed-chunk-15-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/resd-1.pdf}
+\caption{\label{fig:resd}Residual vs Fitted value plot (with standardised residuals)}
+\end{figure}
 
-\begin{verbatim}
-##        StudRes         Hat      CookD
-## 110  1.5379757 0.246899853 0.12896655
-## 411 -3.5457416 0.008605488 0.01786073
-## 537 -3.9107652 0.009146505 0.02300857
-## 642  0.8219777 0.534532896 0.12938311
-\end{verbatim}
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/qq-1.pdf}
+\caption{\label{fig:qq}Q-Q plot fitted model residual density vs normal distribution residual density}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/inf-1.pdf}
+\caption{\label{fig:inf}Influence Plot, the bigger circle means outliers}
+\end{figure}
+
+\clearpage
 
 \printbibliography
 
