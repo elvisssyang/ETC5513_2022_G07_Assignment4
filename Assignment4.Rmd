@@ -57,6 +57,7 @@ library(readr)
 library(bookdown)
 library(gganimate)
 library(GGally)
+library(sp)
 ```
 
 
@@ -332,7 +333,7 @@ Since the outbreak of COVID-19, economies, people's health and freedom have been
 
 
 ### What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?
-```{r top_10,fig.cap="The top 10 countries in happiness score since"}
+```{r top10,fig.cap="The top 10 countries in happiness score since"}
 top10_2020 <- happiness_2020 %>%
   mutate(RANK = as.numeric(rownames(happiness_2020))) %>%
   select("RANK","Country name","Ladder score") %>%
@@ -372,11 +373,11 @@ g2 <- ggplot(top10_2021,
 grid_arrange_shared_legend(g1, g2, ncol = 2,nrow= 1)
 ```
 
-In the Figure \@ref(fig:top_10), the top 10 countries in the World Happiness have not changed since 2020 despite the impact of Covid-19, the rankings have changed slightly.
+In the Figure \@ref(fig:top10), the top 10 countries in the World Happiness have not changed since 2020 despite the impact of Covid-19, the rankings have changed slightly.
 In addition, Finland has been the happiest country for two consecutive years in 2020 and 2021.
 
 ### The distribution of the top 10 countries on the world map in 2021
-```{r top10_map, fig.cap="The distribution of top 10 countries on the world map in 2021"}
+```{r top10map, fig.cap="The distribution of top 10 countries on the world map in 2021"}
 d1 <- data.frame(country = top10_2021$Country,
                  value = top10_2021$`Happiness score`)
 
@@ -390,7 +391,7 @@ map_2021 <- mapCountryData(n1,
                oceanCol="white")
 ```
 
-According to the Figure \@ref(fig:top10_map), these countries are mainly northern and western European countries, obviously, they are all developed countries which have a technologically advanced infrastructure, and their economy is highly developed.  
+According to the Figure \@ref(fig:top10map), these countries are mainly northern and western European countries, obviously, they are all developed countries which have a technologically advanced infrastructure, and their economy is highly developed.  
 
 So besides high economy, what other indicators can affect happiness score?
 
