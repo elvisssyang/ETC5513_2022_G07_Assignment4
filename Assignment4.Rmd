@@ -546,5 +546,29 @@ Nevertheless, our linear model analysis still limited due to the presence of het
 
 # Acknowledgement 
 
+We shall never forget the hard works done by our lecturer Patricia on every Tuesday nights from Week 1 to Week 12. 
+
+We will also remember our tutors Naveen and Fan. They performed hard works on our tutorials and gave us nice recommendations during the presentation session. 
+
+Moreover, we'd like to thank all EBS scholars from **Monash University** for their excellent `monash` package produced such a nice report template. 
+
+Without any of their help, our works could not get finished so smoothly. 
+
+Overall, I'd also like to thank those package developers who fight for the open source software, which made us easier to plot so many beautiful plots.
+
+Here are the lists of packages we used: 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
