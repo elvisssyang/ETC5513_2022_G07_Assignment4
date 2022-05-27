@@ -331,7 +331,7 @@
 \hypertarget{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-and-years}{%
 \subsection{What is the most important variable to explain the happiness score differences across different countries and years?}\label{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-and-years}}
 
-In this part, since there are many different variables across each year in our data, we only keep the common variables (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. Before exploring how each factor will contribute to the happiness score, we first need to select a model that can represents our data well by running serval tests on a few common models, listed in Table\ref{models}:
+In this part, since there are many different variables across each year in our data, we only keep the common variables (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. Before exploring how each factor will contribute to the happiness score, we first need to select a model that can represents our data well by running several tests on a few common models, listed in Table\ref{models}:
 
 \begin{table}[H]
 \scalebox{0.8}{
@@ -352,7 +352,7 @@ In this part, since there are many different variables across each year in our d
 \label{models}
 \end{table}
 
-We have divided the historical data (from 2015 to 2022) into two separated sets, a training test and a test set with different split ratio. The test set will be used to examine which model has the best goodness-of-fit after building up the model with the training set (see Figure \ref{fig:training}; Figure \ref{fig:ggsp04} to \ref{fig:ggsp07} in appendix).
+We have divided the historical data (from 2015 to 2022) into two separated sets, a training test and a test set with different split ratio (\emph{see} Figure \ref{fig:training}; Figure \ref{fig:ggsp04} to \ref{fig:ggsp07} \emph{in appendix}). The test set will be used to examine which model has the best goodness-of-fit after building up the model with the training set.
 
 \newpage
 
@@ -365,9 +365,9 @@ We have divided the historical data (from 2015 to 2022) into two separated sets,
 \hypertarget{random-forest-regression}{%
 \subsubsection{Random Forest regression}\label{random-forest-regression}}
 
-Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods \autocite{liberman2017}. We can see from the plot that this model have captured the data well in the past few years for various training set (see Figure \ref{fig:ggsp04} to \ref{fig:ggsp07}). .
+Random Forest Model has a variable selecting system (via bootstrapping) to decide the most significant tree and is able to reduce overwriting compared to the decision tree. With that said, the random forest is a strong modeling technique and more robust than other methods \autocite{liberman2017}. We can see from the plot that this model has captured the data very well in the past few years based on various training sets (see Figure \ref{fig:ggsp04} to \ref{fig:ggsp07}).
 
-To get which are the most important variables, we then check their loadings in RF model (see Table \ref{tab:varimp}).
+By checking the loading for each variable in the RF model, we get the order of importance in Table \ref{tab:varimp}.
 
 \newpage
 \begin{table}
@@ -389,23 +389,22 @@ Generosity & 97.7974\\
 \end{tabular}
 \end{table}
 
-In the Table \ref{tab:varimp}, we conclude that the most important variables on explaining the happiness scores will be the Happiness and Health due to the loading for them are significant higher than others.
+Based on the result in Table \ref{tab:varimp}, the most important variable is Economy, followed by Health, Freedom and Generosity being the last.
 
 \hypertarget{multivariate-linear-model-analysis.}{%
 \subsection{Multivariate Linear Model Analysis.}\label{multivariate-linear-model-analysis.}}
 
-One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way \textcite{voxco2022}. For example, marginal effects and percentage changes.
+The RF model helps us to determine which variables to choose in the multivariate linear regression model. The advantage of using multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way \autocite{voxco2022},such as, marginal effects and percentage changes.
 
-In our classic linear model, which is
+If using a classic linear model with all four variables,
 
 \[
 \begin{aligned}
-&\textbf{Classic Multivariate Linear Model}:\\
 Happiness\ score=& Economy+Health+Generosity+Freedom
 \end{aligned}
 \]
 
-We can see from Table \ref{tab:without}, in our classic linear model, they have similar loadings and all of them are significant, which we cannot tease out the important variables out of this model.
+They have similar impacts on explaining the happiness score and all of them are significant in Table \ref{tab:without}. Thus, it is hard to tease the importance of each variable out with this model.
 
 \begin{table}
 
@@ -428,12 +427,12 @@ Freedom & 1.3722 & 0.1096 & 12.5222 & 0\\
 \end{tabular}
 \end{table}
 
-In order to better analyse the relationships, we join another two new variables, which are CPI values and the population size for each country from The World Bank data (\textcite{world2022}) between 2016 to 2022. After matching the data for each country and drop the NA values. We can use the new dataset to construct our new Linear model. Nevertheless, due to the limitation of the new dataset, we can only conduct our analysis based on the data up to 2020.
+As a result, we will drop the least insignificant two and add another two new variables, Consumer Price Index and the population size of each country, gained from the World Bank data from 2016 to 2022 \autocite{world2022}. After matching the data for each country and drop the NA values, we can use the new dataset to construct a new Linear model. Nevertheless, due to the lack of data in 2021 and 2022, we can only use the data up to 2020.
 
 \[
 \begin{aligned}
-\textbf{Logarithm Multivariate Linear Model with added variables}:\\
-log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032log(year)
+\textbf{New Multivariate Linear Model with a natural log of score}:\\
+log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032\ year
 \end{aligned}
 \]
 
@@ -460,9 +459,12 @@ year & 0.0032 & 0.0057 & 0.5508 & 0.5820\\
 \end{tabular}
 \end{table}
 
-We can see in Table \ref{tab:mle} that the total proportion of variance explained by the model with these variables are 60.76\%. For the 4 predictors, the economy status(GDP per capita) contribute most to the happiness scores than other variables.
+We can see in Table \ref{tab:mle} that 60.76\% of the variation in \(log(score)\) can be explained by the model. It is noticeable that the economy status(GDP per capita) has the largest influence on the happiness scores than other variables.
 
-Note that in econometric contexts, the intercept in log-linear model can be interpreted as the influence of one percentage change of a variable to dependent variable \autocite{benoit2011}. For example:
+Besides, in econometric contexts, coefficients in the log-log model can be interpreted as the percentage change in dependent variable when there is a one percentage change increase in the regressor \autocite{benoit2011}.
+
+For example:
+
 \begin{align*}
 \frac{\Delta \text{ log(Happiness Score)}}{\Delta \text{ log(Economy)}} &\approx \frac{\Delta \text{ Happiness Score}}{\Delta \text{ Economy} }\frac{\text{Economy}}{\text{Happiness Score}}\\
 &=\frac{\% \Delta \text{ Happiness Score}}{\% \Delta \text{ Economy}} \nonumber\\
@@ -470,12 +472,12 @@ Note that in econometric contexts, the intercept in log-linear model can be inte
 &= 0.2591
 \end{align*}
 
-Here, we can interpret that a 1\% increase in Economy(measured in GDP per capita) will lead to a 0.2591\% rise in the happiness score. Similarly for the rest variables, a 1\% percent increase in health will increase happiness for 0.0114\%. On the contrary, we can see that a rise in population and CPI have a negative impact with -0.0026\% and -0.0008 respectively.
+Here, we can interpret that a 1\% increase in Economy(measured in GDP per capita) will increase the happiness score by 0.2591\%, keeping all other regressors constant. Similarly for the rest variables, a 1\% percent increase in health will increase happiness by 0.0114\%. On the contrary, we can see that an increase in population and CPI have negative impacts, which are -0.0026\% for Population and -0.08 for CPI respectively.
 
 \hypertarget{endogenity-and-sample-selection-bias}{%
 \section{Endogenity and Sample Selection Bias}\label{endogenity-and-sample-selection-bias}}
 
-We only included 5 variables and total \(R^2\) is around 60.49\% in our model. Then, considering the happiness score can be affected by many prospects. There should have some latent variables that do affect the happiness score for example the education level and culture backgrounds. In other words, our model have an endogeneity issue, which we can solve it by either adding more related variables or use the two-stage least square model.
+This model may have an endogenous problem, which is caused by omitting variables, as we only include 5 relevant variables in the model. There are some latent variables that affect the happiness score but are not included in this model such as education level and culture backgrounds.
 
 \begin{figure}
 \centering
@@ -483,14 +485,14 @@ We only included 5 variables and total \(R^2\) is around 60.49\% in our model. T
 \caption{\label{fig:worldmapall}Colour the country that have included in Worldmap}
 \end{figure}
 
-Apparently, our model have some bias in selecting our sample. In our report, there are 34 are not included, which have been colored in red from Figure \ref{fig:worldmapall}. In our sample, we can see countries are not included either from sparsely populated area or developing countries, which indicates that our sample is not random enough and exists a sample selection bias. To solve this, sample selection models such as Heckman model or Tobit can be considered in Econometrics areas.
+Apparently, our model also has some bias in sample selection. In our model, data for 34 countries are not included, which are colored in red in Figure \ref{fig:worldmapall}. These missing countries are either sparsely populated or still in development, so the model is not revealing all information due to the sample selection bias. To solve this, sample selection models such as Heckman model or Tobit can be considered in Econometrics areas.
 
 \newpage
 
-\hypertarget{residual-diagonistic-of-regression-model}{%
-\section{Residual Diagonistic of Regression Model}\label{residual-diagonistic-of-regression-model}}
+\hypertarget{residual-diagonistic-for-the-regression-model}{%
+\section{Residual Diagonistic for the Regression Model}\label{residual-diagonistic-for-the-regression-model}}
 
-The diagnostic of our regression model is shown in Figure \ref{fig:resd}. From the Residual and Fitted plot, we can see it has non-constant variance across the fitted value, which means the presence of Hetroskedasticity. Moreover,both the error distribution (see Figure \ref{fig:density}) and the Q-Q plot Figure (see both Figure \ref{fig:qq} and Figure \ref{fig:inf} also suggest the density of our model is close to a normal distribution but seems there are some influences by outliers.
+From the Residual and Fitted plot in Figure \ref{fig:resd}, we can see it has a non-constant variance across the fitted value, which indicates the presence of Heteroskedasticity. Moreover, the error distribution (see Figure \ref{fig:density}) and the Q-Q plot Figure (see both Figure \ref{fig:qq} and Figure \ref{fig:inf} also suggest the density of our model is somewhat to a normal distribution but influenced by outliers.
 
 \begin{figure}
 \centering
