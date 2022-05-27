@@ -328,31 +328,31 @@
 \hypertarget{modelling}{%
 \section{Modelling}\label{modelling}}
 
-\hypertarget{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-in-different-years}{%
-\subsection{What is the most important variable to explain the happiness score differences across different countries in different years?}\label{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-in-different-years}}
+\hypertarget{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-and-years}{%
+\subsection{What is the most important variable to explain the happiness score differences across different countries and years?}\label{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-and-years}}
 
-In this part, due to there are some different variables across each year in our data, we only keep the common variables (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models listed in Table\ref{models}:
+In this part, since there are many different variables across each year in our data, we only keep the common variables (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. Before exploring how each factor will contribute to the happiness score, we first need to select a model that can represents our data well by running serval tests on a few common models, listed in Table\ref{models}:
 
 \begin{table}[H]
 \scalebox{0.8}{
 \begin{tabular}{|c|c|}
 \hline
-\textless{}Trained Models \textgreater{} & \textless{}Model description \textgreater{}                                       \\
+\textless{}Possible Models \textgreater{} & \textless{}Model description \textgreater{}                                       \\
 \hline\hline
-\textbf{Multivariate Linear Model}       & Simple Linear regression with multiple variables                                  \\
+\textbf{Multivariate Linear Model}       & Simple Linear regression with \textbf{multiple variables}                                \\
 \hline
-Support Vector Machine Model             & Use multiple learning algorithms (resampling and tree) to give us better results. \\
+\textbf{Support Vector Machine Model}          & Use multiple learning algorithms (resampling and tree) to give us better results. \\
 \hline
 \textbf{Decision Tree Model}             & Binary tree model have control statement.                                         \\
 \hline
-Random Forest Model                      & Use multiple learning algorithms (resampling and tree) to give us better results.\\
+\text{Random Forest Model}                     & Use multiple learning algorithms (resampling and tree) to give us better results.\\
 \hline
 \end{tabular}}
-\caption{Model Description of our Trained Models}
+\caption{Model Description of our Possible Models}
 \label{models}
 \end{table}
 
-After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \ref{fig:training} that the best model to fit the data is Random Forest model while the Multivariate and SVM performed similarly. The decision tree performed the worst because it changed the structure of the data. The result is similar when we have different training split ratios (see Figure \ref{fig:ggsp04} to \ref{fig:ggsp07}).
+We have divided the historical data (from 2015 to 2022) into two separated sets, a training test and a test set with different split ratio. The test set will be used to examine which model has the best goodness-of-fit after building up the model with the training set (see Figure \ref{fig:training}; Figure \ref{fig:ggsp04} to \ref{fig:ggsp07} in appendix).
 
 \newpage
 

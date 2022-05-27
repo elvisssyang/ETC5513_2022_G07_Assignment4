@@ -224,34 +224,37 @@ lognarm_hapall <- do.call(data.frame,lapply(lognarm_hapall,function(x) replace(x
 # Modelling 
 
 
-## What is the most important variable to explain the happiness score differences across different countries in different years? 
+## What is the most important variable to explain the happiness score differences across different countries and years? 
 
 
 
-In this part, due to there are some different variables across each year in our data, we only keep the common variables  (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. To explore the factors that could be contributing to the happiness score differences between each year, we first test few common models listed in Table\ref{models}: 
+In this part, since there are many different variables across each year in our data, we only keep the common variables  (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. Before exploring how each factor will contribute to the happiness score, we first need to select a model that can represents our data well by running serval tests on a few common models, listed in Table\ref{models}: 
 
 
 \begin{table}[H]
 \scalebox{0.8}{
 \begin{tabular}{|c|c|}
 \hline
-\textless{}Trained Models \textgreater{} & \textless{}Model description \textgreater{}                                       \\
+\textless{}Possible Models \textgreater{} & \textless{}Model description \textgreater{}                                       \\
 \hline\hline
-\textbf{Multivariate Linear Model}       & Simple Linear regression with multiple variables                                  \\
+\textbf{Multivariate Linear Model}       & Simple Linear regression with \textbf{multiple variables}                                \\
 \hline
-Support Vector Machine Model             & Use multiple learning algorithms (resampling and tree) to give us better results. \\
+\textbf{Support Vector Machine Model}          & Use multiple learning algorithms (resampling and tree) to give us better results. \\
 \hline
 \textbf{Decision Tree Model}             & Binary tree model have control statement.                                         \\
 \hline
-Random Forest Model                      & Use multiple learning algorithms (resampling and tree) to give us better results.\\
+\text{Random Forest Model}                     & Use multiple learning algorithms (resampling and tree) to give us better results.\\
 \hline
 \end{tabular}}
-\caption{Model Description of our Trained Models}
+\caption{Model Description of our Possible Models}
 \label{models}
 \end{table}
 
 
-After trained our model based on the all historical data (from 2015 to 2022). We can see from the Figure \@ref(fig:training) that the best model to fit the data is Random Forest model while the Multivariate and SVM performed similarly. The decision tree performed the worst because it changed the structure of the data. The result is similar when we have different training split ratios (see Figure \@ref(fig:ggsp04) to \@ref(fig:ggsp07)). 
+We have divided the historical data (from 2015 to 2022) into two separated sets, a training test and a test set with different split ratio (*see* Figure \@ref(fig:training); Figure \@ref(fig:ggsp04) to \@ref(fig:ggsp07) *in appendix*). The test set will be used to examine which model has the best goodness-of-fit after building up the model with the training set. 
+
+
+
 
 \newpage
 
@@ -373,9 +376,9 @@ ggsp07
 
 ### Random Forest regression 
 
-Random Forest Model have the variable selecting system (via bootstrapping) to decide the most significant tree and can reduce overwriting compared with decision tree.With that said, random forests are a strong modeling technique and much more robust comparing with many different methods [@liberman2017]. We can see from the plot that this model have captured the data well in the past few years for various training set (see Figure \@ref(fig:ggsp04) to \@ref(fig:ggsp07)). . 
+Random Forest Model has a variable selecting system (via bootstrapping) to decide the most significant tree and is able to reduce overwriting compared to the decision tree. With that said, the random forest is a strong modeling technique and more robust than other methods [@liberman2017]. We can see from the plot that this model has captured the data very well in the past few years based on various training sets (see Figure \@ref(fig:ggsp04) to \@ref(fig:ggsp07)). 
 
-To get which are the most important variables, we then check their loadings in RF model (see Table \@ref(tab:varimp)). 
+By checking the loading for each variable in the RF model, we get the order of importance in Table \@ref(tab:varimp). 
 
 
 \newpage
@@ -390,7 +393,7 @@ regressor_rf[["importance"]] %>%
 
 
 
-In the Table \@ref(tab:varimp), we conclude that the most important variables on explaining the happiness scores will be the Happiness and Health due to the loading for them are significant higher than others. 
+Based on the result in Table \@ref(tab:varimp), the most important variable is Economy, followed by Health, Freedom and Geriosity being the last. 
 
 
 
@@ -398,21 +401,23 @@ In the Table \@ref(tab:varimp), we conclude that the most important variables on
 ## Multivariate Linear Model Analysis. 
 
 
-One advantage of multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way @voxco2022. For example, marginal effects and percentage changes.
+The RF model helps us to determine which variables to choose in the multivariate linear regression model. The advantage of using multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way [@voxco2022],such as, marginal effects and percentage changes.
 
 
 
 
-In our classic linear model, which is 
+
+
+If using a classic linear model with all four variables, 
 
 $$
 \begin{aligned}
-&\textbf{Classic Multivariate Linear Model}:\\
 Happiness\ score=& Economy+Health+Generosity+Freedom
 \end{aligned}
 $$
 
-We can see from Table \@ref(tab:without), in our classic linear model, they have similar loadings and all of them are significant, which we cannot tease out the important variables out of this model. 
+They have similar impacts on explaining the happiness score and all of them are significant in Table \@ref(tab:without). Thus, it is hard to tease the importance of each variable out with this model. 
+
 
 
 
