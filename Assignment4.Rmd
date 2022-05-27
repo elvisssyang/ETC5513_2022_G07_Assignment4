@@ -47,11 +47,23 @@ knitr::opts_chunk$set(echo = FALSE,
 
 
 ```{r}
-library(ggplot2)
 library(tidyverse)
+library(gganimate) 
+library(GGally)
+library(ggplot2) # Data visualization
+library(readr) # read data files 
 library(dplyr)
-library(kableExtra)
+library(gridExtra)
+library(RColorBrewer)
+library(repr)
+library(neuralnet)
+library(ggpubr)
+library(caTools)
+library(rworldmap)# Draw world map 
+library(rnaturalearth)
 library(sf)
+library(car)
+library(kableExtra)
 library(here)
 library(lubridate)
 library(cowplot)
@@ -59,15 +71,8 @@ library(janitor)
 library(maps)
 library(plotly)
 require(wbstats)
-library(RColorBrewer)
-library(repr)
-library(gridExtra)
-library(rworldmap) 
 library(lemon)
-library(readr)
 library(bookdown)
-library(gganimate)
-library(GGally)
 library(sp)
 
 ```
@@ -241,6 +246,19 @@ Apart from this, @helliwell2021world stated that the global pandemic has signifi
 In the modelling part, we will provide an detailed analysis of the model fits in various models. In this part,we will illustrate the most important variables in explaining the happiness score. Furthermore, we will also add two new variables together with the important variables to build up a multivariate linear model based on the 4 variables between 2016 to 2020 and explore their marginal effects on the happiness scores. 
 
 However, due to the number of countries observed in different years are not consistent and variables are varies after year 2020, which might generate errors. Also, the new data are limited between 2016 to 2020, which can lead to sample selection bias. We will critically explain these issues in residual diagnostic part at the end of the modelling part. 
+
+# Research Questions
+
+The report will be divided into different sections to explore following research questions:
+
+
++ The influences of COVID-19 on the world happiness score and the correlations between happiness in 2021. 
+
++ The changes of happiness between 2015 and 2022 in different regions. 
+
++ The impact of economic situation and health status on happiness. 
+
++ The important variable in explaining happiness scores via different models and discover their marginal effects in a linear model. 
 
 
 
@@ -514,85 +532,39 @@ Therefore, we can see that both social support and health life expectancy explai
 To summarize, in this part we found the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are **GDP, social support and health life expectancy**.
 
 
-# Conclusion
-
-According the analysis, we have concluded that the Happiness Scores are closely related to the economic activities and health status. In those developed countries with better living and health conditions, people are generally feel happier than those people living in rural areas. 
-
-On the other hand, we also found that the happiness scores for people living in Sub-Saharan and Southeast Asia are relatively low, which is mainly due to the poor economic development and harsh living environment [@helliwell2021world]. In terms of the happiness scores at region level, we also found that Europe is the most livable continent with majority of countries are above the average level. Even during the pandemic period, people living in European countries still feel happier than other regions.  
-
-Apart from this, we also found that during the COVID-19 period between 2020 to 2021, the variables highly related to happiness are Health, Economy and Social Support and correlation between Health and Economy even stronger than before.
-
-In addition, in our modelling part, over these years between 2015 to 2022, the most important variable in explaining the happiness scores across different countries are Economy (measured in GDP per capita) and Health. In our multivariate linear model analysis out of four variables Economy (measured in GDP per capital), CPI, Population and Health, it has been indicated that the Economy status is the most significant and essential factor to explaining the happiness score.
-
-Furthermore, in terms of the marginal effect analysis we did in modelling part. Both Economy situation and Health status has a positive marginal effect on happiness score, while CPI and Population has a negative score. 
-
-Nevertheless, our linear model analysis still limited due to the presence of hetroskedasticity, endogeneity bias and sample selection bias. Even though this model did a well job in explaining happiness score. These problems should also be concerned by further researches in modelling big  macroeconomic data globally. 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Acknowledgement 
-
-We shall never forget the hard works done by our lecturer Patricia on every Tuesday nights from Week 1 to Week 12. 
-
-We will also remember our tutors Naveen and Fan. They performed hard works on our tutorials and gave us nice recommendations during the presentation session. 
-
-Moreover, we'd like to thank all EBS scholars from **Monash University** for their excellent `monash` package produced such a nice report template. 
-
-Without any of their help, our works could not get finished so smoothly. 
-
-Overall, I'd also like to thank those package developers who fight for the open source software, which made us easier to plot so many beautiful plots.
-
-Here are the lists of packages we used: 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```{r setup, echo = FALSE,warning=FALSE, message=FALSE}
-knitr::opts_chunk$set(echo = FALSE,warning=FALSE, message=FALSE)
-library(tidyverse)
-library(gganimate) 
-library(GGally)
-library(fpp3)
-library(ggplot2) # Data visualization
-library(readr) # read data files 
-library(dplyr)
-library(gridExtra)
-library(RColorBrewer)
-library(repr)
-library(neuralnet)
-library(ggpubr)
-library(caTools)
-library(rworldmap)# Draw world map 
-library(rnaturalearth)
-library(sf)
-library(car)
+```{r setup2}
+# library(tidyverse)
+# library(gganimate) 
+# library(GGally)
+# library(ggplot2) # Data visualization
+# library(readr) # read data files 
+# library(dplyr)
+# library(gridExtra)
+# library(RColorBrewer)
+# library(repr)
+# library(neuralnet)
+# library(ggpubr)
+# library(caTools)
+# library(rworldmap)# Draw world map 
+# library(rnaturalearth)
+# library(sf)
+# library(car)
+# library(kableExtra)
+# library(here)
+# library(lubridate)
+# library(cowplot)
+# library(janitor)
+# library(maps)
+# library(plotly)
+# require(wbstats)
+# library(lemon)
+# library(bookdown)
+# library(sp)
 ```
 
 
@@ -616,7 +588,7 @@ hap20 = read_csv("data/2020.csv")
 
 ```
 
-```{r data_Preparation}
+```{r data_Preparation2}
 
 data2016 <- data2016 %>% 
   select(Country,`Happiness Score`,
@@ -1040,7 +1012,7 @@ Here, we can interpret that a 1% increase in Economy(measured in GDP per capita)
 
 
 
-# Endogenity and Sample Selection Bias 
+## Endogenity and Sample Selection Bias 
 
 This model may have an endogenous problem, which is caused by omitting variables, as we only include 5 relevant variables in the model. There are some latent variables that affect the happiness score but are not included in this model such as education level and culture backgrounds. 
 
@@ -1071,12 +1043,13 @@ Apparently, our model also has some bias in sample selection. In our model, data
 
 \newpage
 
-# Residual Diagonistic for the Regression Model 
+## Residual Diagonistic for the Regression Model 
 
 
 
 From the Residual and Fitted plot in Figure \@ref(fig:resd), we can see it has a non-constant variance across the fitted value, which indicates the presence of Heteroskedasticity. Moreover, the error distribution (see Figure \@ref(fig:density)) and the Q-Q plot Figure (see  both Figure \@ref(fig:qq) and Figure \@ref(fig:inf)  also suggest the density of our model is somewhat to a normal distribution but influenced by outliers.
 
+In conclusion, our model did a good job in explaining the relationships between happiness score and our selected aggressors even though there are still some limitations. 
 
 
 ```{r density,fig.cap="Distribution of the residual term"}
@@ -1122,14 +1095,43 @@ influencePlot(log_lm, main = "Influence Plot", sub = "Circle size is proportial 
 
 \clearpage
 
-# Conclusion 
+# Conclusion
+
+According the analysis, we have concluded that the Happiness Scores are closely related to the economic activities and health status. In those developed countries with better living and health conditions, people are generally feel happier than those people living in rural areas. 
+
+On the other hand, we also found that the happiness scores for people living in Sub-Saharan and Southeast Asia are relatively low, which is mainly due to the poor economic development and harsh living environment [@helliwell2021world]. In terms of the happiness scores at region level, we also found that Europe is the most livable continent with majority of countries are above the average level. Even during the pandemic period, people living in European countries still feel happier than other regions.  
+
+Apart from this, we also found that during the COVID-19 period between 2020 to 2021, the variables highly related to happiness are Health, Economy and Social Support and correlation between Health and Economy even stronger than before.
+
+In addition, in our modelling part, over these years between 2015 to 2022, the most important variable in explaining the happiness scores across different countries are Economy (measured in GDP per capita) and Health. In our multivariate linear model analysis out of four variables Economy (measured in GDP per capital), CPI, Population and Health, it has been indicated that the Economy status is the most significant and essential factor to explaining the happiness score.
+
+Furthermore, in terms of the marginal effect analysis we did in modelling part. Both Economy situation and Health status has a positive marginal effect on happiness score, while CPI and Population has a negative score. 
+
+Nevertheless, our linear model analysis still limited due to the presence of hetroskedasticity, endogeneity bias and sample selection bias. Even though this model did a well job in explaining happiness score. These problems should also be concerned by further researches in modelling big  macroeconomic data globally. 
 
 
-In conclusion, our model did a good job in explaining the relationships between happiness score and our selected aggressors even though there are still some limitations. 
 
 
 
 
+
+
+
+
+
+# Acknowledgement 
+
+We shall never forget the hard works done by our lecturer Patricia on every Tuesday nights from Week 1 to Week 12. 
+
+We will also remember our tutors Naveen and Fan. They performed hard works on our tutorials and gave us nice recommendations during the presentation session. 
+
+Moreover, we'd like to thank all EBS scholars from **Monash University** for their excellent `monash` package produced such a nice report template. 
+
+Without any of their help, our works could not get finished so smoothly. 
+
+Overall, I'd also like to thank those package developers who fight for the open source software, which made us easier to plot so many beautiful plots.
+
+Here are the lists of packages we used: 
 
 
 

@@ -296,12 +296,16 @@
 \setstretch{1.5}
 
 %% Any special functions or other packages can be loaded here.
+\usepackage[normalem]{ulem}
+\usepackage{float}
+\useunder{\uline}{\ul}{}
+\usepackage{float}
+\usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{wrapfig}
-\usepackage{float}
 \usepackage{colortbl}
 \usepackage{pdflscape}
 \usepackage{tabu}
@@ -334,6 +338,22 @@ In the modelling part, we will provide an detailed analysis of the model fits in
 
 However, due to the number of countries observed in different years are not consistent and variables are varies after year 2020, which might generate errors. Also, the new data are limited between 2016 to 2020, which can lead to sample selection bias. We will critically explain these issues in residual diagnostic part at the end of the modelling part.
 
+\hypertarget{research-questions}{%
+\section{Research Questions}\label{research-questions}}
+
+The report will be divided into different sections to explore following research questions:
+
+\begin{itemize}
+\item
+  The influences of COVID-19 on the world happiness score and the correlations between happiness in 2021.
+\item
+  The changes of happiness between 2015 and 2022 in different regions.
+\item
+  The impact of economic situation and health status on happiness.
+\item
+  The important variable in explaining happiness scores via different models and discover their marginal effects in a linear model.
+\end{itemize}
+
 \hypertarget{data}{%
 \section{Data}\label{data}}
 
@@ -363,8 +383,8 @@ Combined with my research questions, I consolidate all the datasets for each yea
 
 \textcite{helliwell2012state} stated that with the continuous progress of human society, the happiness index has become an important indicator for measuring the living standards across regions. Meanwhile, people have also realized the importance to apply the happiness index in macroeconomic analysis. In the real world, the happiness index is related to many factors, it will also affect nearly all aspects of human activities. Thus, we will start with two research questions to explore the happiness index of the world.
 
-\hypertarget{research-questions}{%
-\subsection{Research questions}\label{research-questions}}
+\hypertarget{research-questions-1}{%
+\subsection{Research questions}\label{research-questions-1}}
 
 \begin{itemize}
 \item
@@ -488,6 +508,205 @@ Therefore, we can see that both social support and health life expectancy explai
 
 To summarize, in this part we found the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are \textbf{GDP, social support and health life expectancy}.
 
+\clearpage
+
+\hypertarget{modelling}{%
+\section{Modelling}\label{modelling}}
+
+\hypertarget{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-and-years}{%
+\subsection{What is the most important variable to explain the happiness score differences across different countries and years?}\label{what-is-the-most-important-variable-to-explain-the-happiness-score-differences-across-different-countries-and-years}}
+
+In this part, since there are many different variables across each year in our data, we only keep the common variables (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. Before exploring how each factor will contribute to the happiness score, we first need to select a model that can represents our data well by running several tests on a few common models, listed in Table\ref{models}:
+
+\begin{table}[H]
+\scalebox{0.8}{
+\begin{tabular}{|c|c|}
+\hline
+\textless{}Possible Models \textgreater{} & \textless{}Model description \textgreater{}                                       \\
+\hline\hline
+\textbf{Multivariate Linear Model}       & Simple Linear regression with \textbf{multiple variables}                                \\
+\hline
+\textbf{Support Vector Machine Model}          & Use multiple learning algorithms (resampling and tree) to give us better results. \\
+\hline
+\textbf{Decision Tree Model}             & Binary tree model have control statement.                                         \\
+\hline
+\text{Random Forest Model}                     & Use multiple learning algorithms (resampling and tree) to give us better results.\\
+\hline
+\end{tabular}}
+\caption{Model Description of our Possible Models}
+\label{models}
+\end{table}
+
+We have divided the historical data (from 2015 to 2022) into two separated sets, a training test and a test set with different split ratio (\emph{see} Figure \ref{fig:training}; Figure \ref{fig:ggsp04} to \ref{fig:ggsp07} \emph{in appendix}). The test set will be used to examine which model has the best goodness-of-fit after building up the model with the training set.
+
+\newpage
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/training-1.pdf}
+\caption{\label{fig:training}Model Training Split Ratio is 0.8}
+\end{figure}
+
+\hypertarget{random-forest-regression}{%
+\subsubsection{Random Forest regression}\label{random-forest-regression}}
+
+Random Forest Model has a variable selecting system (via bootstrapping) to decide the most significant tree and is able to reduce overwriting compared to the decision tree. With that said, the random forest is a strong modeling technique and more robust than other methods \autocite{liberman2017}. We can see from the plot that this model has captured the data very well in the past few years based on various training sets (see Figure \ref{fig:ggsp04} to \ref{fig:ggsp07}).
+
+By checking the loading for each variable in the RF model, we get the order of importance in Table \ref{tab:varimp}.
+
+\newpage
+\begin{table}
+
+\caption{\label{tab:varimp}Variable importance for Random Forest model}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+  & IncNodePurity\\
+\hline
+\cellcolor{gray!6}{Economy} & \cellcolor{gray!6}{348.6690}\\
+\hline
+Health & 327.0846\\
+\hline
+\cellcolor{gray!6}{Freedom} & \cellcolor{gray!6}{169.3299}\\
+\hline
+Generosity & 97.7974\\
+\hline
+\end{tabular}
+\end{table}
+
+Based on the result in Table \ref{tab:varimp}, the most important variable is Economy, followed by Health, Freedom and Generosity being the last.
+
+\hypertarget{multivariate-linear-model-analysis.}{%
+\subsection{Multivariate Linear Model Analysis.}\label{multivariate-linear-model-analysis.}}
+
+The RF model helps us to determine which variables to choose in the multivariate linear regression model. The advantage of using multivariate linear regression is that it can allow us to analyse the relationship between different variables in a statistical coherent way \autocite{voxco2022},such as, marginal effects and percentage changes.
+
+If using a classic linear model with all four variables,
+
+\[
+\begin{aligned}
+Happiness\ score=& Economy+Health+Generosity+Freedom
+\end{aligned}
+\]
+
+They have similar impacts on explaining the happiness score and all of them are significant in Table \ref{tab:without}. Thus, it is hard to tease the importance of each variable out with this model.
+
+\begin{table}
+
+\caption{\label{tab:without}Linear regression model for happiness scores without new data}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+  & Estimate & Std. Error & t value & Pr(>|t|)\\
+\hline
+\cellcolor{gray!6}{(Intercept)} & \cellcolor{gray!6}{2.4374} & \cellcolor{gray!6}{0.0753} & \cellcolor{gray!6}{32.3704} & \cellcolor{gray!6}{0}\\
+\hline
+Health & 1.2232 & 0.1392 & 8.7871 & 0\\
+\hline
+\cellcolor{gray!6}{Economy} & \cellcolor{gray!6}{1.4543} & \cellcolor{gray!6}{0.0842} & \cellcolor{gray!6}{17.2820} & \cellcolor{gray!6}{0}\\
+\hline
+Freedom & 1.3722 & 0.1096 & 12.5222 & 0\\
+\hline
+\cellcolor{gray!6}{Generosity} & \cellcolor{gray!6}{1.1702} & \cellcolor{gray!6}{0.1397} & \cellcolor{gray!6}{8.3785} & \cellcolor{gray!6}{0}\\
+\hline
+\end{tabular}
+\end{table}
+
+As a result, we will drop the least insignificant two and add another two new variables, Consumer Price Index and the population size of each country, gained from the World Bank data from 2016 to 2022 \autocite{world2022}. After matching the data for each country and drop the NA values, we can use the new dataset to construct a new Linear model. Nevertheless, due to the lack of data in 2021 and 2022, we can only use the data up to 2020.
+
+\[
+\begin{aligned}
+\textbf{New Multivariate Linear Model with a natural log of score}:\\
+log(score)= -4.6000-0.0008\ cpi+0.2591\ log(economy)\\-0.0026\ log(population)+0.0114\ log(health)+0.0032\ year
+\end{aligned}
+\]
+
+\begin{table}
+
+\caption{\label{tab:mle}Multivariate Linear regression model for the log data with R-squared is 0.6076}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+  & Estimate & Std. Error & t value & Pr(>|t|)\\
+\hline
+\cellcolor{gray!6}{(Intercept)} & \cellcolor{gray!6}{-4.5999} & \cellcolor{gray!6}{11.5632} & \cellcolor{gray!6}{-0.3978} & \cellcolor{gray!6}{0.6909}\\
+\hline
+cpi & -0.0008 & 0.0002 & -4.2994 & 0.0000\\
+\hline
+\cellcolor{gray!6}{log\_eco} & \cellcolor{gray!6}{0.2591} & \cellcolor{gray!6}{0.0094} & \cellcolor{gray!6}{27.5487} & \cellcolor{gray!6}{0.0000}\\
+\hline
+log\_population & -0.0026 & 0.0036 & -0.7072 & 0.4797\\
+\hline
+\cellcolor{gray!6}{log\_health} & \cellcolor{gray!6}{0.0114} & \cellcolor{gray!6}{0.0042} & \cellcolor{gray!6}{2.7419} & \cellcolor{gray!6}{0.0063}\\
+\hline
+year & 0.0032 & 0.0057 & 0.5508 & 0.5820\\
+\hline
+\end{tabular}
+\end{table}
+
+We can see in Table \ref{tab:mle} that 60.76\% of the variation in \(log(score)\) can be explained by the model. It is noticeable that the economy status(GDP per capita) has the largest influence on the happiness scores than other variables.
+
+Besides, in econometric contexts, coefficients in the log-log model can be interpreted as the percentage change in dependent variable when there is a one percentage change increase in the regressor \autocite{benoit2011}.
+
+For example:
+
+\begin{align*}
+\frac{\Delta \text{ log(Happiness Score)}}{\Delta \text{ log(Economy)}} &\approx \frac{\Delta \text{ Happiness Score}}{\Delta \text{ Economy} }\frac{\text{Economy}}{\text{Happiness Score}}\\
+&=\frac{\% \Delta \text{ Happiness Score}}{\% \Delta \text{ Economy}} \nonumber\\
+&= \text{ME(Coefficient)}\nonumber\\
+&= 0.2591
+\end{align*}
+
+Here, we can interpret that a 1\% increase in Economy(measured in GDP per capita) will increase the happiness score by 0.2591\%, keeping all other regressors constant. Similarly for the rest variables, a 1\% percent increase in health will increase happiness by 0.0114\%. On the contrary, we can see that an increase in population and CPI have negative impacts, which are -0.0026\% for Population and -0.08 for CPI respectively.
+
+\hypertarget{endogenity-and-sample-selection-bias}{%
+\subsection{Endogenity and Sample Selection Bias}\label{endogenity-and-sample-selection-bias}}
+
+This model may have an endogenous problem, which is caused by omitting variables, as we only include 5 relevant variables in the model. There are some latent variables that affect the happiness score but are not included in this model such as education level and culture backgrounds.
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/worldmapall-1.pdf}
+\caption{\label{fig:worldmapall}Colour the country that have included in Worldmap}
+\end{figure}
+
+Apparently, our model also has some bias in sample selection. In our model, data for 34 countries are not included, which are colored in red in Figure \ref{fig:worldmapall}. These missing countries are either sparsely populated or still in development, so the model is not revealing all information due to the sample selection bias. To solve this, sample selection models such as Heckman model or Tobit can be considered in Econometrics areas.
+
+\newpage
+
+\hypertarget{residual-diagonistic-for-the-regression-model}{%
+\subsection{Residual Diagonistic for the Regression Model}\label{residual-diagonistic-for-the-regression-model}}
+
+From the Residual and Fitted plot in Figure \ref{fig:resd}, we can see it has a non-constant variance across the fitted value, which indicates the presence of Heteroskedasticity. Moreover, the error distribution (see Figure \ref{fig:density}) and the Q-Q plot Figure (see both Figure \ref{fig:qq} and Figure \ref{fig:inf} also suggest the density of our model is somewhat to a normal distribution but influenced by outliers.
+
+In conclusion, our model did a good job in explaining the relationships between happiness score and our selected aggressors even though there are still some limitations.
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/density-1.pdf}
+\caption{\label{fig:density}Distribution of the residual term}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/resd-1.pdf}
+\caption{\label{fig:resd}Residual vs Fitted value plot (with standardised residuals)}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/qq-1.pdf}
+\caption{\label{fig:qq}Q-Q plot fitted model residual density vs normal distribution residual density}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Assignment4_files/figure-latex/inf-1.pdf}
+\caption{\label{fig:inf}Influence Plot, the bigger circle means outliers}
+\end{figure}
+
+\clearpage
+
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
@@ -503,6 +722,78 @@ Furthermore, in terms of the marginal effect analysis we did in modelling part. 
 
 Nevertheless, our linear model analysis still limited due to the presence of hetroskedasticity, endogeneity bias and sample selection bias. Even though this model did a well job in explaining happiness score. These problems should also be concerned by further researches in modelling big macroeconomic data globally.
 
-\printbibliography[title=Acknowledgement]
+\hypertarget{acknowledgement}{%
+\section{Acknowledgement}\label{acknowledgement}}
+
+We shall never forget the hard works done by our lecturer Patricia on every Tuesday nights from Week 1 to Week 12.
+
+We will also remember our tutors Naveen and Fan. They performed hard works on our tutorials and gave us nice recommendations during the presentation session.
+
+Moreover, we'd like to thank all EBS scholars from \textbf{Monash University} for their excellent \texttt{monash} package produced such a nice report template.
+
+Without any of their help, our works could not get finished so smoothly.
+
+Overall, I'd also like to thank those package developers who fight for the open source software, which made us easier to plot so many beautiful plots.
+
+Here are the lists of packages we used:
+
+\clearpage
+
+\hypertarget{appendix}{%
+\section{Appendix}\label{appendix}}
+
+\begin{align*}
+\intertext{We here take the Economy Situation (measured in GDP per capita) as an example:}
+\frac{\partial \text{log(Happiness Score)}}{\partial \text{log(Economy)}} &= \text{ME(Coefficient)}\\
+\intertext{From (1) we can say, when other variables remain constant }\nonumber \\
+\Delta \text{ log(Happiness Score)} &= \text{ME(Coefficient)} \times \Delta \text{ log(Economy)}\\
+\intertext{By using the infinite approaching approximation of log function, we can know}\nonumber\\
+log(x_0 + \Delta x) - log(x_0) &\approx log(x_0) + log'(x_0)\Delta x - log(x_0)\\
+&=  \frac{\Delta x}{x_0} = \text{percentage change in x}\nonumber\\
+\intertext{Therefore}\nonumber\\
+\frac{\Delta \text{ log(Happiness Score)}}{\Delta \text{ log(Economy)}} &\approx \frac{\Delta \text{ Happiness Score}}{\Delta \text{ Economy} }\frac{\text{Economy}}{\text{Happiness Score}}\\
+&=\frac{\% \Delta \text{ Happiness Score}}{\% \Delta \text{ Economy}} \nonumber\\
+&= \text{ME(Coefficient)}\nonumber
+\end{align*}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp04} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.4}\label{fig:ggsp04}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp05} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.5}\label{fig:ggsp05}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp06} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.6}\label{fig:ggsp06}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.7\linewidth]{figure/ggsp07} 
+
+}
+
+\caption{Models' performance under the training test split ratio = 0.7}\label{fig:ggsp07}
+\end{figure}
+
+\clearpage
+
+\printbibliography
 
 \end{document}
