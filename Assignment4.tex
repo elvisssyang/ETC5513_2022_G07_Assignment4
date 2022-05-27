@@ -27,7 +27,7 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{geometry}
 \geometry{a4paper, centering, text={16cm,25cm}}
-\usepackage[style=authoryear-comp,]{biblatex}
+\usepackage[style=apa,]{biblatex}
 \addbibresource{references.bib}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
@@ -199,7 +199,7 @@
 \DeclareDelimFormat[cbx@textcite]{nameyeardelim}{\addspace}
 \makeatother
 
-\author{\sf{\Large\textbf{Zhixiang Yang}\\\large EBS Honours Student\\[0.5cm]}{\Large\textbf{Yiqi Wang}\\\large Master of BA Student\\[0.5cm]}{\Large\textbf{Xintong You}\\\large Master of BA Student\\[0.5cm]}}
+\author{\sf{\Large\textbf{(Elvis) Zhixiang Yang}\\\large EBS Honours Student\\[0.5cm]}{\Large\textbf{Yiqi Wang}\\\large Master of BA Student\\[0.5cm]}{\Large\textbf{Xintong You}\\\large Master of BA Student\\[0.5cm]}}
 
 \date{\sf\Date~\Month~\Year}
 \makeatletter
@@ -315,26 +315,32 @@
 \begin{document}
 \titlepage
 
-\hypertarget{load-packages}{%
-\section{Load Packages}\label{load-packages}}
-
-\hypertarget{read-data}{%
-\section{Read Data}\label{read-data}}
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\clearpage
 
 \hypertarget{introduction}{%
-\subsubsection{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}}
 
-This report explores two research questions in the context of the development of world happiness from 2015 to 2022 and related factors. The first is to study the trends of happiness score represented by region between 2015 and 2022, and thus lead to the relationship and impact of annual health and economic status on happiness score.
+\hypertarget{exploratory-data-analysis-i}{%
+\section{Exploratory Data Analysis I}\label{exploratory-data-analysis-i}}
 
-\hypertarget{the-development-of-the-world-happiness}{%
-\subsubsection{The development of the World Happiness}\label{the-development-of-the-world-happiness}}
+\hypertarget{introduction-1}{%
+\subsection{Introduction}\label{introduction-1}}
 
-\textcite{helliwell2012state} show with the continuous progress of human society, the happiness index has become an important standard for measuring the family, and people have also begun to study issues related to the happiness index. Since the happiness index is related to many factors of a family, it will also affect the The whole world. Therefore, this part will start with two research questions to explore the happiness index of the world.
+This report explores two research questions in the context of the development of world happiness from 2015 to 2022 and related factors. In this part, we will investigate to the trends of happiness score represented by region between 2015 and 2022, and then we will conduct an analysis of the impacts of annual health and economic status on happiness score.
 
 \hypertarget{data-preparation-and-introduction}{%
-\subsubsection{Data preparation and introduction}\label{data-preparation-and-introduction}}
+\subsection{Data preparation and introduction}\label{data-preparation-and-introduction}}
 
 Our data comes from kaggle, which is a report of the World Happiness Index for the period 2015 to 2022, which contains variables for a number of factors such as countries, regions, happiness score, economies, health, freedom, etc. Combined with my research questions, I consolidated the datasets for each year into a dataset of data1, and the variables I needed to use were year, region, happiness score, economy, and health.
+
+\hypertarget{the-development-of-the-world-happiness}{%
+\subsection{The development of the World Happiness}\label{the-development-of-the-world-happiness}}
+
+\textcite{helliwell2012state} stated that with the continuous progress of human society, the happiness index has become an important indicator for measuring the living standards across regions, and people have also realized the importance to study the happiness index. Since the happiness index is related to many factors , it will also affect nearly all aspects of human activities. Therefore, this part we will start with two research questions to explore the happiness index of the world.
 
 \hypertarget{research-questions}{%
 \subsection{Research questions}\label{research-questions}}
@@ -347,18 +353,18 @@ Our data comes from kaggle, which is a report of the World Happiness Index for t
 \end{itemize}
 
 \hypertarget{the-trends-in-happiness-2015-2022}{%
-\subsubsection{The trends in happiness 2015-2022}\label{the-trends-in-happiness-2015-2022}}
+\subsection{The trends in happiness 2015-2022}\label{the-trends-in-happiness-2015-2022}}
 
 \begin{figure}
 \centering
-\includegraphics{Assignment4_files/figure-latex/trends -1.pdf}
-\caption{(\#fig:trends )Change of Happiness Score in Different Region}
+\includegraphics{Assignment4_files/figure-latex/trends-1.pdf}
+\caption{\label{fig:trends}Change of Happiness Score in Different Region}
 \end{figure}
 
 From the Figure \ref{fig:trends}, we can see that the trend in all regions can be divided into three different levels of happiness score. In all regions , South Asia and Sub-Saharan Africa these two regions of overall happiness is the lowest, but Sub-Saharan Africa's happiness began to increase year by year after reaching the trough in 2016,from 4.1 to 4.5; and the South Asia region began in 2017, Happiness is declining year by year from 4.7 to 4.3. The three regions with the highest overall happiness are: Australia and New Zealand; North America; and Western Europe, and the three regions have changed their happiness by little each year,nearly 7, with a relatively flat trend. The remaining regions have overall well-being in the middle, between 5 and 6.2, with Central and Eastern Europe being the only region to increase year-over-year, while the rest of the region is in a state of slightly fluctuating but generally stable trends.Overall, we observed that regions with relatively better economic levels had higher happiness indices and more stable changes, while regions with poorer economies had lower happiness indices and had larger annual trends.
 
 \hypertarget{the-relationship-between-economic-situation-and-health-status-with-the-happiness-in-2015-2022}{%
-\subsubsection{the relationship between economic situation and health status with the happiness in 2015-2022}\label{the-relationship-between-economic-situation-and-health-status-with-the-happiness-in-2015-2022}}
+\subsection{The relationship between economic situation and health status with the happiness in 2015-2022}\label{the-relationship-between-economic-situation-and-health-status-with-the-happiness-in-2015-2022}}
 
 People's understanding of happiness is inseparable from their own living conditions, so in this report, we also studied the relationship between happiness and economic and health status.
 
@@ -368,8 +374,8 @@ From 2015 to 2022, the influence of the economic status on the happiness score i
 
 \begin{figure}
 \centering
-\includegraphics{Assignment4_files/figure-latex/VS -1.pdf}
-\caption{(\#fig:VS )Happiness Score vs Economy \& Health}
+\includegraphics{Assignment4_files/figure-latex/VS-1.pdf}
+\caption{\label{fig:VS}Happiness Score vs Economy \& Health}
 \end{figure}
 
 \begin{table}
@@ -395,32 +401,32 @@ From 2015 to 2022, the influence of the economic status on the happiness score i
 Overall, from 2015 to 2022, the influence of economic on happiness score did not change significantly, in the table1 \ref{tab:table} shows the slope decreased from 1.616 to 1.406, only 0.2. However, the influence of health on happiness score changed a lot, and the slope increased from 1.2 to 2.08 Through these data, we can also see that in today's society, people pay more and more attention to their health, especially after the covid-19. Generally speaking, the proportion of health in people's mind is higher and higher.
 
 \hypertarget{conclusions}{%
-\subsubsection{Conclusions}\label{conclusions}}
+\subsection{Conclusions}\label{conclusions}}
 
 Through our exploration of two research questions, we found that in economically developed countries, people's happiness is also higher, while people's happiness in economically backward areas will also be lower; and with the continuous progress of society, people's happiness comes from the impact of health, especially in the stage of covid-19. In general, some European countries and some developed countries have better welfare and medical security for their own developed economies, and people's happiness is also very high. On the contrary, in some economically poor areas, their welfare security is also poor, which also makes the happiness of the people not high.
 
 \hypertarget{exploratory-data-analysis-ii}{%
 \section{Exploratory data analysis II}\label{exploratory-data-analysis-ii}}
 
-\hypertarget{introduction-1}{%
-\subsubsection{Introduction}\label{introduction-1}}
+\hypertarget{introduction-2}{%
+\subsection{Introduction}\label{introduction-2}}
 
 According to \textcite{helliwell2021world}, economies, people's health and freedom have been affected around the world since the outbreak of COVID-19, and through these factors has affected the happiness of countries in the world. In the following research, the top 10 happiest countries in the world and their distribution will be explored, and the factors associated with happiness score will be analysed through the relation between happiness score and six selected indicators.
 
 \hypertarget{what-are-the-countries-which-ranks-top-10-in-happiness-score-since-the-covid-19-outbreak}{%
-\subsubsection{What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?}\label{what-are-the-countries-which-ranks-top-10-in-happiness-score-since-the-covid-19-outbreak}}
+\subsection{What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?}\label{what-are-the-countries-which-ranks-top-10-in-happiness-score-since-the-covid-19-outbreak}}
 
 \begin{figure}
 \centering
 \includegraphics{Assignment4_files/figure-latex/top10-1.pdf}
-\caption{\label{fig:top10}The top 10 countries in happiness score since}
+\caption{\label{fig:top10}The top 10 countries in happiness score since COVID-19}
 \end{figure}
 
 In the Figure \ref{fig:top10}, the top 10 countries in the World Happiness have not changed since 2020 despite the impact of Covid-19, the rankings have changed slightly.
 In addition, Finland has been the happiest country for two consecutive years in 2020 and 2021.
 
 \hypertarget{the-distribution-of-the-top-10-countries-on-the-world-map-in-2021}{%
-\subsubsection{The distribution of the top 10 countries on the world map in 2021}\label{the-distribution-of-the-top-10-countries-on-the-world-map-in-2021}}
+\subsection{The distribution of the top 10 countries on the world map in 2021}\label{the-distribution-of-the-top-10-countries-on-the-world-map-in-2021}}
 
 \begin{verbatim}
 ## 10 codes from your data successfully matched countries in the map
@@ -439,7 +445,7 @@ According to the Figure \ref{fig:top10map}, these countries are mainly northern 
 So besides high economy, what other indicators can affect happiness score?
 
 \hypertarget{relation-between-happiness-score-and-other-indicators-in-2021}{%
-\subsubsection{Relation between Happiness score and other indicators in 2021}\label{relation-between-happiness-score-and-other-indicators-in-2021}}
+\subsection{Relation between Happiness score and other indicators in 2021}\label{relation-between-happiness-score-and-other-indicators-in-2021}}
 
 \begin{figure}
 \centering
@@ -452,7 +458,7 @@ The 6 linear graphs Figure \ref{fig:relation} demonstrate the relation between t
 Therefore, social support and health life expectancy explain happiness in a relatively high proportion which is 57.3\% and 59\% respectively. While freedom, generosity and trust in government corruption are not good explanations for happiness score.
 
 \hypertarget{conclusion}{%
-\subsubsection{Conclusion}\label{conclusion}}
+\subsection{Conclusion}\label{conclusion}}
 
 In conclusion, the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are \textbf{GDP, social support and health life expectancy}.
 

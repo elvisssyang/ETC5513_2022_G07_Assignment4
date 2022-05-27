@@ -2,7 +2,7 @@
 title: "Report on Happiness up to 2022"
 author:
 - familyname: Yang 
-  othernames: Zhixiang
+  othernames: (Elvis) Zhixiang
   email: zyan0056@student.monash.edu
   correspondingauthor: true
   qualifications:  EBS Honours Student
@@ -19,7 +19,7 @@ phone: (03) 9905 2478
 department: Department of\newline Econometrics &\newline Business Statistics
 organization: Group 07 ETC5513
 bibliography: references.bib
-biblio-style: authoryear-comp
+biblio-style: apa
 linestretch: 1.5
 output:
   monash::report:
@@ -31,7 +31,7 @@ output:
     keep_tex: yes
     number_sections: yes
     citation_package: biblatex
-    toc: false
+    toc: true
 ---
 
 
@@ -42,7 +42,7 @@ knitr::opts_chunk$set(echo = FALSE,
                       warning = FALSE)
 ```
 
-# Load Packages
+
 
 
 ```{r}
@@ -72,7 +72,7 @@ library(sp)
 ```
 
 
-# Read Data
+
 
 ```{r}
 data2015 <- read_csv('data/2015.csv')
@@ -223,19 +223,37 @@ data1 <- bind_rows(data2015,data2016,data2017,data2018,
                  data2019,data2020,data2021,data2022)
 ```
 
-
-### Introduction
-This report explores two research questions in the context of the development of world happiness from 2015 to 2022 and related factors. The first is to study the trends of happiness score represented by region between 2015 and 2022, and thus lead to the relationship and impact of annual health and economic status on happiness score.
+\clearpage
 
 
 
-### The development of the World Happiness 
-@helliwell2012state show with the continuous progress of human society, the happiness index has become an important standard for measuring the family, and people have also begun to study issues related to the happiness index. Since the happiness index is related to many factors of a family, it will also affect the The whole world. Therefore, this part will start with two research questions to explore the happiness index of the world.
+# Introduction 
 
 
 
-### Data preparation and introduction
+
+
+# Exploratory Data Analysis I
+
+## Introduction
+This report explores two research questions in the context of the development of world happiness from 2015 to 2022 and related factors. In this part, we will investigate to the trends of happiness score represented by region between 2015 and 2022, and then we will conduct an analysis of the impacts of annual health and economic status on happiness score.
+
+
+
+## Data preparation and introduction
 Our data comes from kaggle, which is a report of the World Happiness Index for the period 2015 to 2022, which contains variables for a number of factors such as countries, regions, happiness score, economies, health, freedom, etc. Combined with my research questions, I consolidated the datasets for each year into a dataset of data1, and the variables I needed to use were year, region, happiness score, economy, and health.
+
+
+
+
+
+## The development of the World Happiness 
+@helliwell2012state stated that with the continuous progress of human society, the happiness index has become an important indicator for measuring the living standards across regions, and people have also realized the importance to study the happiness index. Since the happiness index is related to many factors , it will also affect nearly all aspects of human activities. Therefore, this part we will start with two research questions to explore the happiness index of the world.
+
+
+
+
+
 
 
 ## Research questions
@@ -247,9 +265,9 @@ Our data comes from kaggle, which is a report of the World Happiness Index for t
 
 
 
-### The trends in happiness 2015-2022
+## The trends in happiness 2015-2022
 
-```{r trends , fig.cap = "Change of Happiness Score in Different Region", warning = FALSE,message = F}
+```{r trends, fig.cap = "Change of Happiness Score in Different Region", warning = FALSE,message = F}
 p1 <- data1 %>% 
   select(Year,
          Happiness_Score,
@@ -279,7 +297,7 @@ From the Figure \@ref(fig:trends), we can see that the trend in all regions can 
 
 
 
-### the relationship between economic situation and health status with the happiness in 2015-2022
+## The relationship between economic situation and health status with the happiness in 2015-2022
 People's understanding of happiness is inseparable from their own living conditions, so in this report, we also studied the relationship between happiness and economic and health status.
 
 From the figure \@ref(fig:VS), we can find that there is a positive correlation between economic status, health status and well-being from 2015 to 2022. The better the economic status and health status, the stronger the people's well-being.
@@ -287,7 +305,7 @@ From the figure \@ref(fig:VS), we can find that there is a positive correlation 
 From 2015 to 2022, the influence of the economic status on the happiness score is getting lower and lower, and the influence of the health on the happiness score has increased significantly. From 2017 to 2018, the influence of economic on happiness score increased slightly, while the influence of health  on happiness score decreased slightly during this period.
 
 
-```{r VS , fig.cap = "Happiness Score vs Economy & Health", warning = FALSE,message = F}
+```{r VS, fig.cap = "Happiness Score vs Economy & Health", warning = FALSE,message = F}
 data1 %>% 
   filter(!is.na(Year)) %>% 
   ggplot(aes(x = Economy,
@@ -334,7 +352,7 @@ Overall, from 2015 to 2022, the influence of economic on happiness score did not
 
 
 
-### Conclusions
+## Conclusions
 Through our exploration of two research questions, we found that in economically developed countries, people's happiness is also higher, while people's happiness in economically backward areas will also be lower; and with the continuous progress of society, people's happiness comes from the impact of health, especially in the stage of covid-19. In general, some European countries and some developed countries have better welfare and medical security for their own developed economies, and people's happiness is also very high. On the contrary, in some economically poor areas, their welfare security is also poor, which also makes the happiness of the people not high.
 
 
@@ -343,12 +361,12 @@ Through our exploration of two research questions, we found that in economically
 # Exploratory data analysis II
 
 
-### Introduction
+## Introduction
 
 According to @helliwell2021world, economies, people's health and freedom have been affected around the world since the outbreak of COVID-19, and through these factors has affected the happiness of countries in the world. In the following research, the top 10 happiest countries in the world and their distribution will be explored, and the factors associated with happiness score will be analysed through the relation between happiness score and six selected indicators.
 
 
-### What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?
+## What are the countries which ranks top 10 in happiness score since the COVID-19 outbreak?
 ```{r top10,fig.cap="The top 10 countries in happiness score since COVID-19"}
 top10_2020 <- happiness_2020 %>%
   mutate(RANK = as.numeric(rownames(happiness_2020))) %>%
@@ -392,7 +410,7 @@ grid_arrange_shared_legend(g1, g2, ncol = 2,nrow= 1)
 In the Figure \@ref(fig:top10), the top 10 countries in the World Happiness have not changed since 2020 despite the impact of Covid-19, the rankings have changed slightly.
 In addition, Finland has been the happiest country for two consecutive years in 2020 and 2021.
 
-### The distribution of the top 10 countries on the world map in 2021
+## The distribution of the top 10 countries on the world map in 2021
 ```{r top10map, fig.cap="The distribution of top 10 countries on the world map in 2021"}
 d1 <- data.frame(country = top10_2021$Country,
                  value = top10_2021$`Happiness score`)
@@ -411,7 +429,7 @@ According to the Figure \@ref(fig:top10map), these countries are mainly northern
 
 So besides high economy, what other indicators can affect happiness score?
 
-### Relation between Happiness score and other indicators in 2021
+## Relation between Happiness score and other indicators in 2021
 ```{r relation, fig.width = 12, fig.cap="Relation between Happiness score and 6 indicators in 2021"}
 data_2021 <- happiness_2021 %>%
   rename("Happiness.Score" = "Ladder score",
@@ -447,7 +465,7 @@ The 6 linear graphs Figure \@ref(fig:relation) demonstrate the relation between 
 
 Therefore, social support and health life expectancy explain happiness in a relatively high proportion which is 57.3% and 59% respectively. While freedom, generosity and trust in government corruption are not good explanations for happiness score.
 
-### Conclusion
+## Conclusion
 
 In conclusion, the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are **GDP, social support and health life expectancy**.
 

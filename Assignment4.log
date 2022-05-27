@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  27 MAY 2022 00:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  27 MAY 2022 10:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -378,7 +378,10 @@ Package biblatex Info: ... file 'blx-dm.def' found.
 File: blx-dm.def 2020/12/31 v3.16 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
-Package biblatex Info: ... file 'authoryear-comp.dbx' not found.
+Package biblatex Info: ... file 'apa.dbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/apa.dbx
+File: apa.dbx 2020/08/28 v9.14 APA biblatex style data model
+)
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@afterword=\count327
@@ -417,38 +420,50 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \c@savedshortauthor=\count360
 \c@shorteditor=\count361
 \c@savedshorteditor=\count362
-\c@labelname=\count363
-\c@savedlabelname=\count364
-\c@institution=\count365
-\c@savedinstitution=\count366
-\c@lista=\count367
-\c@savedlista=\count368
-\c@listb=\count369
-\c@savedlistb=\count370
-\c@listc=\count371
-\c@savedlistc=\count372
-\c@listd=\count373
-\c@savedlistd=\count374
-\c@liste=\count375
-\c@savedliste=\count376
-\c@listf=\count377
-\c@savedlistf=\count378
-\c@location=\count379
-\c@savedlocation=\count380
-\c@organization=\count381
-\c@savedorganization=\count382
-\c@origlocation=\count383
-\c@savedoriglocation=\count384
-\c@origpublisher=\count385
-\c@savedorigpublisher=\count386
-\c@publisher=\count387
-\c@savedpublisher=\count388
-\c@language=\count389
-\c@savedlanguage=\count390
-\c@origlanguage=\count391
-\c@savedoriglanguage=\count392
-\c@pageref=\count393
-\c@savedpageref=\count394
+\c@groupauthor=\count363
+\c@savedgroupauthor=\count364
+\c@narrator=\count365
+\c@savednarrator=\count366
+\c@execproducer=\count367
+\c@savedexecproducer=\count368
+\c@execdirector=\count369
+\c@savedexecdirector=\count370
+\c@with=\count371
+\c@savedwith=\count372
+\c@labelname=\count373
+\c@savedlabelname=\count374
+\c@institution=\count375
+\c@savedinstitution=\count376
+\c@lista=\count377
+\c@savedlista=\count378
+\c@listb=\count379
+\c@savedlistb=\count380
+\c@listc=\count381
+\c@savedlistc=\count382
+\c@listd=\count383
+\c@savedlistd=\count384
+\c@liste=\count385
+\c@savedliste=\count386
+\c@listf=\count387
+\c@savedlistf=\count388
+\c@location=\count389
+\c@savedlocation=\count390
+\c@organization=\count391
+\c@savedorganization=\count392
+\c@origlocation=\count393
+\c@savedoriglocation=\count394
+\c@origpublisher=\count395
+\c@savedorigpublisher=\count396
+\c@publisher=\count397
+\c@savedpublisher=\count398
+\c@language=\count399
+\c@savedlanguage=\count400
+\c@origlanguage=\count401
+\c@savedoriglanguage=\count402
+\c@citation=\count403
+\c@savedcitation=\count404
+\c@pageref=\count405
+\c@savedpageref=\count406
 \shorthandwidth=\skip62
 \shortjournalwidth=\skip63
 \shortserieswidth=\skip64
@@ -472,51 +487,56 @@ Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
-\c@textcitecount=\count395
-\c@textcitetotal=\count396
-\c@textcitemaxnames=\count397
-\c@biburlbigbreakpenalty=\count398
-\c@biburlbreakpenalty=\count399
-\c@biburlnumpenalty=\count400
-\c@biburlucpenalty=\count401
-\c@biburllcpenalty=\count402
+\c@textcitecount=\count407
+\c@textcitetotal=\count408
+\c@textcitemaxnames=\count409
+\c@biburlbigbreakpenalty=\count410
+\c@biburlbreakpenalty=\count411
+\c@biburlnumpenalty=\count412
+\c@biburlucpenalty=\count413
+\c@biburllcpenalty=\count414
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count403
+\c@smartand=\count415
 )
-Package biblatex Info: Trying to load bibliography style 'authoryear-comp'...
-Package biblatex Info: ... file 'authoryear-comp.bbx' found.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/authoryear-comp.bbx
-File: authoryear-comp.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
-Package biblatex Info: Trying to load bibliography style 'authoryear'...
-Package biblatex Info: ... file 'authoryear.bbx' found.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/authoryear.bbx
-File: authoryear.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'apa'...
+Package biblatex Info: ... file 'apa.bbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/apa.bbx
+File: apa.bbx 2020/08/28 v9.14 APA biblatex references style
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count404
-\c@bbx:relatedtotal=\count405
-)))
-Package biblatex Info: Trying to load citation style 'authoryear-comp'...
-Package biblatex Info: ... file 'authoryear-comp.cbx' found.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/cbx/authoryear-comp.cbx
-File: authoryear-comp.cbx 2020/12/31 v3.16 biblatex citation style (PK/MW)
+\c@bbx:relatedcount=\count416
+\c@bbx:relatedtotal=\count417
+))
+Package biblatex Info: Trying to load citation style 'apa'...
+Package biblatex Info: ... file 'apa.cbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/apa.cbx
+File: apa.cbx 2020/08/28 v9.14 APA biblatex citation style
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
+ overwriting.
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'textcite' already 
+defined, overwriting.
+Package biblatex Info: Delimiter 'andothersdelim' in context '' already defined
+, overwriting.
+Package biblatex Info: Redefining '\fullcite'.
+Package biblatex Info: Redefining '\citeauthor'.
+Package biblatex Info: Redefining '\citeyear'.
 Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\cites'.
 Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\parencites'.
 Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcites'.
 Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\footcitetexts'.
 Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\smartcites'.
 Package biblatex Info: Redefining '\textcite'.
 Package biblatex Info: Redefining '\textcites'.
-Package biblatex Info: Redefining '\cites'.
-Package biblatex Info: Redefining '\parencites'.
-Package biblatex Info: Redefining '\footcites'.
-Package biblatex Info: Redefining '\footcitetexts'.
-Package biblatex Info: Redefining '\smartcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
@@ -528,16 +548,16 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTright=\skip77
 \LTpre=\skip78
 \LTpost=\skip79
-\LTchunksize=\count406
+\LTchunksize=\count418
 \LTcapwidth=\dimen161
 \LT@head=\box49
 \LT@firsthead=\box50
 \LT@foot=\box51
 \LT@lastfoot=\box52
-\LT@cols=\count407
-\LT@rows=\count408
-\c@LT@tables=\count409
-\c@LT@chunks=\count410
+\LT@cols=\count419
+\LT@rows=\count420
+\c@LT@tables=\count421
+\c@LT@chunks=\count422
 \LT@p@ftn=\toks26
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
@@ -551,12 +571,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen169
 \cmidrulekern=\dimen170
 \defaultaddspace=\dimen171
-\@cmidla=\count411
-\@cmidlb=\count412
+\@cmidla=\count423
+\@cmidlb=\count424
 \@aboverulesep=\dimen172
 \@belowrulesep=\dimen173
-\@thisruleclass=\count413
-\@lastruleclass=\count414
+\@thisruleclass=\count425
+\@lastruleclass=\count426
 \@thisrulewidth=\dimen174
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
@@ -597,8 +617,8 @@ Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \caption@hangindent=\dimen184
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count415
-\c@continuedfloat=\count416
+\c@caption@flags=\count427
+\c@continuedfloat=\count428
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/caption/ltcaption.sty
@@ -776,7 +796,7 @@ Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
 \XKV@toks=\toks27
 \XKV@tempa@toks=\toks28
 )
-\XKV@depth=\count417
+\XKV@depth=\count429
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 LaTeX Font Info:    Trying to load font information for T1+mdbch on input line 
@@ -868,15 +888,15 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 160.
 Package: mathtools 2021/03/18 v1.25 mathematical typesetting tools
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count418
-\calc@Bcount=\count419
+\calc@Acount=\count430
+\calc@Bcount=\count431
 \calc@Adimen=\dimen190
 \calc@Bdimen=\dimen191
 \calc@Askip=\skip92
 \calc@Bskip=\skip93
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count420
+\calc@Ccount=\count432
 \calc@Cskip=\skip94
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2021/03/18 v1.4 programming setup (MH)
@@ -885,7 +905,7 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 130.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
-\g_MT_multlinerow_int=\count421
+\g_MT_multlinerow_int=\count433
 \l_MT_multwidth_dim=\dimen192
 \origjot=\skip95
 \l_MT_shortvdotswithinadjustabove_dim=\dimen193
@@ -898,16 +918,16 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \xmathstrut@dim=\dimen199
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/eukdate/eukdate.sty
 Package: eukdate 2009/03/18 v1.04 UK format date (Hart's Rules) with weekday
-\c@euk@date=\count422
-\c@euk@month=\count423
-\c@euk@century=\count424
-\c@euk@year=\count425
+\c@euk@date=\count434
+\c@euk@month=\count435
+\c@euk@century=\count436
+\c@euk@year=\count437
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/xpatch/xpatch.sty (/usr/local/t
 exlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-02-18 L3 programming layer (loader) 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count426
+\l__color_backend_stack_int=\count438
 \l__pdf_internal_box=\box56
 ))
 Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
@@ -945,19 +965,19 @@ Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip98
-\multirow@cntb=\count427
+\multirow@cntb=\count439
 \multirow@dima=\skip99
 \bigstrutjot=\dimen265
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen266
 \WF@size=\dimen267
-\c@WF@wrappedlines=\count428
+\c@WF@wrappedlines=\count440
 \WF@box=\box61
 \WF@everypar=\toks32
 Package: wrapfig 2003/01/31  v 3.6
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count429
+\c@float@type=\count441
 \float@exts=\toks33
 \float@box=\box62
 \@float@everytoks=\toks34
@@ -977,16 +997,16 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box64
-\sift@deathcycles=\count430
+\sift@deathcycles=\count442
 \@vwid@loff=\dimen268
 \@vwid@roff=\dimen269
 )
-\c@taburow=\count431
-\tabu@nbcols=\count432
-\tabu@cnt=\count433
-\tabu@Xcol=\count434
-\tabu@alloc=\count435
-\tabu@nested=\count436
+\c@taburow=\count443
+\tabu@nbcols=\count444
+\tabu@cnt=\count445
+\tabu@Xcol=\count446
+\tabu@alloc=\count447
+\tabu@nested=\count448
 \tabu@target=\dimen270
 \tabu@spreadtarget=\dimen271
 \tabu@naturalX=\dimen272
@@ -1023,7 +1043,7 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \UL@skip=\skip103
 \UL@hook=\toks38
 \UL@height=\dimen279
-\UL@pe=\count437
+\UL@pe=\count449
 \UL@pixel=\dimen280
 \ULC@box=\box72
 Package: ulem 2019/11/18
@@ -1031,11 +1051,11 @@ Package: ulem 2019/11/18
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen282
-\c@nlinenum=\count438
+\c@nlinenum=\count450
 \TeXr@lab=\toks39
 )
-\@quotelevel=\count439
-\@quotereset=\count440
+\@quotelevel=\count451
+\@quotereset=\count452
 (./Assignment4.aux)
 \openout1 = `Assignment4.aux'.
 
@@ -1096,7 +1116,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count441
+\c@section@level=\count453
 )
 LaTeX Info: Redefining \ref on input line 315.
 LaTeX Info: Redefining \pageref on input line 315.
@@ -1141,11 +1161,28 @@ LaTeX Info: Redefining \nameref on input line 315.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+Package biblatex Info: Trying to load language 'english' -> 'english-apa'...
+Package biblatex Info: ... file 'english-apa.lbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
+File: english-apa.lbx 2020/08/28 v9.14 APA biblatex localisation
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 )
+Package biblatex Info: Trying to load language 'american' -> 'american-apa'...
+Package biblatex Info: ... file 'american-apa.lbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/american-apa.lbx
+File: american-apa.lbx 2020/08/28 v9.14 APA biblatex localisation
+Package biblatex Info: Trying to load language 'american'...
+Package biblatex Info: ... file 'american.lbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/american.lbx
+File: american.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
+))))
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Data encoding 'utf8' specified.
 (biblatex)             No need to reencode data.
@@ -1166,16 +1203,16 @@ Package biblatex Info: Reference section=0 on input line 315.
 Package biblatex Info: Reference segment=0 on input line 315.
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count442
+\scratchcounter=\count454
 \scratchdimen=\dimen283
 \scratchbox=\box73
-\nofMPsegments=\count443
-\nofMParguments=\count444
+\nofMPsegments=\count455
+\nofMParguments=\count456
 \everyMPshowfont=\toks40
-\MPscratchCnt=\count445
+\MPscratchCnt=\count457
 \MPscratchDim=\dimen284
-\MPnumerator=\count446
-\makeMPintoPDFobject=\count447
+\MPnumerator=\count458
+\makeMPintoPDFobject=\count459
 \everyMPtoPDFconversion=\toks41
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1473,98 +1510,87 @@ Overfull \hbox (56.23262pt too wide) detected at line 316
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./monas
 h2.png> <./MBSportrait.jpg> <./AACSB.png> <./EQUIS.png> <./AMBA.png>]
 LaTeX Font Info:    Font shape `T1/mdbch/m/n' will be
-(Font)              scaled to size 13.82408pt on input line 319.
-LaTeX Font Info:    Font shape `T1/fvs/b/n' will be
-(Font)              scaled to size 9.24173pt on input line 325.
+(Font)              scaled to size 13.82408pt on input line 320.
+(./Assignment4.toc
+LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
+(Font)              scaled to size 10.51207pt on input line 3.
+)
+\tf@toc=\write5
+\openout5 = `Assignment4.toc'.
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 325.
-
+[2]
 LaTeX Font Info:    Trying to load font information for TS1+mdbch on input line
- 344.
+ 350.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/mathdesign/mdbch/ts1mdbch.fd
 File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
 )
 LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
-(Font)              scaled to size 10.51207pt on input line 344.
-<Assignment4_files/figure-latex/trends -1.pdf, id=82, 566.115pt x 349.305pt>
-File: Assignment4_files/figure-latex/trends -1.pdf Graphic file (type pdf)
-<use Assignment4_files/figure-latex/trends -1.pdf>
-Package pdftex.def Info: Assignment4_files/figure-latex/trends -1.pdf  used on 
-input line 354.
+(Font)              scaled to size 10.51207pt on input line 350.
+<Assignment4_files/figure-latex/trends-1.pdf, id=105, 566.115pt x 349.305pt>
+File: Assignment4_files/figure-latex/trends-1.pdf Graphic file (type pdf)
+<use Assignment4_files/figure-latex/trends-1.pdf>
+Package pdftex.def Info: Assignment4_files/figure-latex/trends-1.pdf  used on i
+nput line 360.
 (pdftex.def)             Requested size: 455.25948pt x 280.90477pt.
-LaTeX Font Info:    Font shape `T1/mdbch/b/n' will be
-(Font)              scaled to size 10.51207pt on input line 355.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
-(Font)              scaled to size 10.51207pt on input line 355.
+(Font)              scaled to size 10.51207pt on input line 361.
+[3
 
-LaTeX Warning: Reference `fig:trends' on page 2 undefined on input line 358.
-
-[2]
-
-LaTeX Warning: Reference `fig:VS' on page 3 undefined on input line 365.
-
-<Assignment4_files/figure-latex/VS -1.pdf, id=97, 562.1pt x 351.3125pt>
-File: Assignment4_files/figure-latex/VS -1.pdf Graphic file (type pdf)
-<use Assignment4_files/figure-latex/VS -1.pdf>
-Package pdftex.def Info: Assignment4_files/figure-latex/VS -1.pdf  used on inpu
-t line 371.
+]
+<Assignment4_files/figure-latex/VS-1.pdf, id=121, 562.1pt x 351.3125pt>
+File: Assignment4_files/figure-latex/VS-1.pdf Graphic file (type pdf)
+<use Assignment4_files/figure-latex/VS-1.pdf>
+Package pdftex.def Info: Assignment4_files/figure-latex/VS-1.pdf  used on input
+ line 377.
 (pdftex.def)             Requested size: 455.24706pt x 284.52939pt.
-[3 <./Assignment4_files/figure-latex/trends -1.pdf>] [4 <./Assignment4_files/fi
-gure-latex/VS -1.pdf>]
-
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 406.
-
-<Assignment4_files/figure-latex/top10-1.pdf, id=134, 568.1225pt x 351.3125pt>
+[4 <./Assignment4_files/figure-latex/trends-1.pdf>] [5 <./Assignment4_files/fig
+ure-latex/VS-1.pdf>]
+<Assignment4_files/figure-latex/top10-1.pdf, id=158, 568.1225pt x 351.3125pt>
 File: Assignment4_files/figure-latex/top10-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/top10-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/top10-1.pdf  used on in
-put line 415.
+put line 421.
 (pdftex.def)             Requested size: 455.26146pt x 281.5221pt.
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.24173pt on input line 425.
+(Font)              scaled to size 9.24173pt on input line 431.
 LaTeX Font Info:    Trying to load font information for TS1+fvm on input line 4
-29.
+35.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/bera/ts1fvm.fd
 File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
 )
 LaTeX Font Info:    Font shape `TS1/fvm/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 429.
-<Assignment4_files/figure-latex/top10map-1.pdf, id=136, 462.72874pt x 320.19624
+(Font)              scaled to size 9.85492pt on input line 435.
+<Assignment4_files/figure-latex/top10map-1.pdf, id=160, 462.72874pt x 320.19624
 pt>
 File: Assignment4_files/figure-latex/top10map-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/top10map-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/top10map-1.pdf  used on
- input line 433.
+ input line 439.
 (pdftex.def)             Requested size: 455.25037pt x 315.0214pt.
-[5 <./Assignment4_files/figure-latex/top10-1.pdf>]
-<Assignment4_files/figure-latex/relation-1.pdf, id=156, 857.2025pt x 351.3125pt
+[6 <./Assignment4_files/figure-latex/top10-1.pdf>]
+<Assignment4_files/figure-latex/relation-1.pdf, id=179, 857.2025pt x 351.3125pt
 >
 File: Assignment4_files/figure-latex/relation-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/relation-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/relation-1.pdf  used on
- input line 446.
+ input line 452.
 (pdftex.def)             Requested size: 455.24384pt x 186.57533pt.
-[6 <./Assignment4_files/figure-latex/top10map-1.pdf> <./Assignment4_files/figur
-e-latex/relation-1.pdf>] [7] (./Assignment4.aux)
-
-LaTeX Warning: There were undefined references.
-
+[7 <./Assignment4_files/figure-latex/top10map-1.pdf> <./Assignment4_files/figur
+e-latex/relation-1.pdf>] [8] (./Assignment4.aux)
 Package rerunfilecheck Info: File `Assignment4.out' has not changed.
-(rerunfilecheck)             Checksum: D0D7C6EF9E631E93B9136FCE5492D8D4;4176.
+(rerunfilecheck)             Checksum: BBC8880713F87AEC1CDA921CF3FD0560;4024.
 Package logreq Info: Writing requests to 'Assignment4.run.xml'.
 \openout1 = `Assignment4.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 26615 strings out of 478994
- 439236 string characters out of 5858184
- 1182125 words of memory out of 5000000
- 43302 multiletter control sequences out of 15000+600000
- 513793 words of font info for 302 fonts, out of 8000000 for 9000
+ 27296 strings out of 478994
+ 453190 string characters out of 5858184
+ 1275201 words of memory out of 5000000
+ 43973 multiletter control sequences out of 15000+600000
+ 509874 words of font info for 300 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,14n,93p,1208b,1447s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,14n,101p,1200b,4952s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
 exlive/2021/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}{/usr/local/texlive/202
 1/texmf-dist/fonts/enc/dvips/fontawesome/fontawesometwo.enc}</usr/local/texlive
@@ -1575,10 +1601,10 @@ e/2021/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2
 1/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/local/texlive/2021/texmf-
 dist/fonts/type1/public/bera/fvsb8a.pfb></usr/local/texlive/2021/texmf-dist/fon
 ts/type1/public/bera/fvsr8a.pfb>
-Output written on Assignment4.pdf (7 pages, 728712 bytes).
+Output written on Assignment4.pdf (8 pages, 730881 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
- 187 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
- 86187 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 253 PDF objects out of 1000 (max. 8388607)
+ 209 compressed objects within 3 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 82091 words of extra memory for PDF output out of 89155 (max. 10000000)
 
