@@ -1,5 +1,5 @@
 ---
-title: "Report on Happiness up to 2022"
+title: "World Happiness Analysis: Evidence from the World Happiness Report"
 author:
 - familyname: Yang 
   othernames: (Elvis) Zhixiang
@@ -286,7 +286,7 @@ In addition, two variable related to Consumer Price Index and Populations from t
 In this part, we will investigate the trends of happiness score represented by region between 2015 and 2022. After this, we will analyse the impacts of annual health and economic status on happiness score.
 
 
-Combined with my research questions, I consolidate all the datasets for each year between 2015 to 2022 into a new dataset, and then tease out the variables to use, which are year, region, happiness score, economy, and health.
+Combined with our research questions, we consolidate all the datasets for each year between 2015 to 2022 into a new dataset, and then tease out the variables to use, which are year, region, happiness score, economy, and health.
 
 
 
@@ -294,7 +294,7 @@ Combined with my research questions, I consolidate all the datasets for each yea
 
 ## The development of the World Happiness 
 
-@helliwell2012state stated that with the continuous progress of human society, the happiness index has become an important indicator for measuring the living standards across regions.  Meanwhile, people have also realized the importance to apply the happiness index in macroeconomic analysis. In the real world, the happiness index is related to many factors, it will also affect nearly all aspects of human activities. Thus, we will start with two research questions to explore the happiness index of the world.
+@helliwell2012state stated that with the continuous progress of human society, the happiness score has become an important indicator for measuring the living standards across regions. In real world analysis, the happiness score is related to many factors, it will also affect nearly all aspects of human activities. Thus, we will start with two research questions to explore the happiness score of the world.
 
 
 
@@ -303,7 +303,7 @@ Combined with my research questions, I consolidate all the datasets for each yea
 + How will happiness trends change between 2015 to 2022 in different regions? 
 
 
-+ What is the relationship impacts of economic situation and health status to the happiness score?
++ What is the relationship for both economic situation and health status to the happiness score?
 
 
 
@@ -334,9 +334,9 @@ p1
 
 
 
-From the Figure \@ref(fig:trends), we can see that the trend in all regions can be divided into three different levels of happiness score.  
+From the Figure \@ref(fig:trends), we can see that these trends in different regions can be divided into three different levels of happiness score.  
 
-We can see from the plot that South Asia and Sub-Saharan Africa remained at low level for the past few years. While Southern Asia countries started declining in 2017, Sub-Saharan Africa's happiness began to increase year by year after reaching the trough in 2016. In addition, the declining trend of happiness for people in Southeastern Asia may due to the population booming in these years. 
+We can see from the plot that both South Asia and Sub-Saharan Africa remained at a low level for the past few years. While Southern Asia countries started declining in 2017, Sub-Saharan Africa's happiness began to increase year by year after reaching its trough in 2016. In addition, the declining trend of happiness for people in Southeastern Asia may due to the population booming in these years. 
 
 Moreover, the three regions had a relatively high scores are: Australia and New Zealand, North America, and Western Europe. We can see people living in these developed area feels happier than others, which may be due to the good social welfare, less stress and better working environment. Nevertheless, an interesting point to notice is that even there are many modern countries in Eastern Asia, people didn't really feel happy in the past few years. This may due to the living condition and working stresses are high from these Eastern Asian countries.
 
@@ -354,13 +354,10 @@ Overall, we conclude that for those regions with relatively better economic situ
 
 People's understanding of happiness is inseparable from their own living conditions. In this section, we will also explore the relationship between happiness and economic and health status. 
 
-From the figure \@ref(fig:VS), we can find that there is a positive correlation between economic status, health status and happiness score from 2015 to 2022, which is make sense that a better the economic status and health status will make people happier. 
+From the figure \@ref(fig:VS), we can find that there is a positive correlation between economic status, health status and happiness score from 2015 to 2022, which is make sense that a better the economic status and health status will also make people happier. 
 
 
-There is an overall trend from 2015 to 2022 that the correlation of health and happiness is increasing over the years. Nevertheless, the correlation of economic situation is decreasing. This may due to the situation that people have better economic situation nowadays and they pay more attention on their health status.
-
-
-From 2017 to 2018, the average influences of economic on happiness score increased slightly, while the influence of health on happiness score decreased slightly during this period.
+There is an overall trend from 2015 to 2022 that the correlation of health and happiness is increasing over the years. Nevertheless, the correlation of economic situation with happiness score is decreasing. From 2017 to 2018, the average influences of economic on happiness score increased slightly, while the influence of health on happiness score decreased slightly during this period.
 
 
 On the other hand, from 2019 to 2022, the influence of the economic status on the happiness score is getting lower while the influence of the health on the happiness score has increased significantly especially after 2020, which maybe due to the pandemic that people care more about their health status. 
@@ -411,7 +408,7 @@ data1 %>%
 
 
 
-We also conducted an simple regression analysis. From the Table \@ref(tab:table), we can see the impact of economic situation on  the slope decreased very slowly from 1.616 to 1.406 over the years. On the contrary, the influence of health on happiness score changed a lot with the slope increased from 1.2 to 2.08. Through this simple linear regression analysis, we can also see that people gradually focus on their health status nowadays.
+We also conducted an simple regression analysis. From the Table \@ref(tab:table), we can see the impact of economic situation on  the slope decreased very slowly from 1.616 to 1.406 over the years. On the contrary, the influence of health on happiness score changed a lot with the slope increased from 1.2 to 2.08. Through this simple linear regression analysis, we can also see that people gradually focus on their health status nowadays even though the pandemic has been controlled.
 
 
 
@@ -490,7 +487,7 @@ map_2021 <- mapCountryData(n1,
                oceanCol="white")
 ```
 
-According to the Figure \@ref(fig:top10map), these countries are mainly northern and western European countries.Obviously, they are all developed countries which have a technologically advanced infrastructure and their economy is highly developed.  
+According to the Figure \@ref(fig:top10map), these countries are mainly northern and western European countries. Obviously, they are all developed countries which have a technologically advanced infrastructure and their economy is highly developed.  
 
 So besides high economy, what are the other indicators that can affect happiness score?
 
@@ -530,43 +527,10 @@ The 6 linear graphs in Figure \@ref(fig:relation) demonstrate the relationships 
 
 Therefore, we can see that both social support and health life expectancy explain happiness in a relatively high proportion which is 57.3% and 59% respectively. While freedom, generosity and trust in government corruption are not good in explaining happiness score.
 
-To summarize, in this part we found the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are **GDP, social support and health life expectancy**.
+To summarize, in this part we found the world's top 10 happiest countries are mainly concentrated in Northern and Western Europe in 2020 and 2021, which have high economic level and GDP. From the data of the world, the variables highly related to happiness are GDP, social support and health life expectancy.
 
 
 
-
-
-
-
-```{r setup2}
-# library(tidyverse)
-# library(gganimate) 
-# library(GGally)
-# library(ggplot2) # Data visualization
-# library(readr) # read data files 
-# library(dplyr)
-# library(gridExtra)
-# library(RColorBrewer)
-# library(repr)
-# library(neuralnet)
-# library(ggpubr)
-# library(caTools)
-# library(rworldmap)# Draw world map 
-# library(rnaturalearth)
-# library(sf)
-# library(car)
-# library(kableExtra)
-# library(here)
-# library(lubridate)
-# library(cowplot)
-# library(janitor)
-# library(maps)
-# library(plotly)
-# require(wbstats)
-# library(lemon)
-# library(bookdown)
-# library(sp)
-```
 
 
 
@@ -740,7 +704,9 @@ lognarm_hapall <- do.call(data.frame,lapply(lognarm_hapall,function(x) replace(x
 
 
 
-In this part, since there are many different variables across each year in our data, we only keep the common variables  (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. Before exploring how each factor will contribute to the happiness score, we first need to select a model that can represents our data well by running several tests on a few common models, listed in Table\ref{models}: 
+In this part, we will conduct few statistical analysis based on various models. Our main target is to find the important variable in explaining happiness scores via different models and conduct an analysis based on their marginal effects in a multivariate linear model. 
+
+Since there are many different variables across each year in our data, we only keep the common variables  (Economy, Health, Generosity and Freedom) for these years to conduct our analysis. Before exploring how each factor will contribute to the happiness score, we first need to select a model that can represents our data well by running several tests on a few common models, listed in Table\ref{models}: 
 
 
 \begin{table}[H]
@@ -1164,7 +1130,7 @@ Here are the lists of packages we used:
 + package car [@car]
 + package kableExtra [@kableExtra]
 + package here [@here]
-+ package lubridate [lubridate]
++ package lubridate [@lubridate]
 + package cowplot [@cowplot]
 + package janitor [@janitor]
 + package maps [@maps]
