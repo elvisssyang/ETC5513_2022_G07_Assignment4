@@ -328,15 +328,13 @@
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-\textcite{rojas2010} stated that there are many factors may contributing happiness.They also mentioned that conceptions of happiness differ not only across people, but also across the culture, region etc. There are so many of factors that can influence the happiness of people. If we want to improve the happiness of people, we cannot stimulate all the variables that are relevant. Thus, an analysis on the world happiness report will help to figure the common key variable that influence the happiness of human beings and the situation of happiness around the world. Then, we can try to give a better scope of happiness at a worldwide level, especially after the pandemic.
+\textcite{rojas2010} stated that many factors might contribute to the happiness score. They also mentioned that the conceptions of happiness differ not only across people, but also across the culture and region etc. If we want to improve the happiness, we cannot stimulate all relevant variables. Thus, an analysis about the world happiness report will help to figure out several common key variables that influence the happiness of human beings. Then, we can try to improve the at a worldwide level, especially after the pandemic.
 
-This report will analyse the happiness score of each country and different regions across the world to utilize the happiness at a world wide level. In order to capture the changes, there are various factors that relevant to the happiness score will be used to explain the variation of happiness score in different countries.
+Apart from this, \textcite{helliwell2021world} stated that the global pandemic has significantly influenced the happiness of people in different regions. Considering the pandemic, we will also analyse the impacts of COVID-19 to the happiness score for top-ranking countries and the variable relationships after the pandemic happened.
 
-Apart from this, \textcite{helliwell2021world} stated that the global pandemic has significantly influenced the happiness of people in different regions. In considering of the pandemic, we also analyse the influence of COVID-19 to the rank of the happiness score in top countries and the variable relationships after the pandemic year 2020.
+In the modelling part, we will provide a detailed analysis of the data fits in various models. After obtaining two most important variables, we will add another two new relevant variables to build up a multivariate linear regression model with data from 2016 to 2020.
 
-In the modelling part, we will provide an detailed analysis of the model fits in various models. In this part,we will illustrate the most important variables in explaining the happiness score. Furthermore, we will also add two new variables together with the important variables to build up a multivariate linear model based on the 4 variables between 2016 to 2020 and explore their marginal effects on the happiness scores.
-
-However, due to the number of countries observed in different years are not consistent and variables are varies after year 2020, which might generate errors. Also, the new data are limited between 2016 to 2020, which can lead to sample selection bias. We will critically explain these issues in residual diagnostic part at the end of the modelling part.
+However, it is common to have heteroskedasticity problem in the model. Besides, some variables are not collected after year 2020, leading the model to be not perfect. Critical analysis will be conducted in the end, supported by residual diagnostic.
 
 \hypertarget{research-questions}{%
 \section{Research Questions}\label{research-questions}}
@@ -449,7 +447,7 @@ On the other hand, from 2019 to 2022, the influence of the economic status on th
 2022          & 2.370              & 1.406            & 2.085           \\
 \hline
 \end{tabular}
-\caption{A linear relationship between economic status and health status with happiness index each year}
+\caption{Simple linear relationship between economic status and health status with happiness score each year: 3-digits}
 \label{tab:table}
 \end{table}
 
@@ -710,32 +708,88 @@ In conclusion, our model did a good job in explaining the relationships between 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-According the analysis, we have concluded that the Happiness Scores are closely related to the economic activities and health status. In those developed countries with better living and health conditions, people are generally feel happier than those people living in rural areas.
+According to above the analysis, we can conclude that the Happiness Scores are closely related to the economic activities and health status. In those developed countries with better living and health conditions, people generally feel happier than those people living in rural areas.
 
-On the other hand, we also found that the happiness scores for people living in Sub-Saharan and Southeast Asia are relatively low, which is mainly due to the poor economic development and harsh living environment \autocite{helliwell2021world}. In terms of the happiness scores at region level, we also found that Europe is the most livable continent with majority of countries are above the average level. Even during the pandemic period, people living in European countries still feel happier than other regions.
+On the other hand, we find that the happiness scores for people living in Sub-Saharan and Southeast Asia are relatively low, which is mainly due to the poor economic development and harsh living environment \autocite{helliwell2021world}. In terms of the happiness scores at region level, Europe is the most livable continent with majority of countries higher than the average level. Even during the pandemic period, people in European countries still feel happier than other regions.
 
-Apart from this, we also found that during the COVID-19 period between 2020 to 2021, the variables highly related to happiness are Health, Economy and Social Support and correlation between Health and Economy even stronger than before.
+Apart from this, it is evident that during the COVID-19 period, Health, Economy and Social Support have a close relationship with the happiness score. The correlation between health and happiness is much stronger than before.
 
-In addition, in our modelling part, over these years between 2015 to 2022, the most important variable in explaining the happiness scores across different countries are Economy (measured in GDP per capita) and Health. In our multivariate linear model analysis out of four variables Economy (measured in GDP per capital), CPI, Population and Health, it has been indicated that the Economy status is the most significant and essential factor to explaining the happiness score.
+Through modelling, over years from 2015 to 2022, two most important variables in explaining the happiness scores across different countries are Economy (measured in GDP per capita) and Health. Based on the results in the final multivariate linear model, Economy is the most significant and essential factor.
 
-Furthermore, in terms of the marginal effect analysis we did in modelling part. Both Economy situation and Health status has a positive marginal effect on happiness score, while CPI and Population has a negative score.
+Furthermore, using the advantage of linear model, both Economy and Health status have positive marginal effect on the happiness score, while CPI and Population have negative impacts.
 
-Nevertheless, our linear model analysis still limited due to the presence of hetroskedasticity, endogeneity bias and sample selection bias. Even though this model did a well job in explaining happiness score. These problems should also be concerned by further researches in modelling big macroeconomic data globally.
+Nevertheless, we still need to deal with the presence of heteroskedasticity, the endogeneity bias and possible sample selection bias to improve the accuracy and usefulness of our model. Further studies can be done to minimizing these limitations and come up with a better modelling for global macroeconomic data.
 
 \hypertarget{acknowledgement}{%
 \section{Acknowledgement}\label{acknowledgement}}
 
-We shall never forget the hard works done by our lecturer Patricia on every Tuesday nights from Week 1 to Week 12.
+We shall never forget the hard works done by our lecturer \textbf{Patricia} on every Tuesday nights from Week 1 to Week 12.
 
-We will also remember our tutors Naveen and Fan. They performed hard works on our tutorials and gave us nice recommendations during the presentation session.
+We will also remember our tutors \textbf{Naveen} and \textbf{Fan}. They performed hard works on our tutorials and gave us nice recommendations during the presentation session.
 
-Moreover, we'd like to thank all EBS scholars from \textbf{Monash University} for their excellent \texttt{monash} package produced such a nice report template.
+Moreover, we'd like to thank all \textbf{EBS scholars} from \textbf{Monash University} for their excellent \texttt{monash} package produced such a nice report template.
 
 Without any of their help, our works could not get finished so smoothly.
 
 Overall, I'd also like to thank those package developers who fight for the open source software, which made us easier to plot so many beautiful plots.
 
 Here are the lists of packages we used:
+
+\begin{itemize}
+\tightlist
+\item
+  package tidyverse \autocite{tidyverse}
+\item
+  package GGally \autocite{GGally}
+\item
+  package ggplot2 \autocite{ggplot2}
+\item
+  package readr \autocite{readr}
+\item
+  package dplyr \autocite{dplyr}
+\item
+  package gridExtra \autocite{gridExtra}
+\item
+  package RColorBrewer \autocite{RColorBrewer}
+\item
+  package gganimate \autocite{gganimate}
+\item
+  package repr \autocite{repr}
+\item
+  package neuralnet \autocite{neuralnet}
+\item
+  package ggpubr \autocite{ggpubr}
+\item
+  package caTools \autocite{caTools}
+\item
+  package rworldmap \autocite{rworldmap}
+\item
+  package rnaturalearth \autocite{rnaturalearth}
+\item
+  package sf \autocite{sf}
+\item
+  package car \autocite{car}
+\item
+  package kableExtra \autocite{kableExtra}
+\item
+  package here \autocite{here}
+\item
+  package lubridate {[}lubridate{]}
+\item
+  package cowplot \autocite{cowplot}
+\item
+  package janitor \autocite{janitor}
+\item
+  package maps \autocite{maps}
+\item
+  package plotly \autocite{plotly}
+\item
+  package wbstats \autocite{wbstats}
+\item
+  package lemon \autocite{lemon}
+\item
+  package sp \autocite{sp}
+\end{itemize}
 
 \clearpage
 
