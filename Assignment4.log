@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  27 MAY 2022 14:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2022.2.28)  27 MAY 2022 16:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1198,15 +1198,7 @@ Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'Assignment4.bbl' found.
-(./Assignment4.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                lappi2006finland
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
+(./Assignment4.bbl)
 Package biblatex Info: Reference section=0 on input line 315.
 Package biblatex Info: Reference segment=0 on input line 315.
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1243,27 +1235,27 @@ ction with package mdbch, on input line 315.
 Package mathdesign/mdbch Warning: Package 'amsfonts' shouldn't be used in conjo
 nction with package mdbch, on input line 315.
 
-<AACSB.png, id=68, 1204.5pt x 406.51875pt>
+<AACSB.png, id=64, 1204.5pt x 406.51875pt>
 File: AACSB.png Graphic file (type png)
 <use AACSB.png>
 Package pdftex.def Info: AACSB.png  used on input line 316.
 (pdftex.def)             Requested size: 50.57945pt x 17.07056pt.
-<EQUIS.png, id=69, 619.56468pt x 380.92313pt>
+<EQUIS.png, id=65, 619.56468pt x 380.92313pt>
 File: EQUIS.png Graphic file (type png)
 <use EQUIS.png>
 Package pdftex.def Info: EQUIS.png  used on input line 316.
 (pdftex.def)             Requested size: 27.76575pt x 17.07104pt.
-<AMBA.png, id=70, 276.03125pt x 83.31125pt>
+<AMBA.png, id=66, 276.03125pt x 83.31125pt>
 File: AMBA.png Graphic file (type png)
 <use AMBA.png>
 Package pdftex.def Info: AMBA.png  used on input line 316.
 (pdftex.def)             Requested size: 56.5615pt x 17.07127pt.
-<monash2.png, id=72, 2730.2pt x 791.95876pt>
+<monash2.png, id=68, 2730.2pt x 791.95876pt>
 File: monash2.png Graphic file (type png)
 <use monash2.png>
 Package pdftex.def Info: monash2.png  used on input line 316.
 (pdftex.def)             Requested size: 170.67874pt x 49.50938pt.
-<MBSportrait.jpg, id=73, 621.32124pt x 503.8825pt>
+<MBSportrait.jpg, id=69, 621.32124pt x 503.8825pt>
 File: MBSportrait.jpg Graphic file (type jpg)
 <use MBSportrait.jpg>
 Package pdftex.def Info: MBSportrait.jpg  used on input line 316.
@@ -1536,7 +1528,7 @@ File: ts1mdbch.fd 2013/08/29 Fontinst v1.933 font definitions for TS1/mdbch.
 )
 LaTeX Font Info:    Font shape `TS1/mdbch/m/n' will be
 (Font)              scaled to size 10.51207pt on input line 371.
-<Assignment4_files/figure-latex/trends-1.pdf, id=121, 566.115pt x 349.305pt>
+<Assignment4_files/figure-latex/trends-1.pdf, id=116, 566.115pt x 349.305pt>
 File: Assignment4_files/figure-latex/trends-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/trends-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/trends-1.pdf  used on i
@@ -1545,73 +1537,63 @@ nput line 381.
 LaTeX Font Info:    Font shape `T1/mdbch/m/it' will be
 (Font)              scaled to size 10.51207pt on input line 382.
 [4] [5 <./Assignment4_files/figure-latex/trends-1.pdf>]
-<Assignment4_files/figure-latex/VS-1.pdf, id=147, 562.1pt x 351.3125pt>
+<Assignment4_files/figure-latex/VS-1.pdf, id=142, 562.1pt x 351.3125pt>
 File: Assignment4_files/figure-latex/VS-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/VS-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/VS-1.pdf  used on input
  line 410.
 (pdftex.def)             Requested size: 455.24706pt x 284.52939pt.
 [6] [7 <./Assignment4_files/figure-latex/VS-1.pdf>]
-<Assignment4_files/figure-latex/top10-1.pdf, id=177, 568.1225pt x 351.3125pt>
+<Assignment4_files/figure-latex/top10-1.pdf, id=170, 568.1225pt x 351.3125pt>
 File: Assignment4_files/figure-latex/top10-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/top10-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/top10-1.pdf  used on in
-put line 453.
+put line 455.
 (pdftex.def)             Requested size: 455.26146pt x 281.5221pt.
-LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 9.24173pt on input line 464.
-LaTeX Font Info:    Trying to load font information for TS1+fvm on input line 4
-68.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/bera/ts1fvm.fd
-File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
-)
-LaTeX Font Info:    Font shape `TS1/fvm/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 468.
-<Assignment4_files/figure-latex/top10map-1.pdf, id=179, 462.72874pt x 320.19624
+<Assignment4_files/figure-latex/top10map-1.pdf, id=173, 462.72874pt x 320.19624
 pt>
 File: Assignment4_files/figure-latex/top10map-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/top10map-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/top10map-1.pdf  used on
- input line 472.
+ input line 468.
 (pdftex.def)             Requested size: 455.25037pt x 315.0214pt.
 [8 <./Assignment4_files/figure-latex/top10-1.pdf>]
-<Assignment4_files/figure-latex/relation-1.pdf, id=197, 857.2025pt x 351.3125pt
+<Assignment4_files/figure-latex/relation-1.pdf, id=192, 857.2025pt x 351.3125pt
 >
 File: Assignment4_files/figure-latex/relation-1.pdf Graphic file (type pdf)
 <use Assignment4_files/figure-latex/relation-1.pdf>
 Package pdftex.def Info: Assignment4_files/figure-latex/relation-1.pdf  used on
- input line 485.
+ input line 481.
 (pdftex.def)             Requested size: 455.24384pt x 186.57533pt.
-[9 <./Assignment4_files/figure-latex/top10map-1.pdf> <./Assignment4_files/figur
-e-latex/relation-1.pdf>] [10] (./Assignment4.aux)
+[9 <./Assignment4_files/figure-latex/top10map-1.pdf>] [10 <./Assignment4_files/
+figure-latex/relation-1.pdf>] [11] (./Assignment4.aux)
 Package rerunfilecheck Info: File `Assignment4.out' has not changed.
-(rerunfilecheck)             Checksum: 5B9EC3BAD1AA674B835EC41637E3D8C9;4267.
+(rerunfilecheck)             Checksum: A35EE7830A86D394500D8B509A24A1BB;4132.
 Package logreq Info: Writing requests to 'Assignment4.run.xml'.
 \openout1 = `Assignment4.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27329 strings out of 478994
- 453627 string characters out of 5858184
- 1275345 words of memory out of 5000000
- 43978 multiletter control sequences out of 15000+600000
- 511328 words of font info for 317 fonts, out of 8000000 for 9000
+ 27324 strings out of 478994
+ 453500 string characters out of 5858184
+ 1273328 words of memory out of 5000000
+ 43954 multiletter control sequences out of 15000+600000
+ 512125 words of font info for 332 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,14n,101p,1200b,4952s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
-exlive/2021/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}{/usr/local/texlive/202
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/ly1/texnansi.enc}{/usr/lo
+cal/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/202
 1/texmf-dist/fonts/enc/dvips/fontawesome/fontawesometwo.enc}</usr/local/texlive
 /2021/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb></usr/local/tex
 live/2021/texmf-dist/fonts/type1/bitstrea/charter/bchb8a.pfb></usr/local/texliv
 e/2021/texmf-dist/fonts/type1/bitstrea/charter/bchr8a.pfb></usr/local/texlive/2
 021/texmf-dist/fonts/type1/bitstrea/charter/bchri8a.pfb></usr/local/texlive/202
-1/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/local/texlive/2021/texmf-
-dist/fonts/type1/public/bera/fvsb8a.pfb></usr/local/texlive/2021/texmf-dist/fon
-ts/type1/public/bera/fvsr8a.pfb>
-Output written on Assignment4.pdf (10 pages, 738741 bytes).
+1/texmf-dist/fonts/type1/public/bera/fvsb8a.pfb></usr/local/texlive/2021/texmf-
+dist/fonts/type1/public/bera/fvsr8a.pfb>
+Output written on Assignment4.pdf (11 pages, 736190 bytes).
 PDF statistics:
- 271 PDF objects out of 1000 (max. 8388607)
- 225 compressed objects within 3 object streams
+ 268 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
  52 named destinations out of 1000 (max. 500000)
- 82099 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 86187 words of extra memory for PDF output out of 89155 (max. 10000000)
 
